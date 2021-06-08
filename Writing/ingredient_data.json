@@ -1,0 +1,72 @@
+{
+    "Airtek Claw": {
+    "description": "Glowing berries, requires decay to grow.",
+    "color": "20d6c7",
+    "features": [-1, -1, -1,  1]
+  },
+  "Begonea": {
+    "description": "A conch shell with strange properties, purifies any liquid held within.",
+    "color": "328464",
+    "features": [-1, -1,  1, -1]
+  },
+  "Dobberchu Tongue": {
+    "description": "Feather of a jubjub bird.",
+    "color": "333941",
+    "features": [-1, -1,  1,  1]
+  },
+  "Foxglove": {
+    "description": "A collection of herbs which ",
+    "color": "24523b",
+    "features": [-1,  1, -1, -1]
+  },
+  "Tuathaw Ear": {
+    "description": "Rejuvenates ones inner such and such and so on",
+    "color": "8e5252",
+    "features": [-1,  1, -1,  1]
+  },
+  "Herbdew": {
+    "description": "Rejuvenates ones inner such and such and so on",
+    "color": "8b93af",
+    "features": [-1,  1,  1, -1]
+  },
+  "horn": {
+    "description": "Rejuvenates ones inner such and such and so on",
+    "color": "b3b9d1",
+    "features": [-1,  1,  1,  1]
+  },
+  "Mandrake": {
+    "description": "Rejuvenates ones inner such and such and so on",
+    "color": "849be4",
+    "features": [ 1, -1, -1, -1]
+  },
+  "Merrow Heart": {
+    "description": "Rejuvenates ones inner such and such and so on",
+    "color": "dba463",
+    "features": [ 1, -1, -1,  1]
+  },
+  "Muckshroom": {
+    "description": "Rejuvenates ones inner such and such and so on",
+    "color": "bb7547",
+    "features": [ 1, -1,  1, -1]
+  },
+  "Ollifeist Tentacle": {
+    "description": "Rejuvenates ones inner such and such and so on",
+    "color": "f9a31b",
+    "features": [ 1, -1,  1,  1]
+  },
+  "Phomarian Hand": {
+    "description": "Rejuvenates ones inner such and such and so on",
+    "color": "588dbe",
+    "features": [ 1,  1, -1, -1]
+  },
+  "Silver Silin": {
+    "description": "Rejuvenates ones inner such and such and so on",
+    "color": "23674e",
+    "features": [ 1,  1, -1,  1]
+  },
+  "Tendroot": {
+    "description": "Rejuvenates ones inner such and such and so on",
+    "color": "23674e",
+    "features": [ 1,  1, -1,  1]
+  }
+}

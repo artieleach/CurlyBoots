@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/SceneTransition.gd" type="Script" id=1]
+[ext_resource path="res://Art/GUI/fader.png" type="Texture" id=2]
+
+[node name="SceneTransition" type="Control"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Fader" type="Sprite" parent="."]
+modulate = Color( 0.141176, 0.133333, 0.203922, 1 )
+z_index = 100
+z_as_relative = false
+texture = ExtResource( 2 )
+centered = false
+
+[node name="Tween" type="Tween" parent="."]
+
+[connection signal="tween_completed" from="Tween" to="." method="_on_Tween_tween_completed"]

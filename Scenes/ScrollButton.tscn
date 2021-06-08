@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scenes/ScrollButton.gd" type="Script" id=1]
+[ext_resource path="res://Art/GUI/scroll.png" type="Texture" id=2]
+[ext_resource path="res://Art/Fonts/m5x7.tres" type="DynamicFont" id=3]
+
+[node name="ScrollButton" type="TextureButton"]
+anchor_right = 0.061
+anchor_bottom = 0.053
+margin_right = -0.464005
+margin_bottom = 0.199999
+rect_min_size = Vector2( 62, 32 )
+rect_clip_content = true
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="Button_Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+centered = false
+
+[node name="Label" type="Label" parent="Button_Sprite"]
+margin_left = 22.0
+margin_top = 13.0
+margin_right = 62.0
+margin_bottom = 27.0
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0.133333, 0.109804, 0.101961, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="." to="." method="_on_ScrollButton_pressed"]
+[connection signal="tween_completed" from="Tween" to="." method="_on_Tween_tween_completed"]
