@@ -6,7 +6,7 @@ var players = []
 var music_player
 
 func _ready():
-	for _i in range(10):
+	for _i in range(12):
 		var new_player = AudioStreamPlayer.new()
 		add_child(new_player)
 		players.append(new_player)

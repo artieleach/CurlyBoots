@@ -12,6 +12,7 @@ var cards = ["this, that"]
 var debug = false
 var cauldron_color = Color('#000000')
 var ingredient_data
+var cauldron_temp = 0
 
 const POTION_VARS = ['A', 'B', 'C', 'D']
 
@@ -45,7 +46,8 @@ func save():
 		"music": music,
 		"forbidden_items": forbidden_items,
 		"debug": debug,
-		"cauldron_color": cauldron_color
+		"cauldron_color": cauldron_color,
+		"cauldron_temp": cauldron_temp
 	}
 	return save_dict
 

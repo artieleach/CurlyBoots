@@ -49,7 +49,6 @@ func set_color():
 	GlobalVars.cauldron_color.r = GlobalVars.potion_balance[0] * 0.2 + 0.1
 	GlobalVars.cauldron_color.g = GlobalVars.potion_balance[1] * 0.3 + 0.3
 	GlobalVars.cauldron_color.b = GlobalVars.potion_balance[2] * 0.2 + 0.3
-	GlobalVars.cauldron_color.a = GlobalVars.potion_balance[3] * 0.2 + 0.5
 	#bottle.get_node("liquid").self_modulate = GlobalVars.cauldron_color
 	tween.interpolate_property(liquid, "color", liquid.color, GlobalVars.cauldron_color, 0.3)
 	tween.interpolate_property(bubble, "color", bubble.color, GlobalVars.cauldron_color, 0.3)
@@ -61,3 +60,9 @@ func potion_splash(poof_color):
 	splash.restart()
 	poof.self_modulate = poof_color
 	poof.restart()
+
+
+func set_temp():
+	tween.interpolate_property(liquid, "speed_scale", liquid.speed_scale, 0.4 + (GlobalVars.cauldron_temp * 0.1), 1)
+	tween.interpolate_property(bubble, "amount", bubble.amount, 1 + (GlobalVars.cauldron_temp * 20), 1)
+	tween.start()

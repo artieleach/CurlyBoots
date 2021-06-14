@@ -3,6 +3,7 @@ extends Control
 onready var cauldron = get_node("Counter/Cauldron")
 onready var dialog
 onready var day_summary = get_node("Day_Summary")
+onready var options_menu = get_node("OptionsMenu")
 onready var tween = get_node("Tween")
 onready var schedule
 
@@ -92,3 +93,17 @@ func _on_Day_Summary_gui_input(event):
 		yield(tween, "tween_completed")
 		start_day()
 		day_summary.hide()
+
+
+func _on_Menu_Button_pressed():
+	get_tree().paused = true
+	options_menu.slide()
+
+func _on_Right_Button_pressed():
+	GlobalVars.cauldron_temp += 1
+	cauldron.set_temp()
+
+
+func _on_Left_Button_pressed():
+	GlobalVars.cauldron_temp -= 1
+	cauldron.set_temp()

@@ -19,12 +19,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Book" type="Sprite" parent="."]
 position = Vector2( -224, 0 )
 texture = ExtResource( 7 )
 centered = false
 
-[node name="TextureRect" type="TextureRect" parent="Sprite"]
+[node name="TextureRect" type="TextureRect" parent="Book"]
 margin_left = 120.0
 margin_top = 15.0
 margin_right = 216.0
@@ -33,7 +33,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Sprite"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Book"]
 margin_left = 175.0
 margin_top = 16.0
 margin_right = 215.0
@@ -42,44 +42,43 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Sound" type="TextureButton" parent="Sprite/VBoxContainer"]
+[node name="Sound" type="TextureButton" parent="Book/VBoxContainer"]
 margin_right = 40.0
 margin_bottom = 8.0
 texture_normal = ExtResource( 3 )
 texture_hover = ExtResource( 2 )
 
-[node name="Label" type="Label" parent="Sprite/VBoxContainer/Sound"]
+[node name="Label" type="Label" parent="Book/VBoxContainer/Sound"]
 margin_left = 9.0
-margin_top = -3.0
 margin_right = 49.0
-margin_bottom = 10.0
+margin_bottom = 13.0
 custom_fonts/font = ExtResource( 8 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Sound"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Music" type="TextureButton" parent="Sprite/VBoxContainer"]
+[node name="Music" type="TextureButton" parent="Book/VBoxContainer"]
 margin_top = 12.0
 margin_right = 40.0
 margin_bottom = 20.0
 texture_normal = ExtResource( 1 )
 texture_hover = ExtResource( 4 )
 
-[node name="Label" type="Label" parent="Sprite/VBoxContainer/Music"]
+[node name="Label" type="Label" parent="Book/VBoxContainer/Music"]
 margin_left = 9.0
-margin_top = -4.0
+margin_top = -1.0
 margin_right = 49.0
-margin_bottom = 10.0
+margin_bottom = 13.0
 custom_fonts/font = ExtResource( 8 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Music"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HSeparator" type="HSeparator" parent="Sprite/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="Book/VBoxContainer"]
 modulate = Color( 1, 1, 1, 0 )
 margin_top = 24.0
 margin_right = 40.0
@@ -89,20 +88,20 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Menu" type="TextureButton" parent="Sprite/VBoxContainer"]
+[node name="Menu" type="TextureButton" parent="Book/VBoxContainer"]
 margin_top = 34.0
 margin_right = 40.0
 margin_bottom = 42.0
 texture_normal = ExtResource( 5 )
 texture_hover = ExtResource( 6 )
 
-[node name="Label" type="Label" parent="Sprite/VBoxContainer/Menu"]
+[node name="Label" type="Label" parent="Book/VBoxContainer/Menu"]
 margin_left = 9.0
-margin_top = -4.0
+margin_top = -1.0
 margin_right = 49.0
-margin_bottom = 9.0
+margin_bottom = 12.0
 custom_fonts/font = ExtResource( 8 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Menu"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -110,6 +109,7 @@ __meta__ = {
 
 [node name="Tween" type="Tween" parent="."]
 
-[connection signal="pressed" from="Sprite/VBoxContainer/Sound" to="." method="_on_Sound_pressed"]
-[connection signal="pressed" from="Sprite/VBoxContainer/Music" to="." method="_on_Music_pressed"]
-[connection signal="pressed" from="Sprite/VBoxContainer/Menu" to="." method="_on_Menu_pressed"]
+[connection signal="gui_input" from="." to="." method="_on_OptionsMenu_gui_input"]
+[connection signal="pressed" from="Book/VBoxContainer/Sound" to="." method="_on_Sound_pressed"]
+[connection signal="pressed" from="Book/VBoxContainer/Music" to="." method="_on_Music_pressed"]
+[connection signal="pressed" from="Book/VBoxContainer/Menu" to="." method="_on_Menu_pressed"]

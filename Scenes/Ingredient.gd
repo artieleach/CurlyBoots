@@ -47,6 +47,7 @@ func _on_ingredient_mouse_exited():
 
 
 func reset():
+	ingredient_sprite.use_parent_material = true
 	animation_player.stop()
 	ingredient_sprite.self_modulate = Color(1, 1, 1)
 	drawing.z_index = 0

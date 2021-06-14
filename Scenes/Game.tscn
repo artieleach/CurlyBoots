@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Art/Assets/small_calinet.png" type="Texture" id=1]
 [ext_resource path="res://Art/Assets/shelf.png" type="Texture" id=2]
@@ -19,6 +19,12 @@
 [ext_resource path="res://Scenes/Cauldron.tscn" type="PackedScene" id=17]
 [ext_resource path="res://Scenes/Dialog.tscn" type="PackedScene" id=18]
 [ext_resource path="res://Scenes/Ingredient.tscn" type="PackedScene" id=19]
+[ext_resource path="res://Art/GUI/menu.png" type="Texture" id=20]
+[ext_resource path="res://Scenes/OptionsMenu.tscn" type="PackedScene" id=21]
+[ext_resource path="res://Art/GUI/arrow_left.png" type="Texture" id=22]
+[ext_resource path="res://Art/GUI/arrow_right.png" type="Texture" id=23]
+[ext_resource path="res://Art/GUI/arrow_right_hover.png" type="Texture" id=24]
+[ext_resource path="res://Art/GUI/arrow_left_hover.png" type="Texture" id=25]
 
 [node name="Game" type="Control"]
 anchor_right = 1.0
@@ -193,6 +199,28 @@ margin_left = 160.0
 margin_right = 160.506
 margin_bottom = 28.014
 
+[node name="Right_Button" type="TextureButton" parent="Counter"]
+margin_left = 147.0
+margin_top = 1.0
+margin_right = 159.0
+margin_bottom = 12.0
+texture_normal = ExtResource( 23 )
+texture_hover = ExtResource( 24 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Left_Button" type="TextureButton" parent="Counter"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 13.0
+margin_bottom = 12.0
+texture_normal = ExtResource( 22 )
+texture_hover = ExtResource( 25 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Day_Summary" type="ColorRect" parent="."]
 visible = false
 anchor_right = 1.0
@@ -227,5 +255,21 @@ margin_bottom = -1.0
 
 [node name="Tween" type="Tween" parent="."]
 
+[node name="Menu_Button" type="TextureButton" parent="."]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 9.0
+margin_bottom = 9.0
+texture_normal = ExtResource( 20 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OptionsMenu" parent="." instance=ExtResource( 21 )]
+visible = false
+
 [connection signal="tree_exiting" from="." to="." method="_on_Game_tree_exiting"]
+[connection signal="pressed" from="Counter/Right_Button" to="." method="_on_Right_Button_pressed"]
+[connection signal="pressed" from="Counter/Left_Button" to="." method="_on_Left_Button_pressed"]
 [connection signal="gui_input" from="Day_Summary" to="." method="_on_Day_Summary_gui_input"]
+[connection signal="pressed" from="Menu_Button" to="." method="_on_Menu_Button_pressed"]

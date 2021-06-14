@@ -6,7 +6,7 @@ var bg_player
 
 
 func _ready():
-	AudioHolder.play_song("magic-forest-by-kevin-macleod-from-filmmusic-io")
+	AudioHolder.play_song("mesmerize-by-kevin-macleod-from-filmmusic-io")
 	SceneTransition.transition({"Direction": "in", "Destination": "Menu"})
 
 

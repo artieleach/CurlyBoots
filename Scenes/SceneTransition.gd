@@ -31,3 +31,4 @@ func transition_finished():
 		elif cur_trans["Destination"] == "Options":
 			#get_tree().change_scene("res://assets/Menu.tscn")
 			pass
+	get_tree().paused = false
