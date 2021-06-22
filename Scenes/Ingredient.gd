@@ -3,7 +3,6 @@ extends TextureButton
 onready var ingredient_sprite = get_node("Node2D/Ingredient_Sprite")
 onready var indicators = get_node("Node2D/Indicators")
 onready var tween = get_node("Tween")
-onready var animation_player = get_node("AnimationPlayer")
 onready var drawing = get_node("Node2D")
 
 var held: bool = false
@@ -23,6 +22,7 @@ func _ready():
 	add_to_group("ingredient")
 	connect("double_clicked", owner, "_on_ingredient_pressed", [name])
 	connect("added_to_potion", owner, "_on_add_to_potion", [name])
+	owner.connect("mouse_exited_game_area", self, "drop_em")
 	ingredient_sprite.texture = load("res://Art/Ingredients/%s.png" % name)
 	my_width = ingredient_sprite.texture.get_width()
 	rect_size = ingredient_sprite.texture.get_size()
@@ -48,7 +48,6 @@ func _on_ingredient_mouse_exited():
 
 func reset():
 	ingredient_sprite.use_parent_material = true
-	animation_player.stop()
 	ingredient_sprite.self_modulate = Color(1, 1, 1)
 	drawing.z_index = 0
 	tween.interpolate_property(drawing, "position", Vector2(0, -100), Vector2(0, 0), 1.5, Tween.TRANS_BOUNCE, Tween.EASE_OUT)
@@ -61,7 +60,6 @@ func reset():
 
 
 func go_back():
-	animation_player.stop()
 	ingredient_sprite.self_modulate = Color(1, 1, 1)
 	indicators.hide()
 	offset = Vector2(0, 0)
@@ -80,7 +78,6 @@ func pick_up():
 
 
 func add_to_potion():
-	animation_player.stop()
 	ingredient_sprite.self_modulate = Color(1, 1, 1)
 	indicators.hide()
 	drawing.z_index = 2
@@ -136,3 +133,7 @@ func _on_Ingredient_mouse_exited():
 	will_open_help = true
 	indicators.hide()
 
+func drop_em():
+	if held:
+		held = false
+		go_back()

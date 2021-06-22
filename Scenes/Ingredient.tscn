@@ -45,8 +45,6 @@ __meta__ = {
 
 [node name="Tween" type="Tween" parent="."]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-
 [node name="Node2D" type="Node2D" parent="."]
 
 [node name="Ingredient_Sprite" type="Sprite" parent="Node2D"]

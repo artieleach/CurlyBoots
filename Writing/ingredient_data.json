@@ -1,72 +1,72 @@
 {
     "Airtek Claw": {
-    "description": "Glowing berries, requires decay to grow.",
-    "color": "20d6c7",
+    "description": "The claw of a female Airtek, diffiuclt to acquire due to their dwindling numbers.",
+    "color": "322b28",
     "features": [-1, -1, -1,  1]
   },
   "Begonea": {
-    "description": "A conch shell with strange properties, purifies any liquid held within.",
-    "color": "328464",
+    "description": "A flower often used to deter potential suitors, due to it's assaulting fragrance.",
+    "color": "e86a73",
     "features": [-1, -1,  1, -1]
   },
   "Dobberchu Tongue": {
-    "description": "Feather of a jubjub bird.",
-    "color": "333941",
+    "description": "The tongue of a dobberchu, harvested before puberty, when their adult fangs grow in.",
+    "color": "403353",
     "features": [-1, -1,  1,  1]
   },
   "Foxglove": {
-    "description": "A collection of herbs which ",
-    "color": "24523b",
+    "description": "A versatile flower, with many uses.",
+    "color": "403353",
     "features": [-1,  1, -1, -1]
   },
   "Tuathaw Ear": {
-    "description": "Rejuvenates ones inner such and such and so on",
-    "color": "8e5252",
+    "description": "The ear of a tuathaw, must be mature when the ear is harvested. Often used as a substitute for Ballyhooves",
+    "color": "24523b",
     "features": [-1,  1, -1,  1]
   },
   "Herbdew": {
-    "description": "Rejuvenates ones inner such and such and so on",
-    "color": "8b93af",
+    "description": "An herb which produces more water than it collects, though has strict botanical needs, preventing it from being more commonly useful.",
+    "color": "5daf8d",
     "features": [-1,  1,  1, -1]
   },
   "horn": {
     "description": "Rejuvenates ones inner such and such and so on",
-    "color": "b3b9d1",
+    "color": "dba463",
     "features": [-1,  1,  1,  1]
   },
   "Mandrake": {
-    "description": "Rejuvenates ones inner such and such and so on",
-    "color": "849be4",
+    "description": "A defense mechanism Sinsircranns create, primarily to protect their root systems.",
+    "color": "8e5252",
     "features": [ 1, -1, -1, -1]
   },
   "Merrow Heart": {
-    "description": "Rejuvenates ones inner such and such and so on",
-    "color": "dba463",
+    "description": "The heart of a Merrow, a rare ingredient owing to it's difficulty to obtain.",
+    "color": "793a80",
     "features": [ 1, -1, -1,  1]
   },
   "Muckshroom": {
-    "description": "Rejuvenates ones inner such and such and so on",
-    "color": "bb7547",
+    "description": "A breed of mushroom which only grows in swamps near, though never directly touching, decaying corpses.",
+    "color": "b4202a",
     "features": [ 1, -1,  1, -1]
   },
   "Ollifeist Tentacle": {
-    "description": "Rejuvenates ones inner such and such and so on",
-    "color": "f9a31b",
+    "description": "The tentacle of a male Ollifeist, it's far smaller than the female of the species, and it does not carry the toxens of it's mate.",
+    "color": "92dcba",
     "features": [ 1, -1,  1,  1]
   },
   "Phomarian Hand": {
-    "description": "Rejuvenates ones inner such and such and so on",
-    "color": "588dbe",
+    "description": "A hand of a phomarian, can often be found in prisons, barracks, and occasionally markets.",
+    "color": "8b93af",
     "features": [ 1,  1, -1, -1]
   },
   "Silver Silin": {
-    "description": "Rejuvenates ones inner such and such and so on",
-    "color": "23674e",
+    "description": "Technically two plants, the silin is a breed of flower, and there is a species of moth which coats the flower in silver.",
+    "color": "b3b9d1",
     "features": [ 1,  1, -1,  1]
   },
   "Tendroot": {
-    "description": "Rejuvenates ones inner such and such and so on",
-    "color": "23674e",
+    "description": "The root of a Sinsircrann, must be harvested while the rest of the tree lives.",
+    "color": "8e5252",
     "features": [ 1,  1, -1,  1]
   }
 }

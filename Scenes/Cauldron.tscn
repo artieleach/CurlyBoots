@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Art/Effects/circle_particle.png" type="Texture" id=1]
 [ext_resource path="res://Art/Assets/cauldron_liquid_mask.png" type="Texture" id=2]
@@ -13,16 +13,52 @@
 [ext_resource path="res://Art/GUI/neutral.png" type="Texture" id=11]
 [ext_resource path="res://Art/GUI/minus.png" type="Texture" id=12]
 [ext_resource path="res://Scenes/Potion.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Art/GUI/plus-sheet.png" type="Texture" id=14]
+[ext_resource path="res://Art/GUI/minus-sheet.png" type="Texture" id=15]
 
 [sub_resource type="Curve" id=1]
 _data = [ Vector2( 0.159091, 0.053491 ), 0.0, 5.89189, 0, 0, Vector2( 1, 0 ), -3.06624, 0.0, 0, 0 ]
 
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 14 )
+region = Rect2( 0, 0, 7, 7 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 14 )
+region = Rect2( 7, 0, 7, 7 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 14 )
+region = Rect2( 14, 0, 7, 7 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 15 )
+region = Rect2( 0, 0, 7, 7 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 15 )
+region = Rect2( 7, 0, 7, 7 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 15 )
+region = Rect2( 14, 0, 7, 7 )
+
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
+"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
+"loop": false,
+"name": "up",
+"speed": 10.0
+}, {
 "frames": [ ExtResource( 12 ), ExtResource( 11 ), ExtResource( 8 ) ],
-"loop": true,
-"name": "default",
+"loop": false,
+"name": "lot",
 "speed": 5.0
+}, {
+"frames": [ SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ],
+"loop": false,
+"name": "down",
+"speed": 10.0
 } ]
 
 [node name="Cauldron" type="Control"]
@@ -82,6 +118,7 @@ material = ExtResource( 5 )
 position = Vector2( 31, 35 )
 amount = 1
 lifetime = 5.0
+randomness = 1.0
 texture = ExtResource( 6 )
 emission_shape = 2
 emission_rect_extents = Vector2( 4, 1 )
@@ -131,6 +168,7 @@ size_flags_horizontal = 4
 
 [node name="indicator" type="AnimatedSprite" parent="Indicators/A"]
 frames = SubResource( 2 )
+animation = "lot"
 centered = false
 
 [node name="B" type="TextureRect" parent="Indicators"]
@@ -142,6 +180,7 @@ size_flags_horizontal = 4
 
 [node name="indicator" type="AnimatedSprite" parent="Indicators/B"]
 frames = SubResource( 2 )
+animation = "lot"
 centered = false
 
 [node name="C" type="TextureRect" parent="Indicators"]
@@ -153,6 +192,7 @@ size_flags_horizontal = 4
 
 [node name="indicator" type="AnimatedSprite" parent="Indicators/C"]
 frames = SubResource( 2 )
+animation = "lot"
 centered = false
 
 [node name="D" type="TextureRect" parent="Indicators"]
@@ -164,6 +204,7 @@ size_flags_horizontal = 4
 
 [node name="indicator" type="AnimatedSprite" parent="Indicators/D"]
 frames = SubResource( 2 )
+animation = "lot"
 centered = false
 
 [node name="cauldron_top_mask" type="Sprite" parent="."]

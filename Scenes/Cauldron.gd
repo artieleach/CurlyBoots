@@ -22,19 +22,28 @@ func _process(_delta):
 	potion.get_node("Spinner2").rotate(0.03)
 
 
-func set_indicators(instant=false):
+func set_indicators(instant=false, current=[]):
 	set_color()
 	var new = GlobalVars.potion_balance
 	for i in range(len(GlobalVars.potion_balance)):
-		var current = indicators.get_node("%s/indicator" % GlobalVars.POTION_VARS[i]).frame
 		if not instant:
-			if current > new[i]:
+			if current[i] > new[i]:
 				AudioHolder.play_audio('down', -4)
-			if current < new[i]:
+				if new[i] == 0:
+					indicators.get_node("%s/indicator" % GlobalVars.POTION_VARS[i]).play("down")
+				else:
+					indicators.get_node("%s/indicator" % GlobalVars.POTION_VARS[i]).play("up", true)
+			if current[i] < new[i]:
 				AudioHolder.play_audio('up', -4)
-			if current == new[i]:
+				if new[i] == 2:
+					indicators.get_node("%s/indicator" % GlobalVars.POTION_VARS[i]).play("up")
+				else:
+					indicators.get_node("%s/indicator" % GlobalVars.POTION_VARS[i]).play("down", true)
+			if current[i] == new[i]:
 				AudioHolder.play_audio('stay', -2)
-		indicators.get_node("%s/indicator" % GlobalVars.POTION_VARS[i]).frame = new[i]
+		if instant:
+			indicators.get_node("%s/indicator" % GlobalVars.POTION_VARS[i]).animation = 'lot'
+			indicators.get_node("%s/indicator" % GlobalVars.POTION_VARS[i]).frame = new[i]
 		if not instant:
 			yield(get_tree().create_timer(0.2), "timeout")
 
@@ -45,10 +54,11 @@ func display_potion():
 
 
 func set_color():
-	GlobalVars.cauldron_color = Color('#000000')
+	GlobalVars.cauldron_color = Color(0, 0, 0, 1)
 	GlobalVars.cauldron_color.r = GlobalVars.potion_balance[0] * 0.2 + 0.1
 	GlobalVars.cauldron_color.g = GlobalVars.potion_balance[1] * 0.3 + 0.3
 	GlobalVars.cauldron_color.b = GlobalVars.potion_balance[2] * 0.2 + 0.3
+	GlobalVars.cauldron_color.a = 0.5
 	#bottle.get_node("liquid").self_modulate = GlobalVars.cauldron_color
 	tween.interpolate_property(liquid, "color", liquid.color, GlobalVars.cauldron_color, 0.3)
 	tween.interpolate_property(bubble, "color", bubble.color, GlobalVars.cauldron_color, 0.3)
@@ -64,5 +74,5 @@ func potion_splash(poof_color):
 
 func set_temp():
 	tween.interpolate_property(liquid, "speed_scale", liquid.speed_scale, 0.4 + (GlobalVars.cauldron_temp * 0.1), 1)
-	tween.interpolate_property(bubble, "amount", bubble.amount, 1 + (GlobalVars.cauldron_temp * 20), 1)
+	tween.interpolate_property(bubble, "amount", bubble.amount, 1 + GlobalVars.cauldron_temp, 1)
 	tween.start()

@@ -7,6 +7,8 @@ onready var options_menu = get_node("OptionsMenu")
 onready var tween = get_node("Tween")
 onready var schedule
 
+signal mouse_exited_game_area
+
 
 func _ready():
 	SceneTransition.transition({"Direction": "in", "Destination": "Game"})
@@ -15,23 +17,6 @@ func _ready():
 
 func _on_Game_tree_exiting():
 	GlobalVars.save_to_disk()
-
-
-func set_indicators(instant=false):
-	cauldron.set_color()
-	var new = GlobalVars.potion_balance
-	for i in range(len(GlobalVars.potion_balance)):
-		var current = cauldron.get_node("HBoxContainer/%s/indicator" % GlobalVars.POTION_VARS[i]).frame
-		if not instant:
-			if current > new[i]:
-				AudioHolder.play_audio('down', -4)
-			if current < new[i]:
-				AudioHolder.play_audio('up', -4)
-			if current == new[i]:
-				AudioHolder.play_audio('stay', -2)
-		cauldron.get_node("HBoxContainer/%s/indicator" % GlobalVars.POTION_VARS[i]).frame = new[i]
-		if not instant:
-			yield(get_tree().create_timer(0.2), "timeout")
 
 
 func calculate_metric(ingredient, cur_state):
@@ -46,10 +31,11 @@ func _on_add_to_potion(ingredient):
 	cauldron.poof.restart()
 	cauldron.splash.restart()
 	GlobalVars.potion_ingredients.append(ingredient)
+	var old = GlobalVars.potion_balance
 	GlobalVars.potion_balance = calculate_metric(ingredient, GlobalVars.potion_balance)
 	print(GlobalVars.potion_balance)
 	yield(get_tree().create_timer(0.9), "timeout")
-	cauldron.set_indicators()
+	cauldron.set_indicators(false, old)
 
 
 func _on_dialog(cur_speaker, spesific_response=null):
@@ -102,8 +88,15 @@ func _on_Menu_Button_pressed():
 func _on_Right_Button_pressed():
 	GlobalVars.cauldron_temp += 1
 	cauldron.set_temp()
+	print(GlobalVars.cauldron_temp)
 
 
 func _on_Left_Button_pressed():
-	GlobalVars.cauldron_temp -= 1
+	if GlobalVars.cauldron_temp > 1:
+		GlobalVars.cauldron_temp -= 1
 	cauldron.set_temp()
+	print(GlobalVars.cauldron_temp)
+
+
+func _on_Game_mouse_exited():
+	emit_signal("mouse_exited_game_area")

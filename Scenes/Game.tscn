@@ -188,11 +188,77 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Herbdew" parent="Counter/Countertop" instance=ExtResource( 19 )]
-margin_left = 8.0
+[node name="Airtek Claw" parent="Counter/Countertop" instance=ExtResource( 19 )]
+margin_left = 1.0
 margin_top = 13.0
-margin_right = 31.0
+margin_right = 24.0
 margin_bottom = 36.0
+
+[node name="Begonea" parent="Counter/Countertop" instance=ExtResource( 19 )]
+margin_left = 57.0
+margin_top = 11.0
+margin_right = 80.0
+margin_bottom = 34.0
+
+[node name="Dobberchu Tongue" parent="Counter/Countertop" instance=ExtResource( 19 )]
+margin_left = 11.0
+margin_top = -9.0
+margin_right = 34.0
+margin_bottom = 14.0
+
+[node name="Foxglove" parent="Counter/Countertop" instance=ExtResource( 19 )]
+margin_left = 71.0
+margin_top = -5.0
+margin_right = 94.0
+margin_bottom = 18.0
+
+[node name="Tuathaw Ear" parent="Counter/Countertop" instance=ExtResource( 19 )]
+margin_left = 97.0
+margin_top = -3.0
+margin_right = 120.0
+margin_bottom = 20.0
+
+[node name="Mandrake" parent="Counter/Countertop" instance=ExtResource( 19 )]
+margin_left = 123.0
+margin_top = -6.0
+margin_right = 146.0
+margin_bottom = 17.0
+
+[node name="Merrow Heart" parent="Counter/Countertop" instance=ExtResource( 19 )]
+margin_left = 20.0
+margin_top = 12.0
+margin_right = 43.0
+margin_bottom = 35.0
+
+[node name="Muckshroom" parent="Counter/Countertop" instance=ExtResource( 19 )]
+margin_left = 38.0
+margin_top = 12.0
+margin_right = 61.0
+margin_bottom = 35.0
+
+[node name="Ollifeist Tentacle" parent="Counter/Countertop" instance=ExtResource( 19 )]
+margin_left = 77.0
+margin_top = 11.0
+margin_right = 100.0
+margin_bottom = 34.0
+
+[node name="Phomarian Hand" parent="Counter/Countertop" instance=ExtResource( 19 )]
+margin_left = 97.0
+margin_top = 12.0
+margin_right = 120.0
+margin_bottom = 35.0
+
+[node name="Silver Silin" parent="Counter/Countertop" instance=ExtResource( 19 )]
+margin_left = 116.0
+margin_top = 12.0
+margin_right = 139.0
+margin_bottom = 35.0
+
+[node name="Tendroot" parent="Counter/Countertop" instance=ExtResource( 19 )]
+margin_left = 135.0
+margin_top = 12.0
+margin_right = 158.0
+margin_bottom = 35.0
 
 [node name="Cauldron" parent="Counter" instance=ExtResource( 17 )]
 margin_left = 160.0
@@ -268,6 +334,7 @@ __meta__ = {
 [node name="OptionsMenu" parent="." instance=ExtResource( 21 )]
 visible = false
 
+[connection signal="mouse_exited" from="." to="." method="_on_Game_mouse_exited"]
 [connection signal="tree_exiting" from="." to="." method="_on_Game_tree_exiting"]
 [connection signal="pressed" from="Counter/Right_Button" to="." method="_on_Right_Button_pressed"]
 [connection signal="pressed" from="Counter/Left_Button" to="." method="_on_Left_Button_pressed"]
