@@ -2,10 +2,10 @@ extends Sprite
 
 export (String) var ingredient_name
 
-onready var left_page : Node = get_node("Page_Left/Text")
-onready var right_page : Node = get_node("Page_Right/Text")
-onready var left_num : Node = get_node("Page_Left/Text")
-onready var right_num : Node = get_node("Page_Left/Text")
+onready var left_page : Node = get_node("Page_Left")
+onready var right_page : Node = get_node("Page_Right")
+onready var left_num : Node = get_node("Page_Number_Left")
+onready var right_num : Node = get_node("Page_Number_Right")
 
 var dialogs_folder = 'res://Writing/Books'
 var book
@@ -15,7 +15,7 @@ func _ready():
 	initiate('book_1')
 
 
-func initiate(file_id, block = '1'): # Load the whole dialog into a variable
+func initiate(file_id): # Load the whole dialog into a variable
 	var file = File.new()
 	file.open('%s/%s.json' % [dialogs_folder, file_id], file.READ)
 	if GlobalVars.debug:
@@ -43,14 +43,13 @@ func set_page():
 		right_page.bbcode_text = ''
 
 
-func _on_button_right_pressed():
-	if cur_page < 9997:
-		cur_page += 2
-		set_page()
-
-
-func _on_button_left_pressed():
+func _on_Button_Left_pressed():
 	if cur_page > 2:
 		cur_page -= 2
 		set_page()
 
+
+func _on_Button_Right_pressed():
+	if cur_page < 9997:
+		cur_page += 2
+		set_page()
