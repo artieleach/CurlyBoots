@@ -1,6 +1,22 @@
 extends Node2D
+var state: Object
 
+var history = []
+
+signal buying
+signal begin_dialog
+
+var progress
+var my_name
+var want
+var has_item = false
+var target
+var where_to_sit
 var exit
+var spot_in_line
+var upset
+var mistakes
+var footsteps = []
 
 func _ready():
 	exit = get_tree().get_nodes_in_group("exit")[0]
@@ -9,7 +25,7 @@ func _ready():
 
 
 func footstep():
-	audioholder.play_audio("footstep0%d" % [randi() % 10], -20)
+	AudioHolder.play_audio("footstep0%d" % [randi() % 10], -20)
 
 
 func change_to(new_state):
@@ -25,7 +41,7 @@ func back():
 
 
 func _enter_state():
-	if globals.debug:
+	if GlobalVars.debug:
 		print("Entering state: ", state.name)
 		printt(history)
 	# Give the new state a reference to it's state machine i.e. this one
