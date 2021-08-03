@@ -133,6 +133,7 @@ func _on_Ingredient_mouse_exited():
 	will_open_help = true
 	indicators.hide()
 
+
 func drop_em():
 	if held:
 		held = false

@@ -19,33 +19,33 @@
 [sub_resource type="Curve" id=1]
 _data = [ Vector2( 0.159091, 0.053491 ), 0.0, 5.89189, 0, 0, Vector2( 1, 0 ), -3.06624, 0.0, 0, 0 ]
 
-[sub_resource type="AtlasTexture" id=3]
+[sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 14 )
 region = Rect2( 0, 0, 7, 7 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 14 )
+region = Rect2( 7, 0, 7, 7 )
 
 [sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 14 )
-region = Rect2( 7, 0, 7, 7 )
-
-[sub_resource type="AtlasTexture" id=5]
-atlas = ExtResource( 14 )
 region = Rect2( 14, 0, 7, 7 )
 
-[sub_resource type="AtlasTexture" id=6]
+[sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 15 )
 region = Rect2( 0, 0, 7, 7 )
 
-[sub_resource type="AtlasTexture" id=7]
+[sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 15 )
 region = Rect2( 7, 0, 7, 7 )
 
-[sub_resource type="AtlasTexture" id=8]
+[sub_resource type="AtlasTexture" id=7]
 atlas = ExtResource( 15 )
 region = Rect2( 14, 0, 7, 7 )
 
-[sub_resource type="SpriteFrames" id=2]
+[sub_resource type="SpriteFrames" id=8]
 animations = [ {
-"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
 "loop": false,
 "name": "up",
 "speed": 10.0
@@ -55,7 +55,7 @@ animations = [ {
 "name": "lot",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ],
+"frames": [ SubResource( 5 ), SubResource( 6 ), SubResource( 7 ) ],
 "loop": false,
 "name": "down",
 "speed": 10.0
@@ -167,7 +167,7 @@ rect_min_size = Vector2( 7, 7 )
 size_flags_horizontal = 4
 
 [node name="indicator" type="AnimatedSprite" parent="Indicators/A"]
-frames = SubResource( 2 )
+frames = SubResource( 8 )
 animation = "lot"
 centered = false
 
@@ -179,7 +179,7 @@ rect_min_size = Vector2( 7, 7 )
 size_flags_horizontal = 4
 
 [node name="indicator" type="AnimatedSprite" parent="Indicators/B"]
-frames = SubResource( 2 )
+frames = SubResource( 8 )
 animation = "lot"
 centered = false
 
@@ -191,7 +191,7 @@ rect_min_size = Vector2( 7, 7 )
 size_flags_horizontal = 4
 
 [node name="indicator" type="AnimatedSprite" parent="Indicators/C"]
-frames = SubResource( 2 )
+frames = SubResource( 8 )
 animation = "lot"
 centered = false
 
@@ -203,7 +203,7 @@ rect_min_size = Vector2( 7, 7 )
 size_flags_horizontal = 4
 
 [node name="indicator" type="AnimatedSprite" parent="Indicators/D"]
-frames = SubResource( 2 )
+frames = SubResource( 8 )
 animation = "lot"
 centered = false
 

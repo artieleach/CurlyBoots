@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://Art/Assets/small_calinet.png" type="Texture" id=1]
 [ext_resource path="res://Art/Assets/shelf.png" type="Texture" id=2]
@@ -25,6 +25,7 @@
 [ext_resource path="res://Art/GUI/arrow_right.png" type="Texture" id=23]
 [ext_resource path="res://Art/GUI/arrow_right_hover.png" type="Texture" id=24]
 [ext_resource path="res://Art/GUI/arrow_left_hover.png" type="Texture" id=25]
+[ext_resource path="res://Scenes/Bookshelf.tscn" type="PackedScene" id=26]
 
 [node name="Game" type="Control"]
 anchor_right = 1.0
@@ -286,6 +287,8 @@ texture_hover = ExtResource( 25 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Bookshelf" parent="Counter" instance=ExtResource( 26 )]
 
 [node name="Day_Summary" type="ColorRect" parent="."]
 visible = false
