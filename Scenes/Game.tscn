@@ -70,6 +70,9 @@ margin_top = 1.0
 margin_right = 207.0
 margin_bottom = 21.0
 texture = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="cabinet" type="TextureRect" parent="Shop"]
 margin_left = 37.0
@@ -135,6 +138,9 @@ margin_top = 2.0
 margin_right = 183.0
 margin_bottom = 19.0
 texture = ExtResource( 13 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="shelf" type="TextureRect" parent="Shop"]
 margin_left = 66.0
@@ -142,6 +148,9 @@ margin_top = 16.0
 margin_right = 104.0
 margin_bottom = 31.0
 texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="small_calinet" type="TextureRect" parent="Shop"]
 margin_left = 62.0
@@ -149,6 +158,9 @@ margin_top = 1.0
 margin_right = 109.0
 margin_bottom = 15.0
 texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="umbroomla" type="TextureRect" parent="Shop"]
 margin_left = 209.0
@@ -261,16 +273,15 @@ margin_top = 12.0
 margin_right = 158.0
 margin_bottom = 35.0
 
-[node name="Cauldron" parent="Counter" instance=ExtResource( 17 )]
+[node name="Bookshelf" parent="Counter" instance=ExtResource( 26 )]
 margin_left = 160.0
-margin_right = 160.506
-margin_bottom = 28.014
+margin_right = 319.0
+margin_bottom = 42.0
 
 [node name="Right_Button" type="TextureButton" parent="Counter"]
 margin_left = 147.0
-margin_top = 1.0
 margin_right = 159.0
-margin_bottom = 12.0
+margin_bottom = 11.0
 texture_normal = ExtResource( 23 )
 texture_hover = ExtResource( 24 )
 __meta__ = {
@@ -278,17 +289,18 @@ __meta__ = {
 }
 
 [node name="Left_Button" type="TextureButton" parent="Counter"]
-margin_left = 1.0
-margin_top = 1.0
-margin_right = 13.0
-margin_bottom = 12.0
+margin_right = 12.0
+margin_bottom = 11.0
 texture_normal = ExtResource( 22 )
 texture_hover = ExtResource( 25 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Bookshelf" parent="Counter" instance=ExtResource( 26 )]
+[node name="Cauldron" parent="Counter" instance=ExtResource( 17 )]
+margin_left = 160.0
+margin_right = 160.506
+margin_bottom = 28.014
 
 [node name="Day_Summary" type="ColorRect" parent="."]
 visible = false

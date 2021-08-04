@@ -6,13 +6,19 @@ onready var day_summary = get_node("Day_Summary")
 onready var options_menu = get_node("OptionsMenu")
 onready var tween = get_node("Tween")
 onready var schedule
+onready var bookshelf = get_node("Counter/Bookshelf")
+onready var ingredient_shelf = get_node("Counter/Countertop")
+
+var counters
 
 signal mouse_exited_game_area
 
+var current_counter = 0
 
 func _ready():
 	SceneTransition.transition({"Direction": "in", "Destination": "Game"})
 	randomize()
+	counters = [ingredient_shelf, bookshelf]
 
 
 func _on_Game_tree_exiting():
@@ -86,17 +92,35 @@ func _on_Menu_Button_pressed():
 	options_menu.slide()
 
 func _on_Right_Button_pressed():
-	GlobalVars.cauldron_temp += 1
-	cauldron.set_temp()
-	print(GlobalVars.cauldron_temp)
+	if current_counter < 1:
+		current_counter += 1
+	else:
+		current_counter = 0
+	update_counter("right")
 
 
 func _on_Left_Button_pressed():
-	if GlobalVars.cauldron_temp > 1:
-		GlobalVars.cauldron_temp -= 1
-	cauldron.set_temp()
-	print(GlobalVars.cauldron_temp)
+	if current_counter > 0:
+		current_counter -= 1
+	else:
+		current_counter = 1
+	update_counter("left")
+
+
+func update_counter(move_direction):
+	var time = 0.5
+	if move_direction == "right":
+		tween.interpolate_property(counters[current_counter], "rect_position:x", 160, 0, time, Tween.TRANS_CUBIC, Tween.EASE_OUT)
+		tween.interpolate_property(counters[current_counter-1], "rect_position:x", 0, -160, time, Tween.TRANS_CUBIC, Tween.EASE_OUT)
+	else:
+		tween.interpolate_property(counters[current_counter], "rect_position:x", -160, 0, time, Tween.TRANS_CUBIC, Tween.EASE_OUT)
+		tween.interpolate_property(counters[current_counter-1], "rect_position:x", 0, 160, time, Tween.TRANS_CUBIC, Tween.EASE_OUT)
+	tween.start()
 
 
 func _on_Game_mouse_exited():
 	emit_signal("mouse_exited_game_area")
+
+
+func _on_book_pressed(book):
+	pass
