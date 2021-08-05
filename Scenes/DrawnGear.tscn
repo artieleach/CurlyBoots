@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/DrawnGear.gd" type="Script" id=1]
+[ext_resource path="res://Art/Assets/handle.png" type="Texture" id=2]
+
+[node name="DrawnGear" type="Node2D"]
+position = Vector2( 83, 31 )
+script = ExtResource( 1 )
+const_speed = 0.0
+click = 30
+
+[node name="Handle" type="TextureButton" parent="."]
+margin_left = 38.0
+margin_top = -4.0
+margin_right = 46.0
+margin_bottom = 4.0
+texture_normal = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="button_down" from="Handle" to="." method="_on_Handle_button_down"]
+[connection signal="button_up" from="Handle" to="." method="_on_Handle_button_up"]

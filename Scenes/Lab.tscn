@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scenes/Gear.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Art/Assets/lab.png" type="Texture" id=2]
+[ext_resource path="res://Scenes/DrawnGear.tscn" type="PackedScene" id=3]
+
+[node name="TextureRect" type="TextureRect"]
+margin_left = 40.0
+margin_top = 24.0
+margin_right = 199.0
+margin_bottom = 66.0
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Gear" parent="." instance=ExtResource( 1 )]
+position = Vector2( 21, 21 )
+length = 16
+
+[node name="Gear2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 88, 43 )
+movement_range = Vector2( -140, -40 )
+can_rotate = false
+initial_angle = -90
+length = 24
+click = 30
+
+[node name="DrawnGear" parent="." instance=ExtResource( 3 )]

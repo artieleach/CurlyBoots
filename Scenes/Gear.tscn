@@ -38,14 +38,15 @@ animations = [ {
 } ]
 
 [node name="Gear" type="AnimatedSprite"]
-position = Vector2( 114, 47 )
+position = Vector2( 66, 45 )
 frames = SubResource( 7 )
 script = ExtResource( 4 )
 
 [node name="Knob" type="Sprite" parent="."]
-z_index = -1
+scale = Vector2( 21, 1 )
 texture = ExtResource( 3 )
-offset = Vector2( 10, 0 )
+centered = false
+offset = Vector2( 0, -2 )
 
 [node name="Handle" type="TextureButton" parent="."]
 margin_left = 17.0
@@ -57,5 +58,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="TextureButton" type="TextureButton" parent="."]
+margin_left = -10.0
+margin_top = -11.0
+margin_right = 11.0
+margin_bottom = 10.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="button_down" from="Handle" to="." method="_on_Handle_button_down"]
 [connection signal="button_up" from="Handle" to="." method="_on_Handle_button_up"]
+[connection signal="pressed" from="TextureButton" to="." method="_on_TextureButton_pressed"]
