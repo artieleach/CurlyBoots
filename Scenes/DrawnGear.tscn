@@ -6,8 +6,7 @@
 [node name="DrawnGear" type="Node2D"]
 position = Vector2( 83, 31 )
 script = ExtResource( 1 )
-const_speed = 0.0
-click = 30
+gear_size = 12
 
 [node name="Handle" type="TextureButton" parent="."]
 margin_left = 38.0
@@ -19,5 +18,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Stopper" type="TextureButton" parent="."]
+margin_left = -5.0
+margin_top = -5.0
+margin_right = 5.0
+margin_bottom = 5.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="button_down" from="Handle" to="." method="_on_Handle_button_down"]
 [connection signal="button_up" from="Handle" to="." method="_on_Handle_button_up"]
+[connection signal="pressed" from="Stopper" to="." method="_on_Stopper_pressed"]

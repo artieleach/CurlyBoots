@@ -10,9 +10,13 @@ onready var right_num : Node = get_node("Page_Number_Right")
 var dialogs_folder = 'res://Writing/Books'
 var book
 var cur_page = 1
+var right_page_texture
+var default_font
 
 func _ready():
 	initiate('book_1')
+	right_page_texture = load("res://Art/Assets/page.png")
+	default_font = Control.new().get_font("m5x8.tres")
 
 
 func initiate(file_id): # Load the whole dialog into a variable
