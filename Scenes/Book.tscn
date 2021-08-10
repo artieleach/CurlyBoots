@@ -10,7 +10,6 @@
 [ext_resource path="res://Art/Fonts/m3x6.tres" type="DynamicFont" id=8]
 
 [node name="Book" type="Sprite"]
-z_index = -1
 texture = ExtResource( 3 )
 centered = false
 script = ExtResource( 6 )
@@ -109,21 +108,8 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HSlider" type="HSlider" parent="."]
-margin_left = 14.0
-margin_top = 162.0
-margin_right = 217.0
-margin_bottom = 178.0
-min_value = -1.571
-max_value = 1.571
-step = 0.157
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="Tween" type="Tween" parent="."]
 
 [connection signal="pressed" from="Button_Left" to="." method="_on_Button_Left_pressed"]
 [connection signal="pressed" from="Button_Right" to="." method="_on_Button_Right_pressed"]
-[connection signal="value_changed" from="HSlider" to="." method="_on_HSlider_value_changed"]
 [connection signal="tween_all_completed" from="Tween" to="." method="_on_Tween_tween_all_completed"]

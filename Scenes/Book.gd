@@ -8,24 +8,38 @@ onready var left_num : Node = get_node("Page_Number_Left")
 onready var right_num : Node = get_node("Page_Number_Right")
 onready var tween : Node = get_node("Tween")
 
+const PAGE_WIDTH = 111.5
+const TEXT_WIDTH = 97
+const FONT_COLOR = Color("#141013")
+
 var dialogs_folder = 'res://Writing/Books'
 var book = []
 var cur_page = 0
 var right_page_texture
+var left_page_texture
 var default_font
-var page_turn = 0
+var number_font
+var page_turn = 1
 var drawing = false
 
+
 func _ready():
-	right_page_texture = load("res://Art/Assets/page.png")
+	right_page_texture = load("res://Art/Assets/right_page_texture.png")
+	left_page_texture = load("res://Art/Assets/left_page_texture.png")
 	default_font = DynamicFont.new()
 	default_font.font_data = load("res://Art/Fonts/m3x6.ttf")
 	default_font.extra_spacing_top = -4
 	default_font.extra_spacing_bottom = -1
 	default_font.extra_spacing_space = -1
+	number_font = DynamicFont.new()
+	number_font.font_data = load("res://Art/Fonts/m5x7.ttf")
+	number_font.extra_spacing_top = -3
+	number_font.extra_spacing_bottom = -1
+	number_font.extra_spacing_space = -1
 	process_book('book_1')
 	set_page()
-	# default_font = right_page.get_font("default_font")
+	for line in range(len(book[cur_page + 1])):
+		print(book[cur_page+1][line])
 
 
 func process_book(file_id):
@@ -37,16 +51,12 @@ func process_book(file_id):
 	var i = 0
 	while i < len(words):
 		var line = ''
-		while i < len(words) and default_font.get_string_size(line + words[i]).x < 97:
+		while i < len(words) and default_font.get_string_size(line + words[i]).x < TEXT_WIDTH:
 			line = line + words[i] + ' '
-			i += 1
-		if not(line):
-			line = words[i]
 			i += 1
 		lines.append(line)
 	for j in range(0, len(lines), 10):
 		book.append(lines.slice(j, j+10))
-	print(book[0], book[1])
 
 
 func _on_TextureButton_pressed():
@@ -74,9 +84,12 @@ func set_page():
 
 func _on_Button_Left_pressed():
 	drawing = true
-	tween.interpolate_property(self, "page_turn", -PI/2, PI/2, 1, Tween.TRANS_LINEAR)
+	tween.interpolate_property(self, "page_turn", page_turn, -page_turn, 1, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
 	tween.start()
 	left_page.clear()
+	left_num.text = ''
+	right_page.clear()
+	right_num.text = ''
 	yield(get_tree().create_timer(1), "timeout")
 	if cur_page > 1:
 		cur_page -= 2
@@ -85,9 +98,12 @@ func _on_Button_Left_pressed():
 
 func _on_Button_Right_pressed():
 	drawing = true
-	tween.interpolate_property(self, "page_turn", PI/2, -PI/2, 1, Tween.TRANS_LINEAR)
+	tween.interpolate_property(self, "page_turn", page_turn, -page_turn, 1, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
 	tween.start()
+	left_page.clear()
+	left_num.text = ''
 	right_page.clear()
+	right_num.text = ''
 	yield(get_tree().create_timer(1), "timeout")
 	if cur_page < 9996:
 		cur_page += 2
@@ -100,27 +116,29 @@ func _physics_process(delta):
 
 
 func _draw():
-	draw_set_transform_matrix(Transform2D(Vector2(sin(page_turn), 0), Vector2(0, 1), Vector2(119, 1)))
-	draw_texture(right_page_texture, Vector2(0, 0))
-	if page_turn > 0:
-		for line in range(len(book[cur_page + 1])):
-			if book[cur_page+1][line]:
-				draw_string(default_font, Vector2(1, 9*line+21), book[cur_page+1][line], Color(0.1, 0.1, 0.1))
-			else:
-				printt("here", book[cur_page+1][line])
+	if drawing:
+		draw_string(number_font, Vector2(9, 11), str(cur_page+2), FONT_COLOR)
+		for line in range(len(book[cur_page])):
+			draw_string(default_font, Vector2(8+PAGE_WIDTH, 9*line+22), book[cur_page+1][line], FONT_COLOR)
+		draw_string(number_font, Vector2(80, 11), str(cur_page+1), FONT_COLOR)
+		for line in range(len(book[cur_page+1])):
+			draw_string(default_font, Vector2(8, 9*line+22), book[cur_page+2][line], FONT_COLOR)
+		draw_set_transform_matrix(Transform2D(Vector2(page_turn, 0), Vector2(0, 1), Vector2(PAGE_WIDTH, 0)))
+		draw_texture(right_page_texture, Vector2(0, 0))
+		if page_turn > 0:
+			draw_string(number_font, Vector2(9, 11), str(cur_page+2), FONT_COLOR)
+			for line in range(len(book[cur_page + 1])):
+				draw_string(default_font, Vector2(8, 9*line+22), book[cur_page+1][line], FONT_COLOR)
+		else:
+			draw_set_transform_matrix(Transform2D(Vector2(-page_turn, 0), Vector2(0, 1), Vector2(page_turn*TEXT_WIDTH+PAGE_WIDTH, 0)))
+			if cur_page + 2 < len(book):
+				draw_string(number_font, Vector2(80, 11), str(cur_page+1), FONT_COLOR)
+				for line in range(len(book[cur_page+2])):
+					draw_string(default_font, Vector2(8, 9*line+22), book[cur_page+2][line], FONT_COLOR)
 	else:
-		draw_set_transform_matrix(Transform2D(Vector2(sin(-page_turn), 0), Vector2(0, 1), Vector2(sin(page_turn)*98+119, 1)))
-		if cur_page + 2 < len(book):
-			for line in range(len(book[cur_page+2])):
-				if book[cur_page+2][line]:
-					draw_string(default_font, Vector2(1, 9*line+21), book[cur_page+2][line], Color(0.1, 0.1, 0.1))
-				else:
-					printt("here", book[cur_page+1][line])
-
-
-func _on_HSlider_value_changed(value):
-	page_turn = value
+		draw_set_transform_matrix(Transform2D(Vector2(0, 0), Vector2(0, 0), Vector2(0, 0)))
 
 
 func _on_Tween_tween_all_completed():
+	update()
 	drawing = false

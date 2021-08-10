@@ -14,16 +14,79 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HSlider" type="HSlider" parent="."]
-margin_left = -61.0
-margin_top = 77.0
-margin_right = 63.0
-margin_bottom = 93.0
-min_value = -1.571
-max_value = 1.571
-step = 0.314
+[node name="x_x" type="HSlider" parent="."]
+margin_left = -109.0
+margin_top = 66.0
+margin_right = 15.0
+margin_bottom = 82.0
+min_value = -1.0
+max_value = 1.0
+step = 0.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="value_changed" from="HSlider" to="." method="_on_HSlider_value_changed"]
+[node name="y_x" type="HSlider" parent="."]
+margin_left = -107.0
+margin_top = 49.0
+margin_right = 17.0
+margin_bottom = 65.0
+min_value = -1.0
+max_value = 1.0
+step = 0.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="o_x" type="HSlider" parent="."]
+margin_left = -106.0
+margin_top = 84.0
+margin_right = 18.0
+margin_bottom = 100.0
+min_value = -100.0
+step = 0.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="x_y" type="VSlider" parent="."]
+margin_left = 69.0
+margin_top = -22.0
+margin_right = 85.0
+margin_bottom = 97.0
+min_value = -1.0
+max_value = 1.0
+step = 0.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="y_y" type="VSlider" parent="."]
+margin_left = 45.0
+margin_top = -21.0
+margin_right = 61.0
+margin_bottom = 98.0
+min_value = -1.0
+max_value = 1.0
+step = 0.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="o_y" type="VSlider" parent="."]
+margin_left = 90.0
+margin_top = -22.0
+margin_right = 106.0
+margin_bottom = 97.0
+min_value = -100.0
+step = 0.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="value_changed" from="x_x" to="." method="_on_x_x_value_changed"]
+[connection signal="value_changed" from="y_x" to="." method="_on_y_x_value_changed"]
+[connection signal="value_changed" from="o_x" to="." method="_on_o_x_value_changed"]
+[connection signal="value_changed" from="x_y" to="." method="_on_x_y_value_changed"]
+[connection signal="value_changed" from="y_y" to="." method="_on_y_y_value_changed"]
+[connection signal="value_changed" from="o_y" to="." method="_on_o_y_value_changed"]

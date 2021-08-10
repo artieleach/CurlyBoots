@@ -18,7 +18,6 @@ func _ready():
 
 
 func update_volume():
-	print('updating volume')
 	for item in players:
 		if not GlobalVars.sound:
 			item.bus = "Master"
