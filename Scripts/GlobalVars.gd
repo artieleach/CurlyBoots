@@ -18,7 +18,7 @@ const POTION_VARS = ['A', 'B', 'C', 'D']
 
 
 func _init():
-	debug = true
+	debug = false
 	var save_game = File.new()
 	if not save_game.file_exists("user://savegame.save"):
 		save_to_disk()
@@ -70,5 +70,4 @@ func load_game():
 		var node_data = parse_json(save_game.get_line())
 		for i in node_data.keys():
 			set(i, node_data[i])
-			print(i, node_data[i])
 	save_game.close()

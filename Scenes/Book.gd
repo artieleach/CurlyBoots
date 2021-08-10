@@ -23,56 +23,41 @@ func _ready():
 	default_font.extra_spacing_top = -4
 	default_font.extra_spacing_bottom = -1
 	default_font.extra_spacing_space = -1
-	process_book("book_1")
+	process_book('book_1')
 	set_page()
 	# default_font = right_page.get_font("default_font")
-
-
-func initiate(file_id): # Load the whole dialog into a variable
-	var file = File.new()
-	file.open('%s/%s.json' % [dialogs_folder, file_id], file.READ)
-	if GlobalVars.debug:
-		print('%s/%s.json' % [dialogs_folder, file_id])
-	var json = file.get_as_text()
-	book = JSON.parse(json).result
-	file.close()
-	set_page()
 
 
 func process_book(file_id):
 	var file = File.new()
 	file.open("%s/%s.txt" % [dialogs_folder, file_id], file.READ)
 	var file_text = file.get_as_text()
+	var words = file_text.split(' ')
 	var lines = []
-	var cur_line = ''
-	var start = 0
-	var stop = 1
-	var total_width = 0
-	while start < len(file_text):
-		while total_width < 80 and stop < len(file_text):
-			cur_line = file_text.substr(start, stop)
-			stop += 1
-			if "\n" in cur_line:
-				break
-			total_width = default_font.get_string_size(cur_line).x
-		lines.append(cur_line)
-		start += stop - 1
-		stop = 1
-		total_width = 1
-	for i in range(0, len(lines), 10):
-		book.append(lines.slice(i, i+10))
-		
+	var i = 0
+	while i < len(words):
+		var line = ''
+		while i < len(words) and default_font.get_string_size(line + words[i]).x < 97:
+			line = line + words[i] + ' '
+			i += 1
+		if not(line):
+			line = words[i]
+			i += 1
+		lines.append(line)
+	for j in range(0, len(lines), 10):
+		book.append(lines.slice(j, j+10))
+	print(book[0], book[1])
+
 
 func _on_TextureButton_pressed():
 	hide()
 
 
 func set_page():
-	print(book[cur_page])
 	if cur_page < len(book):
 		var out = ''
 		for i in book[cur_page]:
-			out += i + " \n"
+			out += i + "\n"
 		left_page.bbcode_text = out
 	else:
 		left_page.clear()
@@ -81,7 +66,7 @@ func set_page():
 	if cur_page + 1 < len(book):
 		var out = ''
 		for i in book[cur_page+1]:
-			out += i + " \n"
+			out += i + "\n"
 		right_page.bbcode_text = out
 	else:
 		right_page.clear()
@@ -119,13 +104,18 @@ func _draw():
 	draw_texture(right_page_texture, Vector2(0, 0))
 	if page_turn > 0:
 		for line in range(len(book[cur_page + 1])):
-			draw_string(default_font, Vector2(1, 9*line+21), book[cur_page+1][line] + " ", Color(0.1, 0.1, 0.1))
+			if book[cur_page+1][line]:
+				draw_string(default_font, Vector2(1, 9*line+21), book[cur_page+1][line], Color(0.1, 0.1, 0.1))
+			else:
+				printt("here", book[cur_page+1][line])
 	else:
 		draw_set_transform_matrix(Transform2D(Vector2(sin(-page_turn), 0), Vector2(0, 1), Vector2(sin(page_turn)*98+119, 1)))
 		if cur_page + 2 < len(book):
 			for line in range(len(book[cur_page+2])):
-				draw_string(default_font, Vector2(1, 9*line+21), book[cur_page+2][line] + " ", Color(0.1, 0.1, 0.1))
-
+				if book[cur_page+2][line]:
+					draw_string(default_font, Vector2(1, 9*line+21), book[cur_page+2][line], Color(0.1, 0.1, 0.1))
+				else:
+					printt("here", book[cur_page+1][line])
 
 
 func _on_HSlider_value_changed(value):
