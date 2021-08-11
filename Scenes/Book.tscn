@@ -26,12 +26,13 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 7.0
 margin_top = 15.0
-margin_right = -120.0
+margin_right = -119.0
 margin_bottom = -20.0
 custom_fonts/bold_font = ExtResource( 7 )
 custom_fonts/normal_font = ExtResource( 8 )
 custom_colors/default_color = Color( 0.0784314, 0.0627451, 0.0745098, 1 )
 bbcode_enabled = true
+text = "||||||||||||||||||||||||||||||||||||||||||||||||"
 scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -42,7 +43,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 120.0
 margin_top = 15.0
-margin_right = -7.0
+margin_right = -6.0
 margin_bottom = -20.0
 custom_fonts/bold_font = ExtResource( 7 )
 custom_fonts/normal_font = ExtResource( 8 )
@@ -108,8 +109,5 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Tween" type="Tween" parent="."]
-
 [connection signal="pressed" from="Button_Left" to="." method="_on_Button_Left_pressed"]
 [connection signal="pressed" from="Button_Right" to="." method="_on_Button_Right_pressed"]
-[connection signal="tween_all_completed" from="Tween" to="." method="_on_Tween_tween_all_completed"]
