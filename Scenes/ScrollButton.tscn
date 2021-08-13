@@ -23,7 +23,7 @@ texture = ExtResource( 2 )
 centered = false
 
 [node name="Label" type="Label" parent="Button_Sprite"]
-margin_left = 22.0
+margin_left = 21.0
 margin_top = 13.0
 margin_right = 62.0
 margin_bottom = 27.0

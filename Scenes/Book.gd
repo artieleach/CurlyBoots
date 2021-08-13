@@ -38,7 +38,7 @@ func process_book(file_id):
 		var line = ''
 		while i < len(words) and default_font.get_string_size(line + words[i]).x < TEXT_WIDTH:
 			if '<PB>' in words[i]:
-				for j in range(9-len(lines) % 9):
+				for j in range((10-len(lines)) % 10):
 					lines.append('\n')
 			else:
 				line = line + words[i] + ' '
