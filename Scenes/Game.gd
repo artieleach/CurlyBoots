@@ -108,13 +108,13 @@ func _on_Left_Button_pressed():
 
 
 func update_counter(move_direction):
-	var time = 0.5
+	var time = 0.4
 	if move_direction == "right":
-		tween.interpolate_property(counters[current_counter], "rect_position:x", 160, 0, time, Tween.TRANS_CUBIC, Tween.EASE_OUT)
-		tween.interpolate_property(counters[current_counter-1], "rect_position:x", 0, -160, time, Tween.TRANS_CUBIC, Tween.EASE_OUT)
+		tween.interpolate_property(counters[current_counter], "rect_position:x", 160, 0, time, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+		tween.interpolate_property(counters[current_counter-1], "rect_position:x", 0, -160, time, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
 	else:
-		tween.interpolate_property(counters[current_counter], "rect_position:x", -160, 0, time, Tween.TRANS_CUBIC, Tween.EASE_OUT)
-		tween.interpolate_property(counters[current_counter-1], "rect_position:x", 0, 160, time, Tween.TRANS_CUBIC, Tween.EASE_OUT)
+		tween.interpolate_property(counters[current_counter], "rect_position:x", -160, 0, time, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+		tween.interpolate_property(counters[current_counter-1], "rect_position:x", 0, 160, time, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
 	tween.start()
 
 

@@ -6,4 +6,7 @@ font_path = "res://Art/Fonts/m5x7.ttf"
 [resource]
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
+extra_spacing_top = -3
+extra_spacing_bottom = -1
+extra_spacing_space = -1
 font_data = SubResource( 1 )

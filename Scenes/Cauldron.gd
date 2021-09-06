@@ -45,7 +45,7 @@ func set_indicators(instant=false, current=[]):
 			indicators.get_node("%s/indicator" % GlobalVars.POTION_VARS[i]).animation = 'lot'
 			indicators.get_node("%s/indicator" % GlobalVars.POTION_VARS[i]).frame = new[i]
 		if not instant:
-			yield(get_tree().create_timer(0.2), "timeout")
+			yield(get_tree().create_timer(0.1), "timeout")
 
 
 func display_potion():

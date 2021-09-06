@@ -1,14 +1,13 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Art/Effects/circle_particle.png" type="Texture" id=1]
 [ext_resource path="res://Art/Assets/cauldron_liquid_mask.png" type="Texture" id=2]
 [ext_resource path="res://Art/Assets/cauldron_bg.png" type="Texture" id=3]
-[ext_resource path="res://Art/Assets/cauldron_particle_mask.png" type="Texture" id=4]
+[ext_resource path="res://Art/Assets/full_cauldron.png" type="Texture" id=4]
 [ext_resource path="res://Scripts/ParticleSeperator.tres" type="Material" id=5]
 [ext_resource path="res://Art/Effects/bubble_0.png" type="Texture" id=6]
 [ext_resource path="res://Art/Effects/heart_particle.png" type="Texture" id=7]
 [ext_resource path="res://Art/GUI/plus.png" type="Texture" id=8]
-[ext_resource path="res://Art/Assets/cauldron_mask.png" type="Texture" id=9]
 [ext_resource path="res://Scenes/Cauldron.gd" type="Script" id=10]
 [ext_resource path="res://Art/GUI/neutral.png" type="Texture" id=11]
 [ext_resource path="res://Art/GUI/minus.png" type="Texture" id=12]
@@ -50,15 +49,15 @@ animations = [ {
 "name": "up",
 "speed": 10.0
 }, {
-"frames": [ ExtResource( 12 ), ExtResource( 11 ), ExtResource( 8 ) ],
-"loop": false,
-"name": "lot",
-"speed": 5.0
-}, {
 "frames": [ SubResource( 5 ), SubResource( 6 ), SubResource( 7 ) ],
 "loop": false,
 "name": "down",
 "speed": 10.0
+}, {
+"frames": [ ExtResource( 12 ), ExtResource( 11 ), ExtResource( 8 ) ],
+"loop": false,
+"name": "lot",
+"speed": 5.0
 } ]
 
 [node name="Cauldron" type="Control"]
@@ -75,6 +74,9 @@ __meta__ = {
 [node name="background_color" type="Sprite" parent="."]
 position = Vector2( 31, 21 )
 texture = ExtResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Liquid" type="CPUParticles2D" parent="."]
 material = ExtResource( 5 )
@@ -92,10 +94,6 @@ initial_velocity_random = 0.5
 [node name="cauldron_liquid_mask" type="Sprite" parent="."]
 position = Vector2( 31, 21 )
 texture = ExtResource( 2 )
-
-[node name="cauldron_particle_mask" type="Sprite" parent="."]
-position = Vector2( 31, 21 )
-texture = ExtResource( 4 )
 
 [node name="Splash" type="CPUParticles2D" parent="."]
 material = ExtResource( 5 )
@@ -150,12 +148,20 @@ scale_amount_curve = SubResource( 1 )
 anim_offset = 1.0
 anim_offset_random = 1.0
 
+[node name="cauldron_particle_mask" type="Sprite" parent="."]
+position = Vector2( 31, 21 )
+texture = ExtResource( 4 )
+offset = Vector2( 0, 27 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 64, 64 )
+
 [node name="Indicators" type="HBoxContainer" parent="."]
 margin_top = 1.0
 margin_right = 62.0
 margin_bottom = 8.0
 alignment = 1
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -208,15 +214,14 @@ animation = "lot"
 centered = false
 
 [node name="cauldron_top_mask" type="Sprite" parent="."]
-position = Vector2( 31, 38 )
+position = Vector2( 31, 48 )
 z_index = 2
-texture = ExtResource( 9 )
-__meta__ = {
-"_edit_lock_": true
-}
+texture = ExtResource( 4 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 64, 64 )
 
 [node name="Tween" type="Tween" parent="."]
 
 [node name="Potion_Bottle" parent="." instance=ExtResource( 13 )]
-position = Vector2( 23, 60 )
+position = Vector2( 23, 72 )
 z_index = 4

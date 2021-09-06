@@ -4,7 +4,6 @@
 [ext_resource path="res://Art/Assets/handle.png" type="Texture" id=2]
 
 [node name="DrawnGear" type="Node2D"]
-position = Vector2( 83, 31 )
 script = ExtResource( 1 )
 gear_size = 12
 
