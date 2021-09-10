@@ -39,15 +39,11 @@ func get_json(file_string):
 func save():
 	var save_dict = {
 		"scheduled_customers": scheduled_customers,
-		"potion_balance": potion_balance,
-		"potion_ingredients": potion_ingredients,
 		"day": day,
 		"sound": sound,
 		"music": music,
 		"forbidden_items": forbidden_items,
 		"debug": debug,
-		"cauldron_color": cauldron_color,
-		"cauldron_temp": cauldron_temp
 	}
 	return save_dict
 

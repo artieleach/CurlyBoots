@@ -8,10 +8,13 @@ onready var tween = get_node("Tween")
 onready var schedule
 onready var bookshelf = get_node("Counter/Bookshelf")
 onready var ingredient_shelf = get_node("Counter/Countertop")
+onready var book = get_node("Book")
 
 var counters
 
 signal mouse_exited_game_area
+signal clear_recent
+signal deactivate
 
 var current_counter = 0
 
@@ -33,6 +36,7 @@ func calculate_metric(ingredient, cur_state):
 
 
 func _on_add_to_potion(ingredient):
+	emit_signal("clear_recent")
 	cauldron.poof.self_modulate = GlobalVars.ingredient_data[ingredient]["color"]
 	cauldron.poof.restart()
 	cauldron.splash.restart()
@@ -122,5 +126,10 @@ func _on_Game_mouse_exited():
 	emit_signal("mouse_exited_game_area")
 
 
-func _on_book_pressed(book):
-	pass
+func _on_book_pressed(book_title):
+	book.process_book(book_title)
+	book.show()
+
+
+func doulbe_clicked(ingredient):
+	book.process_book(ingredient)

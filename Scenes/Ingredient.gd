@@ -9,7 +9,7 @@ var held: bool = false
 var offset: Vector2 = Vector2(0, 0)
 var will_open_help: bool = false
 var ingredient_effects
-var pickale: bool = true
+var pickable: bool = true
 var hovering_over_cauldron: bool = false
 var my_width = 0
 signal double_clicked
@@ -23,6 +23,7 @@ func _ready():
 	connect("double_clicked", owner, "_on_ingredient_pressed", [name])
 	connect("added_to_potion", owner, "_on_add_to_potion", [name])
 	owner.connect("mouse_exited_game_area", self, "drop_em")
+	owner.connect("clear_recent", self, "activate")
 	ingredient_sprite.texture = load("res://Art/Ingredients/%s.png" % name)
 	my_width = ingredient_sprite.texture.get_width()
 	rect_size = ingredient_sprite.texture.get_size()
@@ -87,10 +88,22 @@ func add_to_potion():
 	AudioHolder.play_audio('magic_00%d' % (randi() % 9 + 1), -10)
 	emit_signal("added_to_potion")
 	reset()
+	deactivate()
 
+
+func deactivate():
+	pickable = false
+	ingredient_sprite.modulate = Color(0.5, 0.5, 0.5)
+	indicators.hide()
+
+func activate():
+	if not name in GlobalVars.potion_ingredients:
+		ingredient_sprite.modulate = Color(1.0, 1.0, 1.0)
+		pickable = true
 
 func mouse_hover():
-	ingredient_sprite.use_parent_material = false
+	if pickable:
+		ingredient_sprite.use_parent_material = false
 	indicators.show()
 
 
@@ -103,8 +116,9 @@ func _gui_input(event):
 			show()
 		elif event.button_index == BUTTON_LEFT:
 			if event.pressed:
-				offset = event.position 
-				pick_up()
+				if pickable:
+					offset = event.position 
+					pick_up()
 			else:
 				indicators.hide()
 				held = false
@@ -117,10 +131,6 @@ func _gui_input(event):
 			pass
 		else:
 			mouse_hover()
-
-
-func _on_Tween_tween_completed(_object, _key):
-	pickale = true
 
 
 func _on_reset_ingredients():
