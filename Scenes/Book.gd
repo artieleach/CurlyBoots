@@ -2,21 +2,22 @@ extends Sprite
 
 export (String) var ingredient_name
 
-onready var left_page : Node = get_node("Page_Left")
-onready var right_page : Node = get_node("Page_Right")
-onready var left_num : Node = get_node("Page_Number_Left")
-onready var right_num : Node = get_node("Page_Number_Right")
+onready var left_page : Node = get_node("../Page_Left")
+onready var right_page : Node = get_node("../Page_Right")
+onready var left_num : Node = get_node("../Page_Number_Left")
+onready var right_num : Node = get_node("../Page_Number_Right")
 
 var dialogs_folder = 'res://Writing/Books'
 var cur_page = 0
 var cur_book = 'Recipe_Book'
+var scroll_size = 352
 
 
 func _ready():
+	process_book(cur_book)
 	left_page.get_v_scroll().allow_greater = true
 	right_page.get_v_scroll().allow_greater = true
-	process_book(cur_book)
-	right_page.get_v_scroll().value = 90 * (cur_page + 1)
+	set_page()
 
 
 func process_book(file_id):
@@ -32,8 +33,8 @@ func _on_x_button_pressed():
 
 
 func set_page():
-	left_page.get_v_scroll().value = 90 * cur_page
-	right_page.get_v_scroll().value = 90 * (cur_page + 1)
+	left_page.get_v_scroll().value = scroll_size * cur_page
+	right_page.get_v_scroll().value = scroll_size * (cur_page + 1)
 	left_num.text = str(cur_page + 1)
 	right_num.text = str(cur_page + 2)
 

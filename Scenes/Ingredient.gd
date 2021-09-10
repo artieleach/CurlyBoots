@@ -37,7 +37,7 @@ func _ready():
 
 func _process(_delta):
 	if held:
-		tween.interpolate_property(drawing, "position", drawing.position, get_global_mouse_position() - offset - rect_position - Vector2(1, 42), 0.09)
+		tween.interpolate_property(drawing, "global_position", drawing.global_position, get_global_mouse_position() - offset - rect_position - Vector2(1, 42), 0.09)
 		tween.start()
 
 
@@ -117,7 +117,7 @@ func _gui_input(event):
 		elif event.button_index == BUTTON_LEFT:
 			if event.pressed:
 				if pickable:
-					offset = event.position 
+					offset = event.global_position 
 					pick_up()
 			else:
 				indicators.hide()

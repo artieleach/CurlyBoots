@@ -40,15 +40,20 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="Holder" type="Node2D" parent="."]
+scale = Vector2( 4, 4 )
+
+[node name="ColorRect" type="ColorRect" parent="Holder"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_right = 224.0
+margin_bottom = 126.0
 color = Color( 0.133333, 0.109804, 0.101961, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Shop" type="TextureRect" parent="."]
+[node name="Shop" type="TextureRect" parent="Holder"]
 margin_left = 1.0
 margin_top = 1.0
 margin_right = 223.0
@@ -58,7 +63,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="bookcase" type="TextureRect" parent="Shop"]
+[node name="bookcase" type="TextureRect" parent="Holder/Shop"]
 margin_left = 110.0
 margin_top = 5.0
 margin_right = 133.0
@@ -69,7 +74,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="bulletin_board" type="TextureRect" parent="Shop"]
+[node name="bulletin_board" type="TextureRect" parent="Holder/Shop"]
 margin_left = 192.0
 margin_top = 1.0
 margin_right = 207.0
@@ -79,7 +84,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="cabinet" type="TextureRect" parent="Shop"]
+[node name="cabinet" type="TextureRect" parent="Holder/Shop"]
 margin_left = 37.0
 margin_top = 5.0
 margin_right = 62.0
@@ -90,7 +95,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="fireplace" type="TextureRect" parent="Shop"]
+[node name="fireplace" type="TextureRect" parent="Holder/Shop"]
 margin_left = 6.0
 margin_right = 36.0
 margin_bottom = 40.0
@@ -99,7 +104,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="fireplace_background" type="TextureRect" parent="Shop/fireplace"]
+[node name="fireplace_background" type="TextureRect" parent="Holder/Shop/fireplace"]
 margin_left = 13.0
 margin_top = 30.0
 margin_right = 25.0
@@ -109,7 +114,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="front_counter" type="TextureRect" parent="Shop"]
+[node name="front_counter" type="TextureRect" parent="Holder/Shop"]
 margin_left = 134.0
 margin_top = 28.0
 margin_right = 209.0
@@ -119,7 +124,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="alch" type="TextureRect" parent="Shop/front_counter"]
+[node name="alch" type="TextureRect" parent="Holder/Shop/front_counter"]
 margin_left = 4.0
 margin_top = -8.0
 margin_right = 36.0
@@ -128,7 +133,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="kettle" type="TextureRect" parent="Shop/front_counter"]
+[node name="kettle" type="TextureRect" parent="Holder/Shop/front_counter"]
 margin_left = 37.0
 margin_top = -8.0
 margin_right = 45.0
@@ -137,7 +142,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="jar_cabinet" type="TextureRect" parent="Shop"]
+[node name="jar_cabinet" type="TextureRect" parent="Holder/Shop"]
 margin_left = 158.0
 margin_top = 2.0
 margin_right = 183.0
@@ -147,7 +152,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="shelf" type="TextureRect" parent="Shop"]
+[node name="shelf" type="TextureRect" parent="Holder/Shop"]
 margin_left = 66.0
 margin_top = 16.0
 margin_right = 104.0
@@ -157,7 +162,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="small_calinet" type="TextureRect" parent="Shop"]
+[node name="small_calinet" type="TextureRect" parent="Holder/Shop"]
 margin_left = 62.0
 margin_top = 1.0
 margin_right = 109.0
@@ -167,7 +172,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="umbroomla" type="TextureRect" parent="Shop"]
+[node name="umbroomla" type="TextureRect" parent="Holder/Shop"]
 margin_left = 209.0
 margin_top = 12.0
 margin_right = 222.0
@@ -177,7 +182,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="plant" type="TextureRect" parent="Shop"]
+[node name="plant" type="TextureRect" parent="Holder/Shop"]
 margin_left = 229.0
 margin_top = 20.0
 margin_right = 242.0
@@ -187,7 +192,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Counter" type="ColorRect" parent="."]
+[node name="Counter" type="ColorRect" parent="Holder"]
 margin_left = 1.0
 margin_top = 42.0
 margin_right = 223.0
@@ -198,7 +203,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Countertop" type="TextureRect" parent="Counter"]
+[node name="Countertop" type="TextureRect" parent="Holder/Counter"]
 margin_right = 159.0
 margin_bottom = 42.0
 texture = ExtResource( 4 )
@@ -206,109 +211,109 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Airtek Claw" parent="Counter/Countertop" instance=ExtResource( 19 )]
+[node name="Airtek Claw" parent="Holder/Counter/Countertop" instance=ExtResource( 19 )]
 margin_left = 1.0
 margin_top = 13.0
 margin_right = 24.0
 margin_bottom = 36.0
 
-[node name="Begonea" parent="Counter/Countertop" instance=ExtResource( 19 )]
+[node name="Begonea" parent="Holder/Counter/Countertop" instance=ExtResource( 19 )]
 margin_left = 52.0
 margin_top = 13.0
 margin_right = 75.0
 margin_bottom = 36.0
 
-[node name="Dobberchu Tongue" parent="Counter/Countertop" instance=ExtResource( 19 )]
+[node name="Dobberchu Tongue" parent="Holder/Counter/Countertop" instance=ExtResource( 19 )]
 margin_left = 38.0
 margin_top = -10.0
 margin_right = 61.0
 margin_bottom = 13.0
 
-[node name="Foxglove" parent="Counter/Countertop" instance=ExtResource( 19 )]
+[node name="Foxglove" parent="Holder/Counter/Countertop" instance=ExtResource( 19 )]
 margin_left = 70.0
 margin_top = -10.0
 margin_right = 93.0
 margin_bottom = 13.0
 
-[node name="Tuathaw Ear" parent="Counter/Countertop" instance=ExtResource( 19 )]
+[node name="Tuathaw Ear" parent="Holder/Counter/Countertop" instance=ExtResource( 19 )]
 margin_left = 110.0
 margin_top = -11.0
 margin_right = 133.0
 margin_bottom = 12.0
 
-[node name="Mandrake" parent="Counter/Countertop" instance=ExtResource( 19 )]
+[node name="Mandrake" parent="Holder/Counter/Countertop" instance=ExtResource( 19 )]
 margin_left = 135.0
 margin_top = 13.0
 margin_right = 158.0
 margin_bottom = 36.0
 
-[node name="Merrow Heart" parent="Counter/Countertop" instance=ExtResource( 19 )]
+[node name="Merrow Heart" parent="Holder/Counter/Countertop" instance=ExtResource( 19 )]
 margin_left = 17.0
 margin_top = 13.0
 margin_bottom = 36.0
 
-[node name="Muckshroom" parent="Counter/Countertop" instance=ExtResource( 19 )]
+[node name="Muckshroom" parent="Holder/Counter/Countertop" instance=ExtResource( 19 )]
 margin_left = 34.0
 margin_top = 13.0
 margin_right = 57.0
 margin_bottom = 36.0
 
-[node name="Ollifeist Tentacle" parent="Counter/Countertop" instance=ExtResource( 19 )]
+[node name="Ollifeist Tentacle" parent="Holder/Counter/Countertop" instance=ExtResource( 19 )]
 margin_left = 68.0
 margin_top = 12.0
 margin_right = 91.0
 margin_bottom = 35.0
 
-[node name="Phomarian Hand" parent="Counter/Countertop" instance=ExtResource( 19 )]
+[node name="Phomarian Hand" parent="Holder/Counter/Countertop" instance=ExtResource( 19 )]
 margin_left = 85.0
 margin_top = 13.0
 margin_right = 108.0
 margin_bottom = 36.0
 
-[node name="Silver Silin" parent="Counter/Countertop" instance=ExtResource( 19 )]
+[node name="Silver Silin" parent="Holder/Counter/Countertop" instance=ExtResource( 19 )]
 margin_left = 102.0
 margin_top = 14.0
 margin_right = 125.0
 margin_bottom = 37.0
 
-[node name="Tendroot" parent="Counter/Countertop" instance=ExtResource( 19 )]
+[node name="Tendroot" parent="Holder/Counter/Countertop" instance=ExtResource( 19 )]
 margin_left = 118.0
 margin_top = 14.0
 margin_right = 141.0
 margin_bottom = 37.0
 
-[node name="Bookshelf" parent="Counter" instance=ExtResource( 26 )]
+[node name="Bookshelf" parent="Holder/Counter" instance=ExtResource( 26 )]
 margin_left = 160.0
 margin_right = 319.0
 margin_bottom = 42.0
 
-[node name="Recipe_Book" parent="Counter/Bookshelf" instance=ExtResource( 31 )]
+[node name="Recipe_Book" parent="Holder/Counter/Bookshelf" instance=ExtResource( 31 )]
 margin_left = 20.0
 margin_top = 1.0
 margin_right = 37.0
 margin_bottom = 41.0
 
-[node name="Book2" parent="Counter/Bookshelf" instance=ExtResource( 31 )]
+[node name="Book2" parent="Holder/Counter/Bookshelf" instance=ExtResource( 31 )]
 margin_left = 53.0
 margin_top = 1.0
 margin_right = 66.0
 texture_normal = ExtResource( 29 )
 
-[node name="Book3" parent="Counter/Bookshelf" instance=ExtResource( 31 )]
+[node name="Book3" parent="Holder/Counter/Bookshelf" instance=ExtResource( 31 )]
 margin_left = 79.0
 margin_top = 6.0
 margin_right = 99.0
 margin_bottom = 41.0
 texture_normal = ExtResource( 30 )
 
-[node name="Book4" parent="Counter/Bookshelf" instance=ExtResource( 31 )]
+[node name="Book4" parent="Holder/Counter/Bookshelf" instance=ExtResource( 31 )]
 margin_left = 115.0
 margin_top = 3.0
 margin_right = 128.0
 margin_bottom = 41.0
 texture_normal = ExtResource( 28 )
 
-[node name="Right_Button" type="TextureButton" parent="Counter"]
+[node name="Right_Button" type="TextureButton" parent="Holder/Counter"]
 margin_left = 147.0
 margin_right = 159.0
 margin_bottom = 11.0
@@ -318,7 +323,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Left_Button" type="TextureButton" parent="Counter"]
+[node name="Left_Button" type="TextureButton" parent="Holder/Counter"]
 margin_right = 12.0
 margin_bottom = 11.0
 texture_normal = ExtResource( 22 )
@@ -327,12 +332,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Cauldron" parent="Counter" instance=ExtResource( 17 )]
+[node name="Cauldron" parent="Holder/Counter" instance=ExtResource( 17 )]
 margin_left = 160.0
 margin_right = 160.506
 margin_bottom = 28.014
 
-[node name="Day_Summary" type="ColorRect" parent="."]
+[node name="Day_Summary" type="ColorRect" parent="Holder"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -341,7 +346,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MarginContainer" type="MarginContainer" parent="Day_Summary"]
+[node name="MarginContainer" type="MarginContainer" parent="Holder/Day_Summary"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_constants/margin_right = 16
@@ -352,21 +357,23 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Day_Summary_Text" type="RichTextLabel" parent="Day_Summary/MarginContainer"]
+[node name="Day_Summary_Text" type="RichTextLabel" parent="Holder/Day_Summary/MarginContainer"]
 margin_left = 16.0
 margin_top = 16.0
-margin_right = 208.0
-margin_bottom = 110.0
+margin_right = 16.0
+margin_bottom = 16.0
 
-[node name="Dialog" parent="." instance=ExtResource( 18 )]
+[node name="Dialog" parent="Holder" instance=ExtResource( 18 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
 margin_left = 1.0
 margin_top = 85.0
-margin_right = -1.0
-margin_bottom = -1.0
+margin_right = 1.0
+margin_bottom = 85.0
 
-[node name="Tween" type="Tween" parent="."]
+[node name="Tween" type="Tween" parent="Holder"]
 
-[node name="Menu_Button" type="TextureButton" parent="."]
+[node name="Menu_Button" type="TextureButton" parent="Holder"]
 margin_left = 1.0
 margin_top = 1.0
 margin_right = 9.0
@@ -376,16 +383,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="OptionsMenu" parent="." instance=ExtResource( 21 )]
+[node name="OptionsMenu" parent="Holder" instance=ExtResource( 21 )]
 visible = false
 
-[node name="Book" parent="." instance=ExtResource( 27 )]
+[node name="Book" parent="Holder" instance=ExtResource( 27 )]
 visible = false
-z_index = 6
 
 [connection signal="mouse_exited" from="." to="." method="_on_Game_mouse_exited"]
 [connection signal="tree_exiting" from="." to="." method="_on_Game_tree_exiting"]
-[connection signal="pressed" from="Counter/Right_Button" to="." method="_on_Right_Button_pressed"]
-[connection signal="pressed" from="Counter/Left_Button" to="." method="_on_Left_Button_pressed"]
-[connection signal="gui_input" from="Day_Summary" to="." method="_on_Day_Summary_gui_input"]
-[connection signal="pressed" from="Menu_Button" to="." method="_on_Menu_Button_pressed"]
+[connection signal="pressed" from="Holder/Counter/Right_Button" to="." method="_on_Right_Button_pressed"]
+[connection signal="pressed" from="Holder/Counter/Left_Button" to="." method="_on_Left_Button_pressed"]
+[connection signal="gui_input" from="Holder/Day_Summary" to="." method="_on_Day_Summary_gui_input"]
+[connection signal="pressed" from="Holder/Menu_Button" to="." method="_on_Menu_Button_pressed"]

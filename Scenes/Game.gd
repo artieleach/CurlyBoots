@@ -1,14 +1,14 @@
 extends Control
 
-onready var cauldron = get_node("Counter/Cauldron")
+onready var cauldron = get_node("Holder/Counter/Cauldron")
 onready var dialog
-onready var day_summary = get_node("Day_Summary")
-onready var options_menu = get_node("OptionsMenu")
-onready var tween = get_node("Tween")
+onready var day_summary = get_node("Holder/Day_Summary")
+onready var options_menu = get_node("Holder/OptionsMenu")
+onready var tween = get_node("Holder/Tween")
 onready var schedule
-onready var bookshelf = get_node("Counter/Bookshelf")
-onready var ingredient_shelf = get_node("Counter/Countertop")
-onready var book = get_node("Book")
+onready var bookshelf = get_node("Holder/Counter/Bookshelf")
+onready var ingredient_shelf = get_node("Holder/Counter/Countertop")
+onready var book = get_node("Holder/Book")
 
 var counters
 

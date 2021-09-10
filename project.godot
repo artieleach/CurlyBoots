@@ -33,10 +33,11 @@ gdscript/warnings/return_value_discarded=false
 
 [display]
 
-window/size/width=224
-window/size/height=126
+window/size/width=896
+window/size/height=504
 window/size/test_width=1280
 window/size/test_height=720
+window/dpi/allow_hidpi=true
 window/stretch/mode="viewport"
 window/stretch/aspect="keep"
 
