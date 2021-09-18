@@ -63,8 +63,8 @@ animations = [ {
 [node name="Cauldron" type="Control"]
 anchor_right = 0.277
 anchor_bottom = 0.333
-margin_right = -0.0480042
-margin_bottom = 0.0419998
+margin_right = -248.24
+margin_bottom = -167.79
 rect_clip_content = true
 script = ExtResource( 10 )
 __meta__ = {

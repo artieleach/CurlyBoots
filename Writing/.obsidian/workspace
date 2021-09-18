@@ -1,0 +1,93 @@
+{
+  "main": {
+    "id": "8da36c3aac4a9df9",
+    "type": "split",
+    "children": [
+      {
+        "id": "056dc35e83a48f73",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "Books/Recipe_Book.md",
+            "mode": "source"
+          }
+        }
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "f1ac034eb35c3578",
+    "type": "split",
+    "children": [
+      {
+        "id": "d19374548fdb1357",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "145f31b3566b4650",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          },
+          {
+            "id": "cdd37a4963162c8b",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "a20fe6f575fbbd91",
+    "type": "split",
+    "children": [
+      {
+        "id": "336379c2cd611ffe",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "41fbc8d29323f634",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Books/Recipe_Book.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "active": "056dc35e83a48f73",
+  "lastOpenFiles": [
+    "Books/Recipe_Book.md"
+  ]
+}

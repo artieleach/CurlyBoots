@@ -31,13 +31,11 @@ func _ready():
 	ingredient_sprite.show()
 	for i in range(len(GlobalVars.potion_balance)):
 		indicators.get_node("%s/AnimatedSprite" % GlobalVars.POTION_VARS[i]).frame = GlobalVars.ingredient_data[name]["features"][i] + 1
-	if GlobalVars.debug == true:
-		show()
 
 
 func _process(_delta):
 	if held:
-		tween.interpolate_property(drawing, "global_position", drawing.global_position, get_global_mouse_position() - offset - rect_position - Vector2(1, 42), 0.09)
+		tween.interpolate_property(drawing, "global_position", drawing.global_position, get_global_mouse_position() - offset, 0.09)
 		tween.start()
 
 
@@ -73,7 +71,7 @@ func pick_up():
 	ingredient_sprite.self_modulate = Color(1, 1, 1)
 	held = true
 	drawing.z_index = 5
-	tween.interpolate_property(self, "offset", offset, ingredient_sprite.texture.get_size() / 2, 0.02, Tween.TRANS_QUAD, Tween.EASE_OUT)
+	tween.interpolate_property(self, "offset", offset, Vector2(60, 60), 0.02, Tween.TRANS_QUAD, Tween.EASE_OUT)
 	tween.start()
 	AudioHolder.play_audio("pick%s" % name, -5)
 
@@ -122,12 +120,14 @@ func _gui_input(event):
 			else:
 				indicators.hide()
 				held = false
-				if get_global_mouse_position().x > 185 and get_global_mouse_position().x < 185+16:
+				print(get_global_mouse_position())
+				if get_global_mouse_position().x > 920:
 					add_to_potion()
 				else:
 					go_back()
 	if event is InputEventMouseMotion:
 		if held:
+			print(drawing.position)
 			pass
 		else:
 			mouse_hover()

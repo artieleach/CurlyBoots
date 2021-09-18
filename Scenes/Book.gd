@@ -10,7 +10,7 @@ onready var right_num : Node = get_node("../Page_Number_Right")
 var dialogs_folder = 'res://Writing/Books'
 var cur_page = 0
 var cur_book = 'Recipe_Book'
-var scroll_size = 352
+var scroll_size = 419
 
 
 func _ready():
@@ -22,7 +22,7 @@ func _ready():
 
 func process_book(file_id):
 	var file = File.new()
-	file.open("%s/%s.txt" % [dialogs_folder, file_id], file.READ)
+	file.open("%s/%s.md" % [dialogs_folder, file_id], file.READ)
 	var file_text = file.get_as_text()
 	left_page.bbcode_text = file_text
 	right_page.bbcode_text = file_text

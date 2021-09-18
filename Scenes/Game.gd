@@ -1,14 +1,14 @@
-extends Control
+extends Node2D
 
-onready var cauldron = get_node("Holder/Counter/Cauldron")
+onready var cauldron = get_node("Counter/Cauldron")
 onready var dialog
-onready var day_summary = get_node("Holder/Day_Summary")
-onready var options_menu = get_node("Holder/OptionsMenu")
-onready var tween = get_node("Holder/Tween")
+onready var day_summary = get_node("Day_Summary")
+onready var options_menu = get_node("OptionsMenu")
+onready var tween = get_node("Tween")
 onready var schedule
-onready var bookshelf = get_node("Holder/Counter/Bookshelf")
-onready var ingredient_shelf = get_node("Holder/Counter/Countertop")
-onready var book = get_node("Holder/Book")
+onready var bookshelf = get_node("Counter/Bookshelf")
+onready var ingredient_shelf = get_node("Counter/Countertop")
+onready var book = get_node("Book")
 
 var counters
 
@@ -122,10 +122,6 @@ func update_counter(move_direction):
 	tween.start()
 
 
-func _on_Game_mouse_exited():
-	emit_signal("mouse_exited_game_area")
-
-
 func _on_book_pressed(book_title):
 	book.process_book(book_title)
 	book.show()
@@ -133,3 +129,7 @@ func _on_book_pressed(book_title):
 
 func doulbe_clicked(ingredient):
 	book.process_book(ingredient)
+
+
+func _on_Game_mouse_exited_game_area():
+	emit_signal("mouse_exited_game_area")
