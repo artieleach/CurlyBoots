@@ -1,6 +1,6 @@
 extends Node2D
 
-onready var cauldron = get_node("Counter/Cauldron")
+onready var cauldron = get_node("Counter/ViewportContainer/Viewport/Cauldron")
 onready var dialog
 onready var day_summary = get_node("Day_Summary")
 onready var options_menu = get_node("OptionsMenu")
@@ -62,7 +62,7 @@ func _on_advance_dialog_pressed():
 
 
 func start_day():
-	schedule = ['no one']
+	schedule = ['no one']  # why is this here?
 	day_summary.mouse_filter = Control.MOUSE_FILTER_STOP
 	if GlobalVars.debug:
 		pass
