@@ -45,8 +45,7 @@ func set_indicators(instant=false, current=[]):
 			indicators.get_node("%s/indicator" % GlobalVars.POTION_VARS[i]).animation = 'lot'
 			indicators.get_node("%s/indicator" % GlobalVars.POTION_VARS[i]).frame = new[i]
 		if not instant:
-			pass
-			#yield(get_tree().create_timer(0.1), "timeout")
+			yield(get_tree().create_timer(0.1), "timeout")
 
 
 func display_potion():
@@ -77,3 +76,4 @@ func set_temp():
 	tween.interpolate_property(liquid, "speed_scale", liquid.speed_scale, 0.4 + (GlobalVars.cauldron_temp * 0.1), 1)
 	tween.interpolate_property(bubble, "amount", bubble.amount, 1 + GlobalVars.cauldron_temp, 1)
 	tween.start()
+

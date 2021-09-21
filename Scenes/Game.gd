@@ -9,6 +9,9 @@ onready var schedule
 onready var bookshelf = get_node("Counter/Bookshelf")
 onready var ingredient_shelf = get_node("Counter/Countertop")
 onready var book = get_node("Book")
+onready var left_button = get_node("Counter/Left_Button")
+onready var right_button = get_node("Counter/Right_Button")
+onready var clear_button = get_node("Counter/Clear_Button")
 
 var counters
 
@@ -112,14 +115,21 @@ func _on_Left_Button_pressed():
 
 
 func update_counter(move_direction):
-	var time = 0.4
 	if move_direction == "right":
-		tween.interpolate_property(counters[current_counter], "rect_position:x", 160, 0, time, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
-		tween.interpolate_property(counters[current_counter-1], "rect_position:x", 0, -160, time, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+		# hey future me, maybe fix the position of this so it's not hard coded.
+		tween.interpolate_property(counters[current_counter], "rect_position:x", 160, 0, 0.4, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+		tween.interpolate_property(counters[current_counter-1], "rect_position:x", 0, -160, 0.4, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
 	else:
-		tween.interpolate_property(counters[current_counter], "rect_position:x", -160, 0, time, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
-		tween.interpolate_property(counters[current_counter-1], "rect_position:x", 0, 160, time, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+		tween.interpolate_property(counters[current_counter], "rect_position:x", -160, 0, 0.4, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+		tween.interpolate_property(counters[current_counter-1], "rect_position:x", 0, 160, 0.4, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
 	tween.start()
+	yield(tween, "tween_completed")
+	left_button.pressed = false
+	left_button.toggle_mode = false
+	left_button.toggle_mode = true
+	right_button.pressed = false
+	right_button.toggle_mode = false
+	right_button.toggle_mode = true
 
 
 func _on_book_pressed(book_title):
@@ -133,3 +143,18 @@ func doulbe_clicked(ingredient):
 
 func _on_Game_mouse_exited_game_area():
 	emit_signal("mouse_exited_game_area")
+
+
+func _on_Clear_Button_pressed():
+	cauldron.poof.self_modulate = Color('4a5462')
+	cauldron.poof.restart()
+	cauldron.splash.restart()
+	GlobalVars.potion_ingredients.clear()
+	var old = GlobalVars.potion_balance
+	GlobalVars.potion_balance = [1, 1, 1, 1]
+	cauldron.set_indicators(false, old)
+	emit_signal("clear_recent")
+	yield(get_tree().create_timer(0.9), "timeout")
+	clear_button.pressed = false
+	clear_button.toggle_mode = false
+	clear_button.toggle_mode = true

@@ -22,8 +22,7 @@
 [ext_resource path="res://Art/GUI/menu.png" type="Texture" id=20]
 [ext_resource path="res://Scenes/OptionsMenu.tscn" type="PackedScene" id=21]
 [ext_resource path="res://Art/GUI/arrow_left.png" type="Texture" id=22]
-[ext_resource path="res://Art/GUI/arrow_right.png" type="Texture" id=23]
-[ext_resource path="res://Art/GUI/arrow_right_hover.png" type="Texture" id=24]
+[ext_resource path="res://Art/GUI/x_button_left.png" type="Texture" id=23]
 [ext_resource path="res://Art/GUI/arrow_left_hover.png" type="Texture" id=25]
 [ext_resource path="res://Scenes/Bookshelf.tscn" type="PackedScene" id=26]
 [ext_resource path="res://Scenes/Book.tscn" type="PackedScene" id=27]
@@ -32,25 +31,9 @@
 [ext_resource path="res://Art/Assets/book_2.png" type="Texture" id=30]
 [ext_resource path="res://Scenes/Book_Spine.tscn" type="PackedScene" id=31]
 [ext_resource path="res://Art/Assets/full_cauldron_mask.png" type="Texture" id=32]
-
-[sub_resource type="Shader" id=1]
-code = "
-shader_type canvas_item;
-
-uniform int amount = 4;
-
-void fragment()
-{
-	vec2 grid_uv = round(UV * float(amount)) / float(amount);
-	
-	vec4 text = texture(TEXTURE, grid_uv);
-	
-	COLOR = text;
-}"
-
-[sub_resource type="ShaderMaterial" id=2]
-shader = SubResource( 1 )
-shader_param/amount = 4
+[ext_resource path="res://Art/GUI/x_button.png" type="Texture" id=33]
+[ext_resource path="res://Art/GUI/x_button_pressed.png" type="Texture" id=34]
+[ext_resource path="res://Art/GUI/arrow_left_pressed.png" type="Texture" id=35]
 
 [node name="Game" type="Node2D"]
 scale = Vector2( 5, 5 )
@@ -217,7 +200,7 @@ __meta__ = {
 }
 
 [node name="Countertop" type="TextureRect" parent="Counter"]
-margin_right = 159.0
+margin_right = 171.0
 margin_bottom = 42.0
 texture = ExtResource( 4 )
 __meta__ = {
@@ -338,35 +321,39 @@ texture_normal = ExtResource( 28 )
 [node name="Right_Button" type="TextureButton" parent="Counter"]
 anchor_top = 0.00476192
 anchor_bottom = 0.00476192
-margin_left = 147.0
-margin_right = 159.0
-margin_bottom = 11.0
-texture_normal = ExtResource( 23 )
-texture_hover = ExtResource( 24 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Left_Button" type="TextureButton" parent="Counter"]
-margin_right = 12.0
-margin_bottom = 11.0
+margin_left = 159.0
+margin_top = -0.200004
+margin_right = 171.0
+margin_bottom = 10.8
+rect_scale = Vector2( -1, 1 )
+toggle_mode = true
 texture_normal = ExtResource( 22 )
+texture_pressed = ExtResource( 35 )
 texture_hover = ExtResource( 25 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Cauldron" parent="Counter" instance=ExtResource( 17 )]
-visible = false
-material = SubResource( 2 )
-margin_left = 160.0
-margin_right = 160.506
-margin_bottom = 28.014
+[node name="Left_Button" type="TextureButton" parent="Counter"]
+anchor_top = 0.00476192
+anchor_bottom = 0.00476192
+margin_top = -0.200001
+margin_right = 12.0
+margin_bottom = 10.8
+toggle_mode = true
+action_mode = 0
+texture_normal = ExtResource( 22 )
+texture_pressed = ExtResource( 35 )
+texture_hover = ExtResource( 25 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="ViewportContainer" type="ViewportContainer" parent="Counter"]
 margin_left = 160.0
 margin_right = 222.0
 margin_bottom = 42.0
+mouse_filter = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -377,13 +364,26 @@ handle_input_locally = false
 render_target_update_mode = 3
 
 [node name="Cauldron" parent="Counter/ViewportContainer/Viewport" instance=ExtResource( 17 )]
-margin_right = -17.174
-margin_bottom = -13.986
+margin_right = 44.826
+margin_bottom = 28.014
 
 [node name="full_cauldron" type="Sprite" parent="Counter"]
 position = Vector2( 191, 48 )
 z_index = 3
 texture = ExtResource( 32 )
+
+[node name="Clear_Button" type="TextureButton" parent="Counter"]
+margin_left = 149.0
+margin_top = 31.0
+margin_right = 158.0
+margin_bottom = 41.0
+toggle_mode = true
+texture_normal = ExtResource( 33 )
+texture_pressed = ExtResource( 34 )
+texture_hover = ExtResource( 23 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Day_Summary" type="ColorRect" parent="."]
 visible = false
@@ -440,4 +440,5 @@ visible = false
 [connection signal="mouse_exited_game_area" from="." to="." method="_on_Game_mouse_exited_game_area"]
 [connection signal="pressed" from="Counter/Right_Button" to="." method="_on_Right_Button_pressed"]
 [connection signal="pressed" from="Counter/Left_Button" to="." method="_on_Left_Button_pressed"]
+[connection signal="pressed" from="Counter/Clear_Button" to="." method="_on_Clear_Button_pressed"]
 [connection signal="pressed" from="Menu_Button" to="." method="_on_Menu_Button_pressed"]
