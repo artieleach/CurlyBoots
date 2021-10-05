@@ -22,8 +22,7 @@ func _ready():
 	else:
 		sound.modulate = Color("141013")
 	menu.modulate = Color("141013")
-	
-	
+
 
 func slide():
 	if book.position.x == offset:

@@ -1,11 +1,11 @@
-extends Sprite
+extends Control
 
 export (String) var ingredient_name
 
-onready var left_page : Node = get_node("../Page_Left")
-onready var right_page : Node = get_node("../Page_Right")
-onready var left_num : Node = get_node("../Page_Number_Left")
-onready var right_num : Node = get_node("../Page_Number_Right")
+onready var left_page : Node = get_node("Page_Left")
+onready var right_page : Node = get_node("Page_Right")
+onready var left_num : Node = get_node("Page_Number_Left")
+onready var right_num : Node = get_node("Page_Number_Right")
 
 var dialogs_folder = 'res://Writing/Books'
 var cur_page = 0
@@ -29,7 +29,9 @@ func process_book(file_id):
 
 
 func _on_x_button_pressed():
+	owner.full_cauldron.show()
 	hide()
+
 
 
 func set_page():

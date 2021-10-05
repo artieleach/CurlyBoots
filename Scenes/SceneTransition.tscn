@@ -5,9 +5,11 @@
 
 [node name="SceneTransition" type="Control"]
 pause_mode = 2
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_right = -896.0
+margin_bottom = -504.0
+rect_scale = Vector2( 5, 5 )
 mouse_filter = 2
 script = ExtResource( 1 )
 __meta__ = {

@@ -11,7 +11,8 @@ onready var ingredient_shelf = get_node("Counter/Countertop")
 onready var book = get_node("Book")
 onready var left_button = get_node("Counter/Left_Button")
 onready var right_button = get_node("Counter/Right_Button")
-onready var clear_button = get_node("Counter/Clear_Button")
+onready var clear_button = get_node("Counter/Countertop/Clear_Button")
+onready var full_cauldron = get_node("Counter/full_cauldron")
 
 var counters
 
@@ -39,14 +40,13 @@ func calculate_metric(ingredient, cur_state):
 
 
 func _on_add_to_potion(ingredient):
-	emit_signal("clear_recent")
 	cauldron.poof.self_modulate = GlobalVars.ingredient_data[ingredient]["color"]
 	cauldron.poof.restart()
 	cauldron.splash.restart()
 	GlobalVars.potion_ingredients.append(ingredient)
 	var old = GlobalVars.potion_balance
 	GlobalVars.potion_balance = calculate_metric(ingredient, GlobalVars.potion_balance)
-	print(GlobalVars.potion_balance)
+	emit_signal("clear_recent")
 	yield(get_tree().create_timer(0.9), "timeout")
 	cauldron.set_indicators(false, old)
 
@@ -133,6 +133,7 @@ func update_counter(move_direction):
 
 
 func _on_book_pressed(book_title):
+	full_cauldron.hide()
 	book.process_book(book_title)
 	book.show()
 
@@ -158,3 +159,8 @@ func _on_Clear_Button_pressed():
 	clear_button.pressed = false
 	clear_button.toggle_mode = false
 	clear_button.toggle_mode = true
+
+
+func _on_HSlider_value_changed(value):
+	GlobalVars.cauldron_temp = value
+	cauldron.set_temp()

@@ -67,6 +67,6 @@
   "Tendroot": {
     "description": "The root of a Sinsircrann, must be harvested while the rest of the tree lives.",
     "color": "8e5252",
-    "features": [ 1,  1, -1,  1]
+    "features": [ 1,  1, 1,  -1]
   }
 }

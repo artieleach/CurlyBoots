@@ -58,7 +58,7 @@ func set_color():
 	GlobalVars.cauldron_color.r = GlobalVars.potion_balance[0] * 0.2 + 0.1
 	GlobalVars.cauldron_color.g = GlobalVars.potion_balance[1] * 0.3 + 0.3
 	GlobalVars.cauldron_color.b = GlobalVars.potion_balance[2] * 0.2 + 0.3
-	GlobalVars.cauldron_color.a = 0.5
+	GlobalVars.cauldron_color.a = 0.9
 	#bottle.get_node("liquid").self_modulate = GlobalVars.cauldron_color
 	tween.interpolate_property(liquid, "color", liquid.color, GlobalVars.cauldron_color, 0.3)
 	tween.interpolate_property(bubble, "color", bubble.color, GlobalVars.cauldron_color, 0.3)

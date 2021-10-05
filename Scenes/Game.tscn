@@ -40,8 +40,6 @@ scale = Vector2( 5, 5 )
 script = ExtResource( 16 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
 margin_right = 224.0
 margin_bottom = 126.0
 color = Color( 0.133333, 0.109804, 0.101961, 1 )
@@ -149,10 +147,10 @@ __meta__ = {
 }
 
 [node name="shelf" type="TextureRect" parent="Shop"]
-margin_left = 66.0
-margin_top = 16.0
-margin_right = 104.0
-margin_bottom = 31.0
+margin_left = 65.8
+margin_top = 16.2
+margin_right = 103.8
+margin_bottom = 31.2
 texture = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -208,84 +206,89 @@ __meta__ = {
 }
 
 [node name="Airtek Claw" parent="Counter/Countertop" instance=ExtResource( 19 )]
-margin_left = 1.0
-margin_top = 13.0
-margin_right = 24.0
-margin_bottom = 36.0
+margin_left = 7.8
+margin_top = 19.0
+margin_right = 30.8
+margin_bottom = 42.0
 
 [node name="Begonea" parent="Counter/Countertop" instance=ExtResource( 19 )]
-visible = false
-margin_left = 52.0
-margin_top = 13.0
-margin_right = 75.0
-margin_bottom = 36.0
+margin_left = 32.2
+margin_top = -3.6
+margin_right = 55.2
+margin_bottom = 19.4
 
 [node name="Dobberchu Tongue" parent="Counter/Countertop" instance=ExtResource( 19 )]
-visible = false
-margin_left = 38.0
-margin_top = -10.0
-margin_right = 61.0
-margin_bottom = 13.0
+margin_left = 102.8
+margin_top = -2.8
+margin_right = 125.8
+margin_bottom = 20.2
 
 [node name="Foxglove" parent="Counter/Countertop" instance=ExtResource( 19 )]
-visible = false
-margin_left = 70.0
-margin_top = -10.0
-margin_right = 93.0
-margin_bottom = 13.0
+margin_left = 127.0
+margin_top = 18.8
+margin_right = 150.0
+margin_bottom = 41.8
 
 [node name="Tuathaw Ear" parent="Counter/Countertop" instance=ExtResource( 19 )]
-visible = false
-margin_left = 110.0
-margin_top = -11.0
-margin_right = 133.0
-margin_bottom = 12.0
+margin_left = 126.0
+margin_top = -3.0
+margin_right = 149.0
+margin_bottom = 20.0
 
 [node name="Mandrake" parent="Counter/Countertop" instance=ExtResource( 19 )]
-visible = false
-margin_left = 135.0
-margin_top = 13.0
-margin_right = 158.0
-margin_bottom = 36.0
+margin_left = 105.2
+margin_top = 18.8
+margin_right = 128.2
+margin_bottom = 41.8
 
 [node name="Merrow Heart" parent="Counter/Countertop" instance=ExtResource( 19 )]
-visible = false
-margin_left = 16.8
-margin_top = 13.0
-margin_right = 39.8
-margin_bottom = 36.0
+margin_left = 7.6
+margin_top = -3.2
+margin_right = 30.6
+margin_bottom = 19.8
 
 [node name="Muckshroom" parent="Counter/Countertop" instance=ExtResource( 19 )]
-margin_left = 34.0
-margin_top = 13.0
-margin_right = 57.0
-margin_bottom = 36.0
+margin_left = 33.0
+margin_top = 18.4
+margin_right = 56.0
+margin_bottom = 41.4
 
 [node name="Ollifeist Tentacle" parent="Counter/Countertop" instance=ExtResource( 19 )]
-margin_left = 68.0
-margin_top = 14.0
-margin_right = 91.0
-margin_bottom = 37.0
+margin_left = 53.6
+margin_top = 19.6
+margin_right = 76.6
+margin_bottom = 42.6
 
 [node name="Phomarian Hand" parent="Counter/Countertop" instance=ExtResource( 19 )]
-visible = false
-margin_left = 85.0
-margin_top = 13.0
-margin_right = 108.0
-margin_bottom = 36.0
+margin_left = 54.6
+margin_top = -3.8
+margin_right = 77.6
+margin_bottom = 19.2
 
 [node name="Silver Silin" parent="Counter/Countertop" instance=ExtResource( 19 )]
-margin_left = 102.0
-margin_top = 14.0
-margin_right = 125.0
-margin_bottom = 37.0
+margin_left = 80.4
+margin_top = 19.2
+margin_right = 103.4
+margin_bottom = 42.2
 
 [node name="Tendroot" parent="Counter/Countertop" instance=ExtResource( 19 )]
-visible = false
-margin_left = 118.0
-margin_top = 14.0
-margin_right = 141.0
-margin_bottom = 37.0
+margin_left = 81.0
+margin_top = -4.0
+margin_right = 104.0
+margin_bottom = 19.0
+
+[node name="Clear_Button" type="TextureButton" parent="Counter/Countertop"]
+margin_left = 149.0
+margin_top = 31.0
+margin_right = 158.0
+margin_bottom = 41.0
+toggle_mode = true
+texture_normal = ExtResource( 33 )
+texture_pressed = ExtResource( 34 )
+texture_hover = ExtResource( 23 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Bookshelf" parent="Counter" instance=ExtResource( 26 )]
 margin_left = 160.0
@@ -372,21 +375,7 @@ position = Vector2( 191, 48 )
 z_index = 3
 texture = ExtResource( 32 )
 
-[node name="Clear_Button" type="TextureButton" parent="Counter"]
-margin_left = 149.0
-margin_top = 31.0
-margin_right = 158.0
-margin_bottom = 41.0
-toggle_mode = true
-texture_normal = ExtResource( 33 )
-texture_pressed = ExtResource( 34 )
-texture_hover = ExtResource( 23 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="Day_Summary" type="ColorRect" parent="."]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 1, 1, 1, 0 )
@@ -397,6 +386,8 @@ __meta__ = {
 [node name="MarginContainer" type="MarginContainer" parent="Day_Summary"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_right = 32.0
+margin_bottom = 32.0
 custom_constants/margin_right = 16
 custom_constants/margin_top = 16
 custom_constants/margin_left = 16
@@ -436,9 +427,14 @@ visible = false
 
 [node name="Book" parent="." instance=ExtResource( 27 )]
 visible = false
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 1120.0
+margin_bottom = 630.0
+rect_scale = Vector2( 0.2, 0.2 )
 
 [connection signal="mouse_exited_game_area" from="." to="." method="_on_Game_mouse_exited_game_area"]
+[connection signal="pressed" from="Counter/Countertop/Clear_Button" to="." method="_on_Clear_Button_pressed"]
 [connection signal="pressed" from="Counter/Right_Button" to="." method="_on_Right_Button_pressed"]
 [connection signal="pressed" from="Counter/Left_Button" to="." method="_on_Left_Button_pressed"]
-[connection signal="pressed" from="Counter/Clear_Button" to="." method="_on_Clear_Button_pressed"]
 [connection signal="pressed" from="Menu_Button" to="." method="_on_Menu_Button_pressed"]
