@@ -1,71 +1,85 @@
 {
     "Airtek Claw": {
     "description": "The claw of a female Airtek, diffiuclt to acquire due to their dwindling numbers.",
+    "requirements": "The humours must have exactly two positive elements.",
     "color": "322b28",
     "features": [-1, -1, -1,  1]
   },
   "Begonea": {
     "description": "A flower often used to deter potential suitors, due to it's assaulting fragrance.",
+    "requirements": "The humors must have exactly one neutral element.",
     "color": "e86a73",
     "features": [-1, -1,  1, -1]
   },
   "Dobberchu Tongue": {
     "description": "The tongue of a dobberchu, harvested before puberty, when their adult fangs grow in.",
+    "requirements": "Exactly two elements of the humours must change for this to be added.",
     "color": "403353",
     "features": [-1, -1,  1,  1]
   },
   "Foxglove": {
     "description": "A versatile flower, with many uses.",
+    "requirements": "Can be added only if the humours are more positive than negative",
     "color": "403353",
     "features": [-1,  1, -1, -1]
   },
   "Tuathaw Ear": {
     "description": "The ear of a tuathaw, must be mature when the ear is harvested. Often used as a substitute for Ballyhooves",
+    "requirements": "Can be added only if the humours are more negative than positive",
     "color": "24523b",
     "features": [-1,  1, -1,  1]
   },
   "Herbdew": {
     "description": "An herb which produces more water than it collects, though has strict botanical needs, preventing it from being more commonly useful.",
+    "requirements": "Can be added if no like elements are next to eachother.",
     "color": "5daf8d",
     "features": [-1,  1,  1, -1]
   },
   "horn": {
     "description": "Rejuvenates ones inner such and such and so on",
+    "requirements": "",
     "color": "dba463",
     "features": [-1,  1,  1,  1]
   },
   "Mandrake": {
     "description": "A defense mechanism Sinsircranns create, primarily to protect their root systems.",
+    "requirements": "Can be added if like elementsa re next to eachother.",
     "color": "8e5252",
     "features": [ 1, -1, -1, -1]
   },
   "Merrow Heart": {
     "description": "The heart of a Merrow, a rare ingredient owing to it's difficulty to obtain.",
+    "requirements": "Can be added if the first and last elements equal eachother.",
     "color": "793a80",
     "features": [ 1, -1, -1,  1]
   },
   "Muckshroom": {
     "description": "A breed of mushroom which only grows in swamps near, though never directly touching, decaying corpses.",
+    "requirements": "Can be added if the first and last elements do not equal eachother.",
     "color": "b4202a",
     "features": [ 1, -1,  1, -1]
   },
   "Ollifeist Tentacle": {
     "description": "The tentacle of a male Ollifeist, it's far smaller than the female of the species, and it does not carry the toxens of it's mate.",
+    "requirements": "Can be added if no neutral elements appear next to eachother.",
     "color": "92dcba",
     "features": [ 1, -1,  1,  1]
   },
   "Phomarian Hand": {
     "description": "A hand of a phomarian, can often be found in prisons, barracks, and occasionally markets.",
+    "requirements": "Can be added if no negative elements appear next to eachother.",
     "color": "8b93af",
     "features": [ 1,  1, -1, -1]
   },
   "Silver Silin": {
     "description": "Technically two plants, the silin is a breed of flower, and there is a species of moth which coats the flower in silver.",
+    "requirements": "Can be added if no positive elements appear next to eachother.",
     "color": "b3b9d1",
     "features": [ 1,  1, -1,  1]
   },
   "Tendroot": {
     "description": "The root of a Sinsircrann, must be harvested while the rest of the tree lives.",
+    "requirements": "The humours must have exactly two positive elements",
     "color": "8e5252",
     "features": [ 1,  1, 1,  -1]
   }

@@ -142,6 +142,7 @@ custom_fonts/bold_font = ExtResource( 7 )
 custom_fonts/normal_font = ExtResource( 10 )
 custom_colors/default_color = Color( 0.196078, 0.168627, 0.156863, 1 )
 bbcode_enabled = true
+bbcode_text = "[img]res://Art/Assets/alch.png[/img]"
 __meta__ = {
 "_edit_use_anchors_": false
 }

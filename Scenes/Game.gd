@@ -47,7 +47,7 @@ func _on_add_to_potion(ingredient):
 	var old = GlobalVars.potion_balance
 	GlobalVars.potion_balance = calculate_metric(ingredient, GlobalVars.potion_balance)
 	emit_signal("clear_recent")
-	yield(get_tree().create_timer(0.9), "timeout")
+	yield(get_tree().create_timer(0.7), "timeout")
 	cauldron.set_indicators(false, old)
 
 
@@ -164,3 +164,7 @@ func _on_Clear_Button_pressed():
 func _on_HSlider_value_changed(value):
 	GlobalVars.cauldron_temp = value
 	cauldron.set_temp()
+
+
+func _on_ingredient_pressed(ingredient):
+	print(ingredient)

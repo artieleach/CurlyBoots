@@ -193,7 +193,7 @@ rect_min_size = Vector2( 7, 7 )
 size_flags_horizontal = 4
 
 [node name="indicator" type="AnimatedSprite" parent="Indicators/A"]
-z_index = 1
+z_index = 8
 frames = SubResource( 9 )
 animation = "lot"
 centered = false
@@ -206,7 +206,7 @@ rect_min_size = Vector2( 7, 7 )
 size_flags_horizontal = 4
 
 [node name="indicator" type="AnimatedSprite" parent="Indicators/B"]
-z_index = 1
+z_index = 8
 frames = SubResource( 9 )
 animation = "lot"
 centered = false
@@ -219,7 +219,7 @@ rect_min_size = Vector2( 7, 7 )
 size_flags_horizontal = 4
 
 [node name="indicator" type="AnimatedSprite" parent="Indicators/C"]
-z_index = 1
+z_index = 8
 frames = SubResource( 9 )
 animation = "lot"
 centered = false
@@ -232,7 +232,7 @@ rect_min_size = Vector2( 7, 7 )
 size_flags_horizontal = 4
 
 [node name="indicator" type="AnimatedSprite" parent="Indicators/D"]
-z_index = 1
+z_index = 8
 frames = SubResource( 9 )
 animation = "lot"
 centered = false

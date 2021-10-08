@@ -106,6 +106,11 @@ func mouse_hover():
 	indicators.show()
 
 
+func generate_page():
+	output = ''
+	output += '[]'
+	pass
+
 func _gui_input(event):
 	if event is InputEventMouseButton:
 		if event.doubleclick:
@@ -122,7 +127,7 @@ func _gui_input(event):
 			else:
 				indicators.hide()
 				held = false
-				if get_global_mouse_position().x > 920:
+				if ingredient_sprite.global_position.x > 920 and pickable:
 					add_to_potion()
 				else:
 					go_back()
@@ -156,7 +161,6 @@ func decide_usable():
 	var count = [0, 0, 0]
 	for i in GlobalVars.potion_balance:
 		count[i] = count[i] + 1
-	print(count)
 	match name:
 		'Airtek Claw':
 			if count[2] == 2:
@@ -165,10 +169,14 @@ func decide_usable():
 			if  count[0] == 2:
 				activate()
 		'Begonea':
-			if count[0] == 0:
+			if count[1] == 1:
 				activate()
 		'Dobberchu Tongue':
-			if count[1] != 0:
+			var num_change = 0
+			for j in range(len(GlobalVars.potion_balance)):
+				if GlobalVars.ingredient_data[name]["features"][j] != GlobalVars.potion_balance[j]:
+					num_change += 1
+			if num_change == 2:
 				activate()
 		'Foxglove':
 			if count[2] > count[0]:

@@ -415,8 +415,8 @@ margin_bottom = 84.8
 [node name="Menu_Button" type="TextureButton" parent="."]
 margin_left = 1.0
 margin_top = 1.0
-margin_right = 9.0
-margin_bottom = 9.0
+margin_right = 14.0
+margin_bottom = 14.0
 texture_normal = ExtResource( 20 )
 __meta__ = {
 "_edit_use_anchors_": false
