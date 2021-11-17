@@ -1,0 +1,43 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/Radial.gd" type="Script" id=1]
+[ext_resource path="res://Art/GUI/hexagon.png" type="Texture" id=2]
+
+[node name="Radial" type="TextureRect"]
+margin_right = 39.0
+margin_bottom = 42.0
+rect_scale = Vector2( 8, 8 )
+texture = ExtResource( 2 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="HSlider" type="HSlider" parent="."]
+margin_left = -42.0528
+margin_top = 42.3939
+margin_right = 86.9472
+margin_bottom = 58.3939
+min_value = 1.0
+max_value = 30.0
+value = 12.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSlider2" type="HSlider" parent="."]
+margin_left = -41.6386
+margin_top = 54.8482
+margin_right = 87.3614
+margin_bottom = 70.8482
+min_value = 1.0
+max_value = 30.0
+value = 16.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="value_changed" from="HSlider" to="." method="_on_HSlider_value_changed"]
+[connection signal="value_changed" from="HSlider2" to="." method="_on_HSlider2_value_changed"]

@@ -4,8 +4,10 @@
 [ext_resource path="res://Art/Assets/handle.png" type="Texture" id=2]
 
 [node name="DrawnGear" type="Node2D"]
+position = Vector2( 123.962, 66.5629 )
 script = ExtResource( 1 )
-gear_size = 12
+teeth = 12
+click = 11
 
 [node name="Handle" type="TextureButton" parent="."]
 margin_left = 38.0
@@ -14,15 +16,17 @@ margin_right = 46.0
 margin_bottom = 4.0
 texture_normal = ExtResource( 2 )
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
 [node name="Stopper" type="TextureButton" parent="."]
-margin_left = -5.0
-margin_top = -5.0
-margin_right = 5.0
-margin_bottom = 5.0
+margin_left = -4.87273
+margin_top = -4.87273
+margin_right = 5.12727
+margin_bottom = 5.12727
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 

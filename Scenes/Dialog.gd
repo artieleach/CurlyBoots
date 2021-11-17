@@ -109,7 +109,7 @@ func _ready():
 	timer.connect('timeout', self, '_on_Timer_timeout')
 	sprite_timer.connect('timeout', self, '_on_Sprite_Timer_timeout')
 	set_frame()
-	if GlobalVars.debug or true:
+	if GlobalVars.debug and false:
 		initiate("Petra_1")
 
 

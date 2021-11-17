@@ -24,14 +24,11 @@ func _ready():
 	connect("added_to_potion", owner, "_on_add_to_potion", [name])
 	owner.connect("mouse_exited_game_area", self, "drop_em")
 	owner.connect("clear_recent", self, "decide_usable")
-	decide_usable()
 	ingredient_sprite.texture = load("res://Art/Ingredients/%s.png" % name)
 	my_width = ingredient_sprite.texture.get_width()
 	rect_size = ingredient_sprite.texture.get_size()
 	indicators.rect_size = rect_size
 	ingredient_sprite.show()
-	for i in range(len(GlobalVars.potion_balance)):
-		indicators.get_node("%s/AnimatedSprite" % GlobalVars.POTION_VARS[i]).frame = GlobalVars.ingredient_data[name]["features"][i] + 1
 
 
 func _process(_delta):
@@ -107,7 +104,7 @@ func mouse_hover():
 
 
 func generate_page():
-	output = ''
+	var output = ''
 	output += '[]'
 	pass
 
@@ -155,75 +152,3 @@ func drop_em():
 		go_back()
 
 
-
-func decide_usable():
-	deactivate()
-	var count = [0, 0, 0]
-	for i in GlobalVars.potion_balance:
-		count[i] = count[i] + 1
-	match name:
-		'Airtek Claw':
-			if count[2] == 2:
-				activate()
-		'Tendroot':
-			if  count[0] == 2:
-				activate()
-		'Begonea':
-			if count[1] == 1:
-				activate()
-		'Dobberchu Tongue':
-			var num_change = 0
-			for j in range(len(GlobalVars.potion_balance)):
-				if GlobalVars.ingredient_data[name]["features"][j] != GlobalVars.potion_balance[j]:
-					num_change += 1
-			if num_change == 2:
-				activate()
-		'Foxglove':
-			if count[2] > count[0]:
-				activate()
-		'Tuathaw Ear':
-			if count[0] > count[2]:
-				activate()
-		'Herbdew':
-			var hit = false
-			for item in range(3):
-				if GlobalVars.potion_balance[item] == GlobalVars.potion_balance[item + 1]:
-					hit = true
-			if hit == false:
-				activate()
-		'Mandrake':
-			var hit = false
-			for item in range(3):
-				if GlobalVars.potion_balance[item] == GlobalVars.potion_balance[item + 1]:
-					hit = true
-			if hit:
-				activate()
-		'Merrow Heart':
-			if GlobalVars.potion_balance[0] == GlobalVars.potion_balance[3]:
-				activate()
-		'Muckshroom':
-			if GlobalVars.potion_balance[0] != GlobalVars.potion_balance[3]:
-				activate()
-		'Ollifeist Tentacle':
-			var hit = false
-			for item in range(3):
-				if GlobalVars.potion_balance[item] == 1 and GlobalVars.potion_balance[item+1] != 1:
-					hit = true
-			if hit:
-				activate()
-		'Phomarian Hand':
-			var hit = false
-			for item in range(3):
-				if GlobalVars.potion_balance[item] == 0 and GlobalVars.potion_balance[item+1] != 0:
-					hit = true
-			if hit == true:
-				activate()
-		'Silver Silin':
-			var hit = false
-			for item in range(3):
-				if GlobalVars.potion_balance[item] == 2 and GlobalVars.potion_balance[item+1] != 2:
-					hit = true
-			if hit == true:
-				activate()
-		_:
-			print(name)

@@ -54,7 +54,6 @@ position = Vector2( 12, 12 )
 texture = ExtResource( 5 )
 
 [node name="Indicators" type="HBoxContainer" parent="Node2D"]
-visible = false
 margin_top = -5.0
 margin_right = 23.0
 custom_constants/separation = 0
@@ -80,6 +79,7 @@ __meta__ = {
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Node2D/Indicators/A"]
 position = Vector2( 1, 1 )
+z_index = 5
 frames = SubResource( 3 )
 centered = false
 
@@ -100,6 +100,7 @@ __meta__ = {
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Node2D/Indicators/B"]
 position = Vector2( 1, 1 )
+z_index = 5
 frames = SubResource( 3 )
 centered = false
 
@@ -120,6 +121,7 @@ __meta__ = {
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Node2D/Indicators/C"]
 position = Vector2( 1, 1 )
+z_index = 5
 frames = SubResource( 3 )
 centered = false
 
@@ -140,6 +142,7 @@ __meta__ = {
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Node2D/Indicators/D"]
 position = Vector2( 1, 1 )
+z_index = 5
 frames = SubResource( 3 )
 centered = false
 
