@@ -21,11 +21,40 @@ signal clear_recent
 signal deactivate
 
 var current_counter = 0
+var radial_states = [
+	[2, 2, 2, 2, 4, 3, 1, 7], 
+	[3, 1, 8, 1, 3, 4],
+	[4, 4, 4, 3, 5, 1, 6],
+	[5, 6, 7, 4, 2, 14],
+	[8, 11, 9, 14, 8, 11, 9, 10],
+	[14, 2, 14, 12, 14, 13]
+]
 
+var states = [
+	[8, 3, [9, 12], 10, 2, 15], 
+	[10, [2, 5], 1, 8, 14, 9], 
+	[17, 13, [8, 5], 2, 3, 12], 
+	[14, [11, 9], 1, 16, 5, 8], 
+	[9, 10, 8, 12, [11, 13], 15], 
+	[14, 2, 16, [8, 6], 1, 10], 
+	[15, 13, 10, [7, 11], 3, 17], 
+	[1, 20, 6, 4, 10, 18], 
+	[16, 14, 9, 19, [10, 13], 3], 
+	[20, 1, 12, 9, 18, 2], 
+	[19, 5, 11, 7, 14, 16], 
+	[13, 12, 14, 3, 17, 18]]
 func _ready():
 	SceneTransition.transition({"Direction": "in", "Destination": "Game"})
 	randomize()
 	counters = [ingredient_shelf, bookshelf]
+	for i in range(3):
+		var cur = get_node("Counter/Countertop/Radial%d" % (i + 1))
+		cur.rad_vals = radial_states[i]
+		if typeof(states[0][i]) == TYPE_INT:
+			cur.center_vals = [states[0][i]]
+		else:
+			cur.center_vals = states[0][i]
+		cur.setup()
 
 
 func _on_Game_tree_exiting():

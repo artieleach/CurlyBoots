@@ -1,7 +1,7 @@
 extends TextureRect
 
-var rad_vals = [1, 1, 10, 1, 2, 3, 4, 5]
-var center_vals = [11, 12]
+var rad_vals = [0, 1, 2, 3, 4, 5, 6, 7]
+var center_vals = [8, 9]
 
 var all_items = []
 var radial_items = []
@@ -10,20 +10,18 @@ var radial_button = preload("res://Scenes/Radial_Button.tscn")
 
 onready var tween = get_node("Tween")
 
-var con = 16
-var val = 13
+var con = 11
+var val = 9
+var sca = 33
 
-func _ready():
+
+func setup():
 	for i in range(len(rad_vals)):
 		create_button(rad_vals[i])
 	for i in range(len(center_vals)):
 		create_button(center_vals[i], true)
 	update_buttons(true)
 
-
-func set_label(txt):
-	name = txt
-	$CenterContainer/Label.text = txt
 
 
 func create_button(button_name, center=false):
@@ -44,17 +42,22 @@ func create_button(button_name, center=false):
 
 
 func update_buttons(is_instant = false):
-	for i in range(len(center_items)):
-		var cur_button = center_items[i]
-		var new_pos = Vector2(15 + (i - 0.5) * 9, 15)
+	if len(center_items) == 2:
+		for i in range(len(center_items)):
+			var cur_button = center_items[i]
+			var new_pos = Vector2(12 + (i - 0.5) * 6, 11)
+			cur_button.rect_position = new_pos
+	else:
+		var cur_button = center_items[0]
+		var new_pos = Vector2(12, 11)
 		cur_button.rect_position = new_pos
 	if len(radial_items) > 1:
 		for i in range(len(radial_items)):
 			var angle = 360 / len(radial_items) * i
 			var cur_button = radial_items[i]
 			var new_pos = Vector2(
-				con + val * cos(angle * PI / 180), 
-				con + val * sin(angle * PI / 180))
+				12 + val * cos(angle * PI / 180), 
+				11 +  val * sin(angle * PI / 180))
 			if not is_instant:
 				tween.interpolate_property(cur_button, "rect_position", cur_button.rect_position, new_pos, 0.4)
 				tween.start()
@@ -86,18 +89,26 @@ func button_pressed(button):
 	if center_items.find(button) != -1:
 		for item in center_items:
 			item.visible = false
-			center_items.remove(center_items.find(item))
 			all_items.remove(all_items.find(item))
+		center_items.clear()
 	button.visible = false
 	reset_buttons()
-	print(button.name)
 
 
 func _on_HSlider_value_changed(value):
+	print(value)
 	val = value
 	update_buttons()
 
 
 func _on_HSlider2_value_changed(value):
+	print(value)
 	con = value
 	update_buttons()
+
+
+func _on_HSlider3_value_changed(value):
+	print(value)
+	sca = value
+	for item in all_items:
+		item.button_sprite.scale = Vector2(float(sca / 100), float(sca / 100))

@@ -4,9 +4,9 @@
 [ext_resource path="res://Art/GUI/hexagon.png" type="Texture" id=2]
 
 [node name="Radial" type="TextureRect"]
-margin_right = 39.0
-margin_bottom = 42.0
-rect_scale = Vector2( 8, 8 )
+margin_right = 31.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 31, 31 )
 texture = ExtResource( 2 )
 script = ExtResource( 1 )
 __meta__ = {
@@ -16,10 +16,11 @@ __meta__ = {
 [node name="Tween" type="Tween" parent="."]
 
 [node name="HSlider" type="HSlider" parent="."]
-margin_left = -42.0528
-margin_top = 42.3939
-margin_right = 86.9472
-margin_bottom = 58.3939
+visible = false
+margin_left = 2.12408
+margin_top = 42.5543
+margin_right = 131.124
+margin_bottom = 58.5543
 min_value = 1.0
 max_value = 30.0
 value = 12.0
@@ -28,10 +29,11 @@ __meta__ = {
 }
 
 [node name="HSlider2" type="HSlider" parent="."]
-margin_left = -41.6386
-margin_top = 54.8482
-margin_right = 87.3614
-margin_bottom = 70.8482
+visible = false
+margin_left = 1.65635
+margin_top = 54.4473
+margin_right = 130.656
+margin_bottom = 70.4473
 min_value = 1.0
 max_value = 30.0
 value = 16.0
@@ -39,5 +41,18 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="HSlider3" type="HSlider" parent="."]
+visible = false
+margin_left = 3.0
+margin_top = 66.0
+margin_right = 131.0
+margin_bottom = 82.0
+min_value = 1.0
+value = 33.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="value_changed" from="HSlider" to="." method="_on_HSlider_value_changed"]
 [connection signal="value_changed" from="HSlider2" to="." method="_on_HSlider2_value_changed"]
+[connection signal="value_changed" from="HSlider3" to="." method="_on_HSlider3_value_changed"]
