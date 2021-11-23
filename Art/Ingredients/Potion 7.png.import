@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/counter_background.png-f5ea446857a8dd31274c433f763803f5.stex"
+path="res://.import/Potion 7.png-7f6c29956ed7b1ab6d150eb542af64f4.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Assets/counter_background.png"
-dest_files=[ "res://.import/counter_background.png-f5ea446857a8dd31274c433f763803f5.stex" ]
+source_file="res://Art/Ingredients/Potion 7.png"
+dest_files=[ "res://.import/Potion 7.png-7f6c29956ed7b1ab6d150eb542af64f4.stex" ]
 
 [params]
 

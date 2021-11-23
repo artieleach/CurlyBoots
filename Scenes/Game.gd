@@ -7,15 +7,19 @@ onready var options_menu = get_node("OptionsMenu")
 onready var tween = get_node("Tween")
 onready var schedule
 onready var bookshelf = get_node("Counter/Bookshelf")
-onready var ingredient_shelf = get_node("Counter/Countertop")
+onready var ingredient_shelf = get_node("Counter/Ingredient_Shelf")
+onready var radial_shelf = get_node("Counter/Countertop")
 onready var book = get_node("Book")
 onready var left_button = get_node("Counter/Left_Button")
 onready var right_button = get_node("Counter/Right_Button")
 onready var clear_button = get_node("Counter/Countertop/Clear_Button")
 onready var full_cauldron = get_node("Counter/full_cauldron")
+onready var countertop = get_node("Counter/Countertop")
+var radial = preload("res://Scenes/Radial.tscn")
+var ingredeient = preload("res://Scenes/Ingredient.tscn")
+
 
 var counters
-
 signal mouse_exited_game_area
 signal clear_recent
 signal deactivate
@@ -31,34 +35,51 @@ var radial_states = [
 ]
 
 var states = [
-	[8, 3, [9, 12], 10, 2, 15], 
-	[10, [2, 5], 1, 8, 14, 9], 
-	[17, 13, [8, 5], 2, 3, 12], 
-	[14, [11, 9], 1, 16, 5, 8], 
-	[9, 10, 8, 12, [11, 13], 15], 
-	[14, 2, 16, [8, 6], 1, 10], 
-	[15, 13, 10, [7, 11], 3, 17], 
-	[1, 20, 6, 4, 10, 18], 
-	[16, 14, 9, 19, [10, 13], 3], 
-	[20, 1, 12, 9, 18, 2], 
-	[19, 5, 11, 7, 14, 16], 
-	[13, 12, 14, 3, 17, 18]]
+	[[8],	[3],	[9, 12],	[10],	[2],	[15]],
+	[[10],	[2, 5],	[1],	[8],	[14],	[9]],
+	[[17],	[13],	[8, 5],	[2],	[3],	[12]],
+	[[14],	[11, 9],	[1],	[16],	[5],	[8]],
+	[[9],	[10],	[8],	[12],	[11, 13],	[15]],
+	[[14],	[2],	[16],	[8, 6],	[1],	[10]],
+	[[15],	[13],	[10],	[7, 11],	[3],	[17]],
+	[[1],	[20],	[6],	[4],	[10],	[18]],
+	[[16],	[14],	[9],	[19],	[10, 13],	[3]],
+	[[20],	[1],	[12],	[9],	[18],	[2]],
+	[[19],	[5],	[11],	[7],	[14],	[16]],
+	[[13],	[12],	[14],	[3],	[17],	[18]]
+	]
+
 func _ready():
 	SceneTransition.transition({"Direction": "in", "Destination": "Game"})
 	randomize()
-	counters = [ingredient_shelf, bookshelf]
-	for i in range(3):
-		var cur = get_node("Counter/Countertop/Radial%d" % (i + 1))
-		cur.rad_vals = radial_states[i]
-		if typeof(states[0][i]) == TYPE_INT:
-			cur.center_vals = [states[0][i]]
-		else:
-			cur.center_vals = states[0][i]
-		cur.setup()
+	counters = [ingredient_shelf, radial_shelf, bookshelf]
+	set_radials()
 
+
+func set_radials():
+	for i in range(6):
+		print(GlobalVars.rolls)
+		var cur_rad = radial.instance()
+		cur_rad.rad_vals = radial_states[i]
+		countertop.get_node("HBoxContainer").add_child(cur_rad)
+		cur_rad.connect("add_ingredient", self, "add_ingredient")
+		cur_rad.center_vals = states[0][i]
+		cur_rad.name = '%d' % i
+		if i in GlobalVars.rolls:
+			cur_rad.setup()
+		
 
 func _on_Game_tree_exiting():
 	GlobalVars.save_to_disk()
+
+func add_ingredient(ing_name):
+	var cur_ing = ingredeient.instance()
+	ingredient_shelf.get_node("HBoxContainer").add_child(cur_ing)
+	connect("mouse_exited_game_area", cur_ing, "drop_em")
+	connect("clear_recent", cur_ing, "decide_usable")
+	cur_ing.connect("double_clicked", self, "_on_ingredient_pressed", [cur_ing.ingredient_name])
+	cur_ing.connect("added_to_potion", self, "_on_add_to_potion", [cur_ing.ingredient_name])
+	cur_ing.setup(ing_name)
 
 
 func calculate_metric(ingredient, cur_state):
@@ -128,7 +149,7 @@ func _on_Menu_Button_pressed():
 	options_menu.slide()
 
 func _on_Right_Button_pressed():
-	if current_counter < 1:
+	if current_counter < 2:
 		current_counter += 1
 	else:
 		current_counter = 0

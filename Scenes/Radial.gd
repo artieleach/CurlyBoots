@@ -1,5 +1,7 @@
 extends TextureRect
 
+signal add_ingredient
+
 var rad_vals = [0, 1, 2, 3, 4, 5, 6, 7]
 var center_vals = [8, 9]
 
@@ -14,8 +16,10 @@ var con = 11
 var val = 9
 var sca = 33
 
+var is_active = true
 
 func setup():
+	show()
 	for i in range(len(rad_vals)):
 		create_button(rad_vals[i])
 	for i in range(len(center_vals)):
@@ -47,7 +51,7 @@ func update_buttons(is_instant = false):
 			var cur_button = center_items[i]
 			var new_pos = Vector2(12 + (i - 0.5) * 6, 11)
 			cur_button.rect_position = new_pos
-	else:
+	elif len(center_items) == 1:
 		var cur_button = center_items[0]
 		var new_pos = Vector2(12, 11)
 		cur_button.rect_position = new_pos
@@ -66,7 +70,7 @@ func update_buttons(is_instant = false):
 
 
 func bring_to_front(button):
-	if  button.visible:
+	if button.visible and button.is_active:
 		for item in all_items:
 			if item.visible and item != button:
 				tween.interpolate_property(item, "modulate", item.self_modulate, Color(0.4, 0.4, 0.4, 0.6), 0.3)
@@ -77,11 +81,14 @@ func bring_to_front(button):
 
 func reset_buttons():
 	for item in all_items:
-		tween.interpolate_property(item, "modulate", item.self_modulate, Color(1, 1, 1, 1), 0.3)
-		tween.start()
+		if item.is_active:
+			tween.interpolate_property(item, "modulate", item.self_modulate, Color(1, 1, 1, 1), 0.3)
+			tween.start()
 
 
 func button_pressed(button):
+	print(button.sprite_name)
+	emit_signal("add_ingredient", [button.sprite_name])
 	if radial_items.find(button) != -1:
 		radial_items.remove(radial_items.find(button))
 		all_items.remove(all_items.find(button))
@@ -92,7 +99,12 @@ func button_pressed(button):
 			all_items.remove(all_items.find(item))
 		center_items.clear()
 	button.visible = false
-	reset_buttons()
+	GlobalVars.rolls.remove(GlobalVars.rolls.find(int(name)))
+	if not int(name) in GlobalVars.rolls:
+		for item in all_items:
+			item.disable()
+	else:
+		reset_buttons()
 
 
 func _on_HSlider_value_changed(value):

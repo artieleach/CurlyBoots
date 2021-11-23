@@ -15,6 +15,7 @@ var ingredient_data
 var cauldron_temp = 0
 
 const POTION_VARS = ['A', 'B', 'C', 'D']
+var rolls = []
 
 
 func _init():
@@ -24,6 +25,10 @@ func _init():
 		save_to_disk()
 	ingredient_data = get_json("res://Writing/ingredient_data")
 	load_game()
+	randomize()
+	
+	rolls = [randi() % 6, randi() % 6, randi() % 6]
+	rolls = [0, 0, 0]
 
 
 func get_json(file_string):

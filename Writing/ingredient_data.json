@@ -3,7 +3,7 @@
     "description": "The claw of a female Airtek, diffiuclt to acquire due to their dwindling numbers.",
     "color": "322b28"
   },
-  "Begonea": {
+  "Begonea Scale": {
     "description": "A flower often used to deter potential suitors, due to it's assaulting fragrance.",
     "color": "e86a73"
   },
@@ -14,10 +14,6 @@
   "Foxglove": {
     "description": "A versatile flower, with many uses.",
     "color": "403353"
-  },
-  "Tuathaw Ear": {
-    "description": "The ear of a tuathaw, must be mature when the ear is harvested. Often used as a substitute for Ballyhooves",
-    "color": "24523b"
   },
   "Herbdew": {
     "description": "An herb which produces more water than it collects, though has strict botanical needs, preventing it from being more commonly useful.",
@@ -55,8 +51,32 @@
     "description": "The root of a Sinsircrann, must be harvested while the rest of the tree lives.",
     "color": "8e5252"
   },
-  "Fuath Tentacle": {
-    "description": "so on etc",
+  "Philosophers Stone": {
+    "description": "cool rock dude",
     "color": "b3b9d1"
-  }
+  },
+  "Potion 1": {
+    "description": "cool rock dude",
+    "color": "b3b9d1"
+  },
+  "Potion 2": {
+    "description": "cool rock dude",
+    "color": "b3b9d1"
+  },
+  "Potion 3": {
+    "description": "cool rock dude",
+    "color": "b3b9d1"
+  },
+  "Potion 4": {
+    "description": "cool rock dude",
+    "color": "b3b9d1"
+  },
+  "Potion 5": {
+    "description": "cool rock dude",
+    "color": "b3b9d1"
+  },
+  "Potion 6": {
+    "description": "cool rock dude",
+    "color": "b3b9d1"
+  },
 }

@@ -12,24 +12,21 @@ var ingredient_effects
 var pickable: bool = true
 var hovering_over_cauldron: bool = false
 var my_width = 0
+var ingredient_name = ''
 signal double_clicked
 signal added_to_potion
 
 
-func _ready():
-	yield(owner, "ready")
+func setup(ing_name):
+	ingredient_name = ing_name
 	texture_normal = null
 	add_to_group("ingredient")
-	connect("double_clicked", owner, "_on_ingredient_pressed", [name])
-	connect("added_to_potion", owner, "_on_add_to_potion", [name])
-	owner.connect("mouse_exited_game_area", self, "drop_em")
-	owner.connect("clear_recent", self, "decide_usable")
-	ingredient_sprite.texture = load("res://Art/Ingredients/%s.png" % name)
+	ingredient_sprite.texture = load("res://Art/Ingredients/%s.png" % ingredient_name)
 	my_width = ingredient_sprite.texture.get_width()
 	rect_size = ingredient_sprite.texture.get_size()
 	indicators.rect_size = rect_size
 	ingredient_sprite.show()
-
+	
 
 func _process(_delta):
 	if held:
