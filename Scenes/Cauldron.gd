@@ -8,6 +8,7 @@ onready var tween := get_node("Tween")
 onready var indicators := get_node("Indicators")
 onready var potion := get_node("Potion_Bottle")
 
+signal check_recipe
 
 func _ready():
 	set_indicators(true)
@@ -77,3 +78,7 @@ func set_temp():
 	tween.interpolate_property(bubble, "amount", bubble.amount, 1 + GlobalVars.cauldron_temp, 1)
 	tween.start()
 
+
+
+func _on_Button_pressed():
+	emit_signal("check_recipe")

@@ -16,13 +16,14 @@ onready var clear_button = get_node("Counter/Countertop/Clear_Button")
 onready var full_cauldron = get_node("Counter/full_cauldron")
 onready var countertop = get_node("Counter/Countertop")
 var radial = preload("res://Scenes/Radial.tscn")
-var ingredeient = preload("res://Scenes/Ingredient.tscn")
+var pickable_ingredient = preload("res://Scenes/Ingredient.tscn")
 
-
+var inventory_ingredients = []
 var counters
 signal mouse_exited_game_area
 signal clear_recent
 signal deactivate
+signal reset_potion
 
 var current_counter = 0
 var radial_states = [
@@ -35,30 +36,45 @@ var radial_states = [
 ]
 
 var states = [
-	[[8],	[3],	[9, 12],	[10],	[2],	[15]],
-	[[10],	[2, 5],	[1],	[8],	[14],	[9]],
-	[[17],	[13],	[8, 5],	[2],	[3],	[12]],
-	[[14],	[11, 9],	[1],	[16],	[5],	[8]],
-	[[9],	[10],	[8],	[12],	[11, 13],	[15]],
-	[[14],	[2],	[16],	[8, 6],	[1],	[10]],
-	[[15],	[13],	[10],	[7, 11],	[3],	[17]],
-	[[1],	[20],	[6],	[4],	[10],	[18]],
-	[[16],	[14],	[9],	[19],	[10, 13],	[3]],
-	[[20],	[1],	[12],	[9],	[18],	[2]],
-	[[19],	[5],	[11],	[7],	[14],	[16]],
-	[[13],	[12],	[14],	[3],	[17],	[18]]
+	[[8],	[3],		[9, 12],	[10],		[2],		[15]],
+	[[10],	[2, 5],		[1],		[8],		[14],		[9]],
+	[[17],	[13],		[8, 5],		[2],		[3],		[12]],
+	[[14],	[11, 9],	[1],		[16],		[5],		[8]],
+	[[9],	[10],		[8],		[12],		[11, 13],	[15]],
+	[[14],	[2],		[16],		[8, 6],		[1],		[10]],
+	[[15],	[13],		[10],		[7, 11],	[3],		[17]],
+	[[1],	[20],		[6],		[4],		[10],		[18]],
+	[[16],	[14],		[9],		[19],		[10, 13],	[3]],
+	[[20],	[1],		[12],		[9],		[18],		[2]],
+	[[19],	[5],		[11],		[7],		[14],		[16]],
+	[[13],	[12],		[14],		[3],		[17],		[18]]
 	]
 
 func _ready():
 	SceneTransition.transition({"Direction": "in", "Destination": "Game"})
 	randomize()
-	counters = [ingredient_shelf, radial_shelf, bookshelf]
+	counters = [radial_shelf, ingredient_shelf, bookshelf]
 	set_radials()
+	cauldron.connect("check_recipe", self, "check_recipe")
+	for i in range(40):
+		add_ingredient(GlobalVars.ingredient_data.keys()[randi() % 21])
+
+
+func check_recipe():
+	var cur_recipe = []
+	GlobalVars.potion_ingredients.sort()
+	for i in GlobalVars.potion_ingredients:
+		cur_recipe.append(GlobalVars.ingredient_data.keys().find(i))
+	for item in GlobalVars.recipes:
+		if cur_recipe == item[0]:
+			printt(cur_recipe, item[1])
+			print(GlobalVars.ingredient_data.keys()[21])
+			add_ingredient(GlobalVars.ingredient_data.keys()[GlobalVars.ingredient_data.keys().find(item[1][0])])
+	print(cur_recipe)
 
 
 func set_radials():
 	for i in range(6):
-		print(GlobalVars.rolls)
 		var cur_rad = radial.instance()
 		cur_rad.rad_vals = radial_states[i]
 		countertop.get_node("HBoxContainer").add_child(cur_rad)
@@ -67,26 +83,22 @@ func set_radials():
 		cur_rad.name = '%d' % i
 		if i in GlobalVars.rolls:
 			cur_rad.setup()
-		
+
 
 func _on_Game_tree_exiting():
 	GlobalVars.save_to_disk()
 
+
 func add_ingredient(ing_name):
-	var cur_ing = ingredeient.instance()
-	ingredient_shelf.get_node("HBoxContainer").add_child(cur_ing)
+	var cur_ing = pickable_ingredient.instance()
+	ingredient_shelf.get_node("GridContainer").add_child(cur_ing)
+	inventory_ingredients.append(cur_ing)
+	inventory_ingredients.sort()
+	cur_ing.setup(ing_name)
 	connect("mouse_exited_game_area", cur_ing, "drop_em")
-	connect("clear_recent", cur_ing, "decide_usable")
+	connect("reset_potion", cur_ing, "reset")
 	cur_ing.connect("double_clicked", self, "_on_ingredient_pressed", [cur_ing.ingredient_name])
 	cur_ing.connect("added_to_potion", self, "_on_add_to_potion", [cur_ing.ingredient_name])
-	cur_ing.setup(ing_name)
-
-
-func calculate_metric(ingredient, cur_state):
-	var new_state = [0, 0, 0, 0]
-	for i in range(len(cur_state)):
-		new_state[i] = clamp(cur_state[i] + GlobalVars.ingredient_data[ingredient]["features"][i], 0, 2)
-	return new_state
 
 
 func _on_add_to_potion(ingredient):
@@ -94,11 +106,6 @@ func _on_add_to_potion(ingredient):
 	cauldron.poof.restart()
 	cauldron.splash.restart()
 	GlobalVars.potion_ingredients.append(ingredient)
-	var old = GlobalVars.potion_balance
-	GlobalVars.potion_balance = calculate_metric(ingredient, GlobalVars.potion_balance)
-	emit_signal("clear_recent")
-	yield(get_tree().create_timer(0.7), "timeout")
-	cauldron.set_indicators(false, old)
 
 
 func _on_dialog(cur_speaker, spesific_response=null):
@@ -149,29 +156,23 @@ func _on_Menu_Button_pressed():
 	options_menu.slide()
 
 func _on_Right_Button_pressed():
-	if current_counter < 2:
-		current_counter += 1
-	else:
-		current_counter = 0
 	update_counter("right")
 
 
-func _on_Left_Button_pressed():
-	if current_counter > 0:
-		current_counter -= 1
-	else:
-		current_counter = 1
+func _on_Left_Button_pressed(): 
 	update_counter("left")
 
 
 func update_counter(move_direction):
 	if move_direction == "right":
 		# hey future me, maybe fix the position of this so it's not hard coded.
+		tween.interpolate_property(counters[current_counter], "rect_position:x", 0, -160, 0.4, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+		current_counter = wrapi(current_counter + 1, 0, 3)
 		tween.interpolate_property(counters[current_counter], "rect_position:x", 160, 0, 0.4, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
-		tween.interpolate_property(counters[current_counter-1], "rect_position:x", 0, -160, 0.4, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
 	else:
+		tween.interpolate_property(counters[current_counter], "rect_position:x", 0, 160, 0.4, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+		current_counter = wrapi(current_counter - 1, 0, 3)
 		tween.interpolate_property(counters[current_counter], "rect_position:x", -160, 0, 0.4, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
-		tween.interpolate_property(counters[current_counter-1], "rect_position:x", 0, 160, 0.4, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
 	tween.start()
 	yield(tween, "tween_completed")
 	left_button.pressed = false
@@ -200,11 +201,10 @@ func _on_Clear_Button_pressed():
 	cauldron.poof.self_modulate = Color('4a5462')
 	cauldron.poof.restart()
 	cauldron.splash.restart()
+	inventory_ingredients.clear()
 	GlobalVars.potion_ingredients.clear()
-	var old = GlobalVars.potion_balance
-	GlobalVars.potion_balance = [1, 1, 1, 1]
-	cauldron.set_indicators(false, old)
 	emit_signal("clear_recent")
+	emit_signal("reset_potion")
 	yield(get_tree().create_timer(0.9), "timeout")
 	clear_button.pressed = false
 	clear_button.toggle_mode = false

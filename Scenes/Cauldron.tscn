@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Art/Effects/circle_particle.png" type="Texture" id=1]
 [ext_resource path="res://Art/Assets/cauldron_liquid_mask.png" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Art/Effects/bubble_0.png" type="Texture" id=6]
 [ext_resource path="res://Art/Effects/heart_particle.png" type="Texture" id=7]
 [ext_resource path="res://Art/GUI/plus.png" type="Texture" id=8]
+[ext_resource path="res://Art/Fonts/m5x7.tres" type="DynamicFont" id=9]
 [ext_resource path="res://Scenes/Cauldron.gd" type="Script" id=10]
 [ext_resource path="res://Art/GUI/neutral.png" type="Texture" id=11]
 [ext_resource path="res://Art/GUI/minus.png" type="Texture" id=12]
@@ -52,15 +53,15 @@ animations = [ {
 "name": "up",
 "speed": 10.0
 }, {
-"frames": [ SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ],
-"loop": false,
-"name": "down",
-"speed": 10.0
-}, {
 "frames": [ ExtResource( 12 ), ExtResource( 11 ), ExtResource( 8 ) ],
 "loop": false,
 "name": "lot",
 "speed": 5.0
+}, {
+"frames": [ SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ],
+"loop": false,
+"name": "down",
+"speed": 10.0
 } ]
 
 [node name="Cauldron" type="Control"]
@@ -99,6 +100,17 @@ initial_velocity_random = 0.5
 position = Vector2( 31, 21 )
 z_index = 1
 texture = ExtResource( 2 )
+
+[node name="Button" type="Button" parent="cauldron_liquid_mask"]
+margin_left = -15.0
+margin_top = -20.0
+margin_right = 16.0
+margin_bottom = -5.0
+custom_fonts/font = ExtResource( 9 )
+text = "stir"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Splash" type="CPUParticles2D" parent="."]
 material = ExtResource( 5 )
@@ -176,6 +188,7 @@ position = Vector2( 23, 72 )
 z_index = 4
 
 [node name="Indicators" type="HBoxContainer" parent="."]
+visible = false
 margin_top = 1.0
 margin_right = 62.0
 margin_bottom = 8.0
@@ -238,3 +251,5 @@ animation = "lot"
 centered = false
 
 [node name="Tween" type="Tween" parent="."]
+
+[connection signal="pressed" from="cauldron_liquid_mask/Button" to="." method="_on_Button_pressed"]

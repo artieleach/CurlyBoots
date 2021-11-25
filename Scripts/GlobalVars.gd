@@ -17,6 +17,25 @@ var cauldron_temp = 0
 const POTION_VARS = ['A', 'B', 'C', 'D']
 var rolls = []
 
+var recipes = [
+	[[1, 3], 15], # potion 1
+	[[8, 8], 17], # potion 3
+	[[1, 2, 4], 18], # potion 4
+	[[1, 9, 10], 19], # potion 5
+	[[4, 14, 15], 20], #potion 6
+	[[2], 21],
+	[[12, 14], 22],
+	[[8, 9, 10], 23],  # need to figure out doubles!
+	[[18], 24],
+	[[9, 10, 11], 25],
+	[[13, 20], 26],
+	[[5, 6, 18], 27],
+	[[2, 4, 5, 7, 15], 28],
+	[[16, 17, 20], 29],
+	[[11, 12, 18, 19], 30],
+	[[9, 10, 13, 17, 18], 31],
+	[[16, 18, 19], 32]
+]
 
 func _init():
 	debug = false
@@ -28,7 +47,6 @@ func _init():
 	randomize()
 	
 	rolls = [randi() % 6, randi() % 6, randi() % 6]
-	rolls = [0, 0, 0]
 
 
 func get_json(file_string):

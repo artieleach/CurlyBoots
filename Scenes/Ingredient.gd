@@ -1,9 +1,9 @@
 extends TextureButton
 
 onready var ingredient_sprite = get_node("Node2D/Ingredient_Sprite")
-onready var indicators = get_node("Node2D/Indicators")
 onready var tween = get_node("Tween")
 onready var drawing = get_node("Node2D")
+onready var label = get_node("Node2D/Ingredient_Sprite/Label")
 
 var held: bool = false
 var offset: Vector2 = Vector2(0, 0)
@@ -11,22 +11,22 @@ var will_open_help: bool = false
 var ingredient_effects
 var pickable: bool = true
 var hovering_over_cauldron: bool = false
-var my_width = 0
 var ingredient_name = ''
 signal double_clicked
 signal added_to_potion
+var hovered = false
 
 
 func setup(ing_name):
 	ingredient_name = ing_name
+	label.text = ingredient_name
 	texture_normal = null
-	add_to_group("ingredient")
+	add_to_group("ingredients")
 	ingredient_sprite.texture = load("res://Art/Ingredients/%s.png" % ingredient_name)
-	my_width = ingredient_sprite.texture.get_width()
-	rect_size = ingredient_sprite.texture.get_size()
-	indicators.rect_size = rect_size
+	rect_min_size = Vector2(8, 8)
 	ingredient_sprite.show()
-	
+	label.hide()
+
 
 func _process(_delta):
 	if held:
@@ -37,26 +37,25 @@ func _process(_delta):
 
 func _on_ingredient_mouse_exited():
 	ingredient_sprite.use_parent_material = true
+	label.hide()
 	will_open_help = true
-	indicators.hide()
 
 
 func reset():
 	ingredient_sprite.use_parent_material = true
-	ingredient_sprite.self_modulate = Color(1, 1, 1)
 	drawing.z_index = 0
-	tween.interpolate_property(drawing, "position", Vector2(0, -100), Vector2(0, 0), 1.5, Tween.TRANS_BOUNCE, Tween.EASE_OUT)
+	drawing.position = Vector2(0, 0)
+	offset = Vector2(0, 0)
+	tween.interpolate_property(drawing, "self_modulate:a",0 ,1, .8)
 	tween.start()
 	show()
+	pickable = true
 	held = false
 	will_open_help = false
-	indicators.hide()
-	offset = Vector2(0, 0)
+	ingredient_sprite.scale = Vector2(0.4, 0.4)
 
 
 func go_back():
-	ingredient_sprite.self_modulate = Color(1, 1, 1)
-	indicators.hide()
 	offset = Vector2(0, 0)
 	tween.interpolate_property(drawing, "position", drawing.position, Vector2(0, 0), 0.5, Tween.TRANS_CUBIC)
 	tween.interpolate_property(drawing, "z_index", drawing.z_index, 0, 0.5)
@@ -64,40 +63,36 @@ func go_back():
 
 
 func pick_up():
-	ingredient_sprite.self_modulate = Color(1, 1, 1)
 	held = true
 	drawing.z_index = 5
-	tween.interpolate_property(self, "offset", offset, Vector2(60, 60), 0.02, Tween.TRANS_QUAD, Tween.EASE_OUT)
+	tween.interpolate_property(self, "offset", offset, Vector2(2, 2), 0.02, Tween.TRANS_QUAD, Tween.EASE_OUT)
 	tween.start()
 	AudioHolder.play_audio("pick%s" % name, -5)
 
 
 func add_to_potion():
-	ingredient_sprite.self_modulate = Color(1, 1, 1)
-	indicators.hide()
 	drawing.z_index = 2
 	tween.interpolate_property(drawing, "position:y", drawing.position.y, 50, 0.5, Tween.TRANS_SINE, Tween.EASE_IN)
 	tween.start()
 	yield(get_tree().create_timer(0.4), "timeout")
 	AudioHolder.play_audio('magic_00%d' % (randi() % 9 + 1), -10)
 	emit_signal("added_to_potion")
-	reset()
-	deactivate()
+	hide()
 
 
 func deactivate():
 	pickable = false
-	ingredient_sprite.modulate = Color(0.5, 0.5, 0.5)
-	indicators.hide()
 
 func activate():
-	ingredient_sprite.modulate = Color(1.0, 1.0, 1.0)
 	pickable = true
 
 func mouse_hover():
 	if pickable:
+		label.show()
+		if hovered:
+			tween.interpolate_property(label, "self_modulate:a", 0, 1, 0.2, Tween.TRANS_EXPO, Tween.EASE_IN)
+			tween.start()
 		ingredient_sprite.use_parent_material = false
-	indicators.show()
 
 
 func generate_page():
@@ -119,9 +114,9 @@ func _gui_input(event):
 					offset = event.global_position 
 					pick_up()
 			else:
-				indicators.hide()
 				held = false
 				if ingredient_sprite.global_position.x > 920 and pickable:
+					pickable = false
 					add_to_potion()
 				else:
 					go_back()
@@ -138,14 +133,29 @@ func _on_reset_ingredients():
 
 
 func _on_Ingredient_mouse_exited():
+	hovered = false
+	label.hide()
 	ingredient_sprite.use_parent_material = true
 	will_open_help = true
-	indicators.hide()
+	if pickable:
+		tween.interpolate_property(ingredient_sprite, "scale", ingredient_sprite.scale, Vector2(0.4, 0.4), 0.2)
+		tween.start()
+
 
 
 func drop_em():
 	if held:
 		held = false
 		go_back()
+
+
+
+
+func _on_Ingredient_mouse_entered():
+	hovered = true
+	if pickable:
+		tween.interpolate_property(ingredient_sprite, "scale", ingredient_sprite.scale, Vector2(1, 1), 0.2)
+		tween.start()
+
 
 

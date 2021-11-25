@@ -88,7 +88,7 @@ func reset_buttons():
 
 func button_pressed(button):
 	print(button.sprite_name)
-	emit_signal("add_ingredient", [button.sprite_name])
+	emit_signal("add_ingredient", button.sprite_name)
 	if radial_items.find(button) != -1:
 		radial_items.remove(radial_items.find(button))
 		all_items.remove(all_items.find(button))
