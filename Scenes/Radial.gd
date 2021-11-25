@@ -41,7 +41,7 @@ func create_button(button_name, center=false):
 		add_child(cur_button)
 		all_items.append(cur_button)
 		center_items.append(cur_button)
-	cur_button.setup(GlobalVars.ingredient_data.keys()[button_name])
+	cur_button.setup(button_name)
 	return cur_button
 
 

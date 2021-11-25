@@ -26,29 +26,6 @@ signal deactivate
 signal reset_potion
 
 var current_counter = 0
-var radial_states = [
-	[2, 2, 2, 2, 4, 3, 1, 7], 
-	[3, 1, 8, 1, 3, 4],
-	[4, 4, 4, 3, 5, 1, 6],
-	[5, 6, 7, 4, 2, 14],
-	[8, 11, 9, 14, 8, 11, 9, 10],
-	[14, 2, 14, 12, 14, 13]
-]
-
-var states = [
-	[[8],	[3],		[9, 12],	[10],		[2],		[15]],
-	[[10],	[2, 5],		[1],		[8],		[14],		[9]],
-	[[17],	[13],		[8, 5],		[2],		[3],		[12]],
-	[[14],	[11, 9],	[1],		[16],		[5],		[8]],
-	[[9],	[10],		[8],		[12],		[11, 13],	[15]],
-	[[14],	[2],		[16],		[8, 6],		[1],		[10]],
-	[[15],	[13],		[10],		[7, 11],	[3],		[17]],
-	[[1],	[20],		[6],		[4],		[10],		[18]],
-	[[16],	[14],		[9],		[19],		[10, 13],	[3]],
-	[[20],	[1],		[12],		[9],		[18],		[2]],
-	[[19],	[5],		[11],		[7],		[14],		[16]],
-	[[13],	[12],		[14],		[3],		[17],		[18]]
-	]
 
 func _ready():
 	SceneTransition.transition({"Direction": "in", "Destination": "Game"})
@@ -56,30 +33,34 @@ func _ready():
 	counters = [radial_shelf, ingredient_shelf, bookshelf]
 	set_radials()
 	cauldron.connect("check_recipe", self, "check_recipe")
-	for i in range(40):
-		add_ingredient(GlobalVars.ingredient_data.keys()[randi() % 21])
+	for i in range(44):
+		add_ingredient(GlobalVars.ingredient_data.keys()[randi() % 20])
 
 
 func check_recipe():
 	var cur_recipe = []
 	GlobalVars.potion_ingredients.sort()
 	for i in GlobalVars.potion_ingredients:
-		cur_recipe.append(GlobalVars.ingredient_data.keys().find(i))
+		cur_recipe.append(i)
 	for item in GlobalVars.recipes:
-		if cur_recipe == item[0]:
-			printt(cur_recipe, item[1])
-			print(GlobalVars.ingredient_data.keys()[21])
-			add_ingredient(GlobalVars.ingredient_data.keys()[GlobalVars.ingredient_data.keys().find(item[1][0])])
+		var checker = item[0]
+		checker.sort()
+		cur_recipe.sort()
+		printt(checker, cur_recipe)
+		if cur_recipe == checker:
+			add_ingredient(item[1])
+			GlobalVars.potion_ingredients.clear()
+			cur_recipe.clear()
 	print(cur_recipe)
 
 
 func set_radials():
 	for i in range(6):
 		var cur_rad = radial.instance()
-		cur_rad.rad_vals = radial_states[i]
+		cur_rad.rad_vals = GlobalVars.radial_states[i]
 		countertop.get_node("HBoxContainer").add_child(cur_rad)
 		cur_rad.connect("add_ingredient", self, "add_ingredient")
-		cur_rad.center_vals = states[0][i]
+		cur_rad.center_vals = GlobalVars.states[0][i]
 		cur_rad.name = '%d' % i
 		if i in GlobalVars.rolls:
 			cur_rad.setup()
@@ -198,6 +179,7 @@ func _on_Game_mouse_exited_game_area():
 
 
 func _on_Clear_Button_pressed():
+	print($Counter/Ingredient_Shelf/GridContainer.rect_size)
 	cauldron.poof.self_modulate = Color('4a5462')
 	cauldron.poof.restart()
 	cauldron.splash.restart()

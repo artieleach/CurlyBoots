@@ -18,24 +18,48 @@ const POTION_VARS = ['A', 'B', 'C', 'D']
 var rolls = []
 
 var recipes = [
-	[[1, 3], 15], # potion 1
-	[[8, 8], 17], # potion 3
-	[[1, 2, 4], 18], # potion 4
-	[[1, 9, 10], 19], # potion 5
-	[[4, 14, 15], 20], #potion 6
-	[[2], 21],
-	[[12, 14], 22],
-	[[8, 9, 10], 23],  # need to figure out doubles!
-	[[18], 24],
-	[[9, 10, 11], 25],
-	[[13, 20], 26],
-	[[5, 6, 18], 27],
-	[[2, 4, 5, 7, 15], 28],
-	[[16, 17, 20], 29],
-	[[11, 12, 18, 19], 30],
-	[[9, 10, 13, 17, 18], 31],
-	[[16, 18, 19], 32]
+ [["Airtek Claw", "Dobberchu Tongue"], "Potion 1"], # potion 1
+ [["Airtek Claw", "Dobberchu Tongue", "Dobberchu Tongue"], "Potion 2"], # potion 1
+ [["Merrow Heart", "Merrow Heart"], "Potion 3"], # potion "Dobberchu Tongue"
+ [["Airtek Claw", "Begonea Scale", "Foxglove"], "Potion 4"], # potion "Foxglove"
+ [["Airtek Claw", "Muckshroom", "Ollifeist Tentacle"], "Potion 5"], # potion "Herbdew"
+ [["Foxglove", "Philosophers Stone", "Potion 1"], "Potion 6"], #potion "Glasdig Horn"
+ [["Begonea Scale"], "TEST1"],
+ [["Silver Silin", "Philosophers Stone"], "TEST2"],
+ [["Merrow Heart", "Muckshroom", "Ollifeist Tentacle"], "TEST3"],  # need to figure out doubles!
+ [["Potion 4"], "TEST4"],
+ [["Muckshroom", "Ollifeist Tentacle", "Phomarian Hand"], "TEST5"],
+ [["Tendroot", "Potion 6"], "TEST6"],
+ [["Herbdew", "Glasdig Horn", "Potion 4"], "TEST7"],
+ [["Begonea Scale", "Foxglove", "Herbdew", "Mandrake", "Potion 1"], "TEST8"],
+ [["Potion 2", "Potion 3", "Potion 6"], "TEST9"],
+ [["Phomarian Hand", "Silver Silin", "Potion 4", "Potion 5"], "TEST10"],
+ [["Muckshroom", "Ollifeist Tentacle", "Tendroot", "Potion 3", "Potion 4"], "TEST11"],
+ [["Potion 2", "Potion 4", "Potion 5"], "TEST12"]
 ]
+var radial_states = [
+ ["Begonea Scale", "Begonea Scale", "Begonea Scale", "Begonea Scale", "Foxglove", "Dobberchu Tongue", "Airtek Claw", "Mandrake"], 
+ ["Dobberchu Tongue", "Airtek Claw", "Merrow Heart", "Airtek Claw", "Dobberchu Tongue", "Foxglove"],
+ ["Foxglove", "Foxglove", "Foxglove", "Dobberchu Tongue", "Herbdew", "Airtek Claw", "Glasdig Horn"],
+ ["Herbdew", "Glasdig Horn", "Mandrake", "Foxglove", "Begonea Scale", "Philosophers Stone"],
+ ["Merrow Heart", "Phomarian Hand", "Muckshroom", "Philosophers Stone", "Merrow Heart", "Phomarian Hand", "Muckshroom", "Ollifeist Tentacle"],
+ ["Philosophers Stone", "Begonea Scale", "Philosophers Stone", "Silver Silin", "Philosophers Stone", "Tendroot"]
+]
+
+var states = [
+ [["Merrow Heart"], ["Dobberchu Tongue"],  ["Muckshroom", "Silver Silin"], ["Ollifeist Tentacle"],  ["Begonea Scale"],  ["Potion 1"]],
+ [["Ollifeist Tentacle"], ["Begonea Scale", "Herbdew"],  ["Airtek Claw"],  ["Merrow Heart"],  ["Philosophers Stone"],  ["Muckshroom"]],
+ [["Potion 3"], ["Tendroot"],  ["Merrow Heart", "Herbdew"],  ["Begonea Scale"],  ["Dobberchu Tongue"],  ["Silver Silin"]],
+ [["Philosophers Stone"], ["Phomarian Hand", "Muckshroom"], ["Airtek Claw"],  ["Potion 2"],  ["Herbdew"],  ["Merrow Heart"]],
+ [["Muckshroom"], ["Ollifeist Tentacle"],  ["Merrow Heart"],  ["Silver Silin"],  ["Phomarian Hand", "Tendroot"], ["Potion 1"]],
+ [["Philosophers Stone"], ["Begonea Scale"],  ["Potion 2"],  ["Merrow Heart", "Glasdig Horn"],  ["Airtek Claw"],  ["Ollifeist Tentacle"]],
+ [["Potion 1"], ["Tendroot"],  ["Ollifeist Tentacle"],  ["Mandrake", "Phomarian Hand"], ["Dobberchu Tongue"],  ["Potion 3"]],
+ [["Airtek Claw"], ["Potion 6"],  ["Glasdig Horn"],  ["Foxglove"],  ["Ollifeist Tentacle"],  ["Potion 4"]],
+ [["Potion 2"], ["Philosophers Stone"],  ["Muckshroom"],  ["Potion 5"],  ["Ollifeist Tentacle", "Tendroot"], ["Dobberchu Tongue"]],
+ [["Potion 6"], ["Airtek Claw"],  ["Silver Silin"],  ["Muckshroom"],  ["Potion 4"],  ["Begonea Scale"]],
+ [["Potion 5"], ["Herbdew"],  ["Phomarian Hand"],  ["Mandrake"],  ["Philosophers Stone"],  ["Potion 2"]],
+ [["Tendroot"], ["Silver Silin"],  ["Philosophers Stone"],  ["Dobberchu Tongue"],  ["Potion 3"],  ["Potion 4"]]
+ ]
 
 func _init():
 	debug = false

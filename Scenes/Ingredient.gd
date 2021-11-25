@@ -133,6 +133,8 @@ func _on_reset_ingredients():
 
 
 func _on_Ingredient_mouse_exited():
+	
+	ingredient_sprite.z_index = 0
 	hovered = false
 	label.hide()
 	ingredient_sprite.use_parent_material = true
@@ -152,6 +154,7 @@ func drop_em():
 
 
 func _on_Ingredient_mouse_entered():
+	ingredient_sprite.z_index = 1000
 	hovered = true
 	if pickable:
 		tween.interpolate_property(ingredient_sprite, "scale", ingredient_sprite.scale, Vector2(1, 1), 0.2)
