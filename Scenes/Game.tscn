@@ -421,7 +421,6 @@ anchor_bottom = 0.0
 margin_right = 1120.0
 margin_bottom = 630.0
 rect_scale = Vector2( 0.2, 0.2 )
-
 [connection signal="mouse_exited_game_area" from="." to="." method="_on_Game_mouse_exited_game_area"]
 [connection signal="pressed" from="Counter/Countertop/Clear_Button" to="." method="_on_Clear_Button_pressed"]
 [connection signal="pressed" from="Counter/Ingredient_Shelf/Clear_Button" to="." method="_on_Clear_Button_pressed"]

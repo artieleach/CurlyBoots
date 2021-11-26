@@ -38,16 +38,11 @@ func _ready():
 
 
 func check_recipe():
-	var cur_recipe = []
-	GlobalVars.potion_ingredients.sort()
-	for i in GlobalVars.potion_ingredients:
-		cur_recipe.append(i)
+	var cur_recipe = GlobalVars.potion_ingredients
+	cur_recipe.sort()
 	for item in GlobalVars.recipes:
-		var checker = item[0]
-		checker.sort()
-		cur_recipe.sort()
-		printt(checker, cur_recipe)
-		if cur_recipe == checker:
+		item[0].sort()
+		if cur_recipe == item[0]:
 			add_ingredient(item[1])
 			GlobalVars.potion_ingredients.clear()
 			cur_recipe.clear()
