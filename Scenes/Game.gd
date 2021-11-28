@@ -15,6 +15,8 @@ onready var right_button = get_node("Counter/Right_Button")
 onready var clear_button = get_node("Counter/Countertop/Clear_Button")
 onready var full_cauldron = get_node("Counter/full_cauldron")
 onready var countertop = get_node("Counter/Countertop")
+
+var radial_button = preload("res://Scenes/Radial_Button.tscn")
 var radial = preload("res://Scenes/Radial.tscn")
 var pickable_ingredient = preload("res://Scenes/Ingredient.tscn")
 
@@ -38,15 +40,26 @@ func _ready():
 
 
 func check_recipe():
-	var cur_recipe = GlobalVars.potion_ingredients
+	var cur_recipe = GlobalVars.potion_ingredients.duplicate()
 	cur_recipe.sort()
 	for item in GlobalVars.recipes:
 		item[0].sort()
+		if len(item[0]) == len(cur_recipe) and 'Philosophers Stone' in cur_recipe:
+			var temp_cauldron = cur_recipe.duplicate()
+			var temp_recipe = item[0].duplicate()
+			var is_invalid = false
+			for ingredient in item[0]:
+				if ingredient in temp_cauldron:
+					temp_cauldron.remove(temp_cauldron.find(ingredient))
+					temp_recipe.remove(temp_recipe.find(ingredient))
+			for ingredient in temp_recipe:
+				if 'Potion' in ingredient:
+					is_invalid = true
+			if len(temp_cauldron) == 1 and 'Philosophers Stone' in temp_cauldron and not is_invalid:
+				cur_recipe = item[0]
 		if cur_recipe == item[0]:
 			add_ingredient(item[1])
 			GlobalVars.potion_ingredients.clear()
-			cur_recipe.clear()
-	print(cur_recipe)
 
 
 func set_radials():
@@ -82,7 +95,7 @@ func _on_add_to_potion(ingredient):
 	cauldron.poof.restart()
 	cauldron.splash.restart()
 	GlobalVars.potion_ingredients.append(ingredient)
-
+	update_active_ingredient_display()
 
 func _on_dialog(cur_speaker, spesific_response=null):
 	if spesific_response:
@@ -140,15 +153,16 @@ func _on_Left_Button_pressed():
 
 
 func update_counter(move_direction):
+	var tmep = 153
 	if move_direction == "right":
 		# hey future me, maybe fix the position of this so it's not hard coded.
-		tween.interpolate_property(counters[current_counter], "rect_position:x", 0, -160, 0.4, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+		tween.interpolate_property(counters[current_counter], "rect_position:x", 0, -tmep, 0.4, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
 		current_counter = wrapi(current_counter + 1, 0, 3)
-		tween.interpolate_property(counters[current_counter], "rect_position:x", 160, 0, 0.4, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+		tween.interpolate_property(counters[current_counter], "rect_position:x", tmep, 0, 0.4, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
 	else:
-		tween.interpolate_property(counters[current_counter], "rect_position:x", 0, 160, 0.4, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+		tween.interpolate_property(counters[current_counter], "rect_position:x", 0, tmep, 0.4, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
 		current_counter = wrapi(current_counter - 1, 0, 3)
-		tween.interpolate_property(counters[current_counter], "rect_position:x", -160, 0, 0.4, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+		tween.interpolate_property(counters[current_counter], "rect_position:x", -tmep, 0, 0.4, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
 	tween.start()
 	yield(tween, "tween_completed")
 	left_button.pressed = false
@@ -182,6 +196,7 @@ func _on_Clear_Button_pressed():
 	GlobalVars.potion_ingredients.clear()
 	emit_signal("clear_recent")
 	emit_signal("reset_potion")
+	update_active_ingredient_display()
 	yield(get_tree().create_timer(0.9), "timeout")
 	clear_button.pressed = false
 	clear_button.toggle_mode = false
@@ -195,3 +210,12 @@ func _on_HSlider_value_changed(value):
 
 func _on_ingredient_pressed(ingredient):
 	print(ingredient)
+
+
+func update_active_ingredient_display():
+	for item in range(16):
+		get_node("Counter/Panel/GridContainer/DisplayButton%d" % item).hide()
+	for item in range(len(GlobalVars.potion_ingredients)):
+		var cur = get_node("Counter/Panel/GridContainer/DisplayButton%d" % item)
+		cur.show()
+		cur.setup(GlobalVars.potion_ingredients[item])

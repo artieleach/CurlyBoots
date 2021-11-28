@@ -46,6 +46,12 @@ __meta__ = {
 
 [node name="Tween" type="Tween" parent="."]
 
+[node name="holder" type="Sprite" parent="."]
+self_modulate = Color( 0.12549, 0.12549, 0.12549, 1 )
+position = Vector2( 2, 2 )
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 5 )
+
 [node name="Node2D" type="Node2D" parent="."]
 
 [node name="Ingredient_Sprite" type="Sprite" parent="Node2D"]

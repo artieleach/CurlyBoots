@@ -1,6 +1,7 @@
 extends TextureButton
 
 onready var ingredient_sprite = get_node("Node2D/Ingredient_Sprite")
+onready var holder = get_node("holder")
 onready var tween = get_node("Tween")
 onready var drawing = get_node("Node2D")
 onready var label = get_node("Node2D/Ingredient_Sprite/Label")
@@ -23,6 +24,7 @@ func setup(ing_name):
 	texture_normal = null
 	add_to_group("ingredients")
 	ingredient_sprite.texture = load("res://Art/Ingredients/%s.png" % ingredient_name)
+	holder.texture = load("res://Art/Ingredients/%s.png" % ingredient_name)
 	rect_min_size = Vector2(8, 8)
 	ingredient_sprite.show()
 	label.hide()
@@ -48,7 +50,7 @@ func reset():
 	offset = Vector2(0, 0)
 	tween.interpolate_property(drawing, "self_modulate:a",0 ,1, .8)
 	tween.start()
-	show()
+	ingredient_sprite.show()
 	pickable = true
 	held = false
 	will_open_help = false
@@ -77,7 +79,7 @@ func add_to_potion():
 	yield(get_tree().create_timer(0.4), "timeout")
 	AudioHolder.play_audio('magic_00%d' % (randi() % 9 + 1), -10)
 	emit_signal("added_to_potion")
-	hide()
+	ingredient_sprite.hide()
 
 
 func deactivate():
