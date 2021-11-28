@@ -213,9 +213,12 @@ func _on_ingredient_pressed(ingredient):
 
 
 func update_active_ingredient_display():
+	cauldron.update_ingredients()
 	for item in range(16):
-		get_node("Counter/Panel/GridContainer/DisplayButton%d" % item).hide()
-	for item in range(len(GlobalVars.potion_ingredients)):
 		var cur = get_node("Counter/Panel/GridContainer/DisplayButton%d" % item)
-		cur.show()
-		cur.setup(GlobalVars.potion_ingredients[item])
+		if item < len(GlobalVars.potion_ingredients):
+			cur.show()
+			cur.setup(GlobalVars.potion_ingredients[item])
+		else:
+			cur.hide()
+		

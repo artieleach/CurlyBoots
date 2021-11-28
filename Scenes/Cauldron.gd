@@ -1,6 +1,7 @@
 extends Control
 
 onready var liquid := get_node("Liquid")
+onready var liquid2 := get_node("Liquid2")
 onready var bubble := get_node("Bubble")
 onready var splash := get_node("Splash")
 onready var poof := get_node("Poof")
@@ -62,6 +63,7 @@ func set_color():
 	GlobalVars.cauldron_color.a = 0.9
 	#bottle.get_node("liquid").self_modulate = GlobalVars.cauldron_color
 	tween.interpolate_property(liquid, "color", liquid.color, GlobalVars.cauldron_color, 0.3)
+	tween.interpolate_property(liquid2, "color", liquid2.color, GlobalVars.cauldron_color, 0.3)
 	tween.interpolate_property(bubble, "color", bubble.color, GlobalVars.cauldron_color, 0.3)
 	tween.interpolate_property(splash, "color", splash.color, GlobalVars.cauldron_color, 0.3)
 	tween.start()
@@ -81,3 +83,12 @@ func set_temp():
 
 func _on_Button_pressed():
 	emit_signal("check_recipe")
+
+func update_ingredients():
+	for item in range(8):
+		var cur_ing = get_node("Ingredient%d" % item)
+		if item < len(GlobalVars.potion_ingredients):
+			cur_ing.emitting = true
+			cur_ing.texture = load("res://Art/Ingredients/%s.png" % GlobalVars.potion_ingredients[item])
+		else:
+			cur_ing.emitting = false
