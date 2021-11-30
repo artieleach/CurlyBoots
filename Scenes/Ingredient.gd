@@ -86,8 +86,10 @@ func add_to_potion():
 func deactivate():
 	pickable = false
 
+
 func activate():
 	pickable = true
+
 
 func mouse_hover():
 	if pickable:
@@ -102,6 +104,7 @@ func generate_page():
 	var output = ''
 	output += '[]'
 	pass
+
 
 func _gui_input(event):
 	if event is InputEventMouseButton:
