@@ -192,7 +192,8 @@ __meta__ = {
 margin_left = 1.0
 margin_top = 42.0
 margin_right = 223.0
-margin_bottom = 125.0
+margin_bottom = 85.0
+rect_clip_content = true
 color = Color( 0.133333, 0.109804, 0.101961, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -381,8 +382,8 @@ __meta__ = {
 [node name="GridContainer" type="GridContainer" parent="Counter/Panel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -0.599991
-margin_right = -2.59999
+margin_left = -1.0
+margin_right = -1.0
 custom_constants/vseparation = -3
 custom_constants/hseparation = -3
 columns = 2

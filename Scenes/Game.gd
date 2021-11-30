@@ -153,7 +153,7 @@ func _on_Left_Button_pressed():
 
 
 func update_counter(move_direction):
-	var tmep = 153
+	var tmep = 158
 	if move_direction == "right":
 		# hey future me, maybe fix the position of this so it's not hard coded.
 		tween.interpolate_property(counters[current_counter], "rect_position:x", 0, -tmep, 0.4, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
@@ -165,12 +165,10 @@ func update_counter(move_direction):
 		tween.interpolate_property(counters[current_counter], "rect_position:x", -tmep, 0, 0.4, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
 	tween.start()
 	yield(tween, "tween_completed")
-	left_button.pressed = false
-	left_button.toggle_mode = false
-	left_button.toggle_mode = true
-	right_button.pressed = false
-	right_button.toggle_mode = false
-	right_button.toggle_mode = true
+	for button in [left_button, right_button]:
+		button.pressed = false
+		button.toggle_mode = false
+		button.toggle_mode = true
 
 
 func _on_book_pressed(book_title):

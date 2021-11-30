@@ -32,6 +32,7 @@ func setup(ing_name):
 
 func _process(_delta):
 	if held:
+		print(ingredient_sprite.global_position.x)
 		tween.interpolate_property(drawing, "global_position", drawing.global_position, get_global_mouse_position() - offset, 0.09)
 		tween.start()
 		drawing.global_position = Vector2(drawing.global_position / 5).floor() * 5
@@ -117,7 +118,7 @@ func _gui_input(event):
 					pick_up()
 			else:
 				held = false
-				if ingredient_sprite.global_position.x > 920 and pickable:
+				if ingredient_sprite.global_position.x > 908 and ingredient_sprite.global_position.x < 953 and pickable:
 					pickable = false
 					add_to_potion()
 				else:
