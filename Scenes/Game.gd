@@ -15,6 +15,7 @@ onready var right_button = get_node("Counter/Right_Button")
 onready var clear_button = get_node("Counter/Countertop/Clear_Button")
 onready var full_cauldron = get_node("Counter/full_cauldron")
 onready var countertop = get_node("Counter/Countertop")
+onready var inventory = get_node("Counter/Countertop/VBoxContainer/Inventory")
 
 var radial_button = preload("res://Scenes/Radial_Button.tscn")
 var radial = preload("res://Scenes/Radial.tscn")
@@ -32,10 +33,10 @@ var current_counter = 0
 func _ready():
 	SceneTransition.transition({"Direction": "in", "Destination": "Game"})
 	randomize()
-	counters = [radial_shelf, ingredient_shelf, bookshelf]
+	counters = [radial_shelf, bookshelf]
 	set_radials()
 	cauldron.connect("check_recipe", self, "check_recipe")
-	for i in range(44):
+	for i in range(11):
 		add_ingredient(GlobalVars.ingredient_data.keys()[randi() % 20])
 
 
@@ -64,14 +65,10 @@ func check_recipe():
 
 func set_radials():
 	for i in range(6):
-		var cur_rad = radial.instance()
-		cur_rad.rad_vals = GlobalVars.radial_states[i]
-		countertop.get_node("HBoxContainer").add_child(cur_rad)
-		cur_rad.connect("add_ingredient", self, "add_ingredient")
-		cur_rad.center_vals = GlobalVars.states[0][i]
-		cur_rad.name = '%d' % i
+		var cur_card = get_node("Counter/Countertop/VBoxContainer/HBoxContainer/Card%d" % (i + 1))
+		cur_card.hide()
 		if i in GlobalVars.rolls:
-			cur_rad.setup()
+			cur_card.show()
 
 
 func _on_Game_tree_exiting():
@@ -80,7 +77,7 @@ func _on_Game_tree_exiting():
 
 func add_ingredient(ing_name):
 	var cur_ing = pickable_ingredient.instance()
-	ingredient_shelf.get_node("GridContainer").add_child(cur_ing)
+	inventory.add_child(cur_ing)
 	inventory_ingredients.append(cur_ing)
 	inventory_ingredients.sort()
 	cur_ing.setup(ing_name)
@@ -153,15 +150,15 @@ func _on_Left_Button_pressed():
 
 
 func update_counter(move_direction):
-	var tmep = 158
+	var tmep = 170
 	if move_direction == "right":
 		# hey future me, maybe fix the position of this so it's not hard coded.
 		tween.interpolate_property(counters[current_counter], "rect_position:x", 0, -tmep, 0.4, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
-		current_counter = wrapi(current_counter + 1, 0, 3)
+		current_counter = wrapi(current_counter + 1, 0, len(counters))
 		tween.interpolate_property(counters[current_counter], "rect_position:x", tmep, 0, 0.4, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
 	else:
 		tween.interpolate_property(counters[current_counter], "rect_position:x", 0, tmep, 0.4, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
-		current_counter = wrapi(current_counter - 1, 0, 3)
+		current_counter = wrapi(current_counter - 1, 0, len(counters))
 		tween.interpolate_property(counters[current_counter], "rect_position:x", -tmep, 0, 0.4, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
 	tween.start()
 	yield(tween, "tween_completed")
@@ -186,7 +183,6 @@ func _on_Game_mouse_exited_game_area():
 
 
 func _on_Clear_Button_pressed():
-	print($Counter/Ingredient_Shelf/GridContainer.rect_size)
 	cauldron.poof.self_modulate = Color('4a5462')
 	cauldron.poof.restart()
 	cauldron.splash.restart()

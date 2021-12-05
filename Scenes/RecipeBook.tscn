@@ -1,0 +1,62 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Art/Fonts/m3x6.tres" type="DynamicFont" id=1]
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="StyleBoxEmpty" id=5]
+
+[sub_resource type="Theme" id=6]
+VScrollBar/styles/grabber = SubResource( 2 )
+VScrollBar/styles/grabber_highlight = SubResource( 3 )
+VScrollBar/styles/grabber_pressed = SubResource( 4 )
+VScrollBar/styles/scroll = SubResource( 5 )
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0, 0, 0, 1 )
+
+[node name="RecipeBook" type="Panel"]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 157, 83 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer"]
+margin_right = 96.0
+margin_bottom = 83.0
+rect_min_size = Vector2( 48, 0 )
+theme = SubResource( 6 )
+scroll_horizontal_enabled = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/ScrollContainer"]
+margin_right = 96.0
+margin_bottom = 25.0
+custom_constants/separation = 1
+
+[node name="Panel" type="Panel" parent="HBoxContainer/ScrollContainer/VBoxContainer"]
+margin_right = 96.0
+margin_bottom = 10.0
+rect_min_size = Vector2( 96, 10 )
+input_pass_on_modal_close_click = false
+custom_styles/panel = SubResource( 1 )
+
+[node name="MenuButton" type="MenuButton" parent="HBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 11.0
+margin_right = 96.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 1 )
+text = "words"
+items = [ "description of something or some such etc etc", null, 0, false, false, 0, 0, null, "", false ]

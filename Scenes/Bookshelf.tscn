@@ -1,11 +1,5 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene format=2]
 
-[ext_resource path="res://Art/Assets/bookshelf.png" type="Texture" id=5]
-
-[node name="Bookshelf" type="TextureRect"]
+[node name="Bookshelf" type="Panel"]
 margin_right = 40.0
 margin_bottom = 40.0
-texture = ExtResource( 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}

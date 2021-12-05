@@ -32,7 +32,6 @@ func setup(ing_name):
 
 func _process(_delta):
 	if held:
-		print(ingredient_sprite.global_position.x)
 		tween.interpolate_property(drawing, "global_position", drawing.global_position, get_global_mouse_position() - offset, 0.09)
 		tween.start()
 		drawing.global_position = Vector2(drawing.global_position / 5).floor() * 5
@@ -75,7 +74,7 @@ func pick_up():
 
 func add_to_potion():
 	drawing.z_index = 2
-	tween.interpolate_property(drawing, "position:y", drawing.position.y, 50, 0.5, Tween.TRANS_SINE, Tween.EASE_IN)
+	tween.interpolate_property(drawing, "global_position", drawing.global_position, Vector2(clamp(drawing.global_position.x, 900, 1000), 600), 0.5, Tween.TRANS_SINE, Tween.EASE_IN)
 	tween.start()
 	yield(get_tree().create_timer(0.4), "timeout")
 	AudioHolder.play_audio('magic_00%d' % (randi() % 9 + 1), -10)
@@ -86,10 +85,8 @@ func add_to_potion():
 func deactivate():
 	pickable = false
 
-
 func activate():
 	pickable = true
-
 
 func mouse_hover():
 	if pickable:
@@ -104,7 +101,6 @@ func generate_page():
 	var output = ''
 	output += '[]'
 	pass
-
 
 func _gui_input(event):
 	if event is InputEventMouseButton:
@@ -121,7 +117,7 @@ func _gui_input(event):
 					pick_up()
 			else:
 				held = false
-				if ingredient_sprite.global_position.x > 908 and ingredient_sprite.global_position.x < 953 and pickable:
+				if get_global_mouse_position().x > 900 and 1000 > get_global_mouse_position().x and pickable:
 					pickable = false
 					add_to_potion()
 				else:

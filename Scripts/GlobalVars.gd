@@ -4,6 +4,7 @@ var scheduled_customers = []
 var potion_balance = [1, 1, 1, 1]
 var potion_ingredients = []
 var day = 0
+var hour = 0
 var sound = false
 var music = false
 var time_left = 0
@@ -14,6 +15,7 @@ var cauldron_color = Color('#000000')
 var ingredient_data
 var cauldron_temp = 0
 
+var possilbe_rolls = [0, 1, 2, 3, 4, 5]
 const POTION_VARS = ['A', 'B', 'C', 'D']
 var rolls = []
 
@@ -69,8 +71,8 @@ func _init():
 	ingredient_data = get_json("res://Writing/ingredient_data")
 	load_game()
 	randomize()
-	
-	rolls = [randi() % 6, randi() % 6, randi() % 6]
+	possilbe_rolls.shuffle()
+	rolls = [possilbe_rolls[0], possilbe_rolls[1], possilbe_rolls[2]]
 
 
 func get_json(file_string):

@@ -224,22 +224,23 @@ spread = 5.0
 initial_velocity = 48.0
 initial_velocity_random = 0.5
 
-[node name="cauldron_liquid_mask" type="Sprite" parent="."]
-position = Vector2( 26, 21 )
-z_index = 1
-texture = ExtResource( 2 )
-
-[node name="Button" type="Button" parent="cauldron_liquid_mask"]
-margin_left = -15.0
-margin_top = -20.0
-margin_right = 16.0
-margin_bottom = -5.0
+[node name="Button" type="Button" parent="."]
+margin_left = 11.0
+margin_top = 1.0
+margin_right = 42.0
+margin_bottom = 16.0
 custom_fonts/font = ExtResource( 9 )
 text = "stir"
 flat = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="cauldron_liquid_mask" type="Sprite" parent="."]
+visible = false
+position = Vector2( 26, 21 )
+z_index = 1
+texture = ExtResource( 2 )
 
 [node name="Splash" type="CPUParticles2D" parent="."]
 material = ExtResource( 5 )
@@ -389,4 +390,4 @@ texture = ExtResource( 16 )
 emission_shape = 1
 emission_sphere_radius = 10.0
 
-[connection signal="pressed" from="cauldron_liquid_mask/Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
