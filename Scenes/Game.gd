@@ -65,7 +65,7 @@ func check_recipe():
 
 func set_radials():
 	for i in range(6):
-		var cur_card = get_node("Counter/Countertop/VBoxContainer/HBoxContainer/Card%d" % (i + 1))
+		var cur_card = get_node("Counter/Countertop/VBoxContainer/HBoxContainer/Card%d" % i)
 		cur_card.hide()
 		if i in GlobalVars.rolls:
 			cur_card.show()

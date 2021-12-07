@@ -26,10 +26,8 @@ func _on_Radial_Button_mouse_entered():
 		button_sprite.z_index = 10
 		tween.interpolate_property(button_sprite, "scale", button_sprite.scale, Vector2(1, 1), 0.2)
 		tween.start()
-		yield(tween, "tween_completed")
+		yield(get_tree().create_timer(0.2), "timeout")
 		if hovered:
-			tween.interpolate_property(label, "self_modulate:a", label.self_modulate.a, 1, 0.2, Tween.TRANS_EXPO, Tween.EASE_IN)
-			tween.start()
 			if displays_label:
 				label.show()
 		
@@ -39,7 +37,6 @@ func _on_Radial_Button_mouse_exited():
 	hovered = false
 	if is_active:
 		tween.interpolate_property(button_sprite, "scale", button_sprite.scale, Vector2(0.2, 0.2), 0.2)
-		tween.interpolate_property(label, "self_modulate:a", label.self_modulate.a, 0, 0.2, Tween.TRANS_EXPO, Tween.EASE_IN)
 		tween.start()
 		label.hide()
 		yield(get_tree().create_timer(0.2), "timeout")
@@ -52,3 +49,9 @@ func disable():
 	mouse_filter = MOUSE_FILTER_IGNORE
 	modulate = Color(0, 0, 0, 0.5)
 	is_active = false
+
+func enable():
+	_on_Radial_Button_mouse_exited()
+	mouse_filter = MOUSE_FILTER_PASS
+	modulate = Color(1, 1, 1, 1)
+	is_active = true

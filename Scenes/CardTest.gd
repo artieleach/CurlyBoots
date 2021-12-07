@@ -10,6 +10,8 @@ signal add_from_list
 
 var radial_button = preload("res://Scenes/Radial_Button.tscn")
 
+var list_buttons = []
+
 var aaaaaa = [
  [["Merrow Heart"], ["Dobberchu Tongue"],  ["Muckshroom", "Silver Silin"], ["Ollifeist Tentacle"],  ["Begonea Scale"],  ["Potion 1"]],
  [["Ollifeist Tentacle"], ["Begonea Scale", "Herbdew"],  ["Airtek Claw"],  ["Merrow Heart"],  ["Philosophers Stone"],  ["Muckshroom"]],
@@ -43,13 +45,18 @@ func create_button(button_name):
 	cur_button.connect("pressed", self, "button_pressed", [cur_button])
 	hour_items.add_child(cur_button)
 	cur_button.setup(button_name)
+	list_buttons.append(cur_button)
 	return cur_button
 
+
+func disable():
+	for button in list_buttons:
+		button.disable()
+	radial.disable()
 
 
 func button_pressed(button):
 	print(button.sprite_name)
-	button.disable()
-	radial.disable()
+	disable()
 	emit_signal("add_from_list", button.sprite_name)
 	GlobalVars.rolls.remove(GlobalVars.rolls.find(card_id))
