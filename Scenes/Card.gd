@@ -5,6 +5,7 @@ export var card_id = 0
 signal add_ingredient
 
 var list_ingredients = []
+var list_by_hour = []
 var radial_ingredients = []
 var all_ingredients = []
 
@@ -20,12 +21,25 @@ func _ready():
 	connect("add_ingredient", owner, "add_ingredient")
 	set_list()
 	set_radial()
-	
+
+
+func start_day():
+	for item in all_ingredients:
+		item.queue_free()
+	list_ingredients = []
+	list_by_hour = []
+	radial_ingredients = []
+	all_ingredients = []
+	set_list()
+	set_radial()
+
 
 func set_list():
 	for i in range(12):
+		list_by_hour.append([])
 		for j in GlobalVars.states[i][card_id]:
 			var cur = create_ingredient(j, itemlist)
+			list_by_hour[i].append(cur)
 			list_ingredients.append(cur)
 			all_ingredients.append(cur)
 			if GlobalVars.hour != i:
@@ -37,10 +51,10 @@ func set_radial():
 		var cur = create_ingredient(GlobalVars.radial_states[card_id][i], radial)
 		radial_ingredients.append(cur)
 		all_ingredients.append(cur)
-	update_radial(true)
+	set_radial_positions(true)
 
 
-func update_radial(instant=false):
+func set_radial_positions(instant=false):
 	if len(radial_ingredients) > 1:
 		for i in range(len(radial_ingredients)):
 			var angle = 360 / len(radial_ingredients) * i
@@ -53,6 +67,16 @@ func update_radial(instant=false):
 				tween.start()
 			else:
 				cur.rect_position = new_pos
+
+
+func update_list():
+	for i in range(12):
+		if GlobalVars.hour == i:
+			for item in list_by_hour[i]:
+				item.enable()
+		else:
+			for item in list_by_hour[i]:
+				item.disable()
 
 
 func create_ingredient(ing_name, ing_owner):
@@ -70,7 +94,8 @@ func ingredient_pressed(ingredient):
 	emit_signal("add_ingredient", ingredient.sprite_name)
 	if radial_ingredients.find(ingredient) != -1:
 		radial_ingredients.remove(radial_ingredients.find(ingredient))
-	ingredient.hide()
+		set_radial_positions()
+		ingredient.hide()
 	GlobalVars.rolls.remove(GlobalVars.rolls.find(card_id))
 	disable()
 
@@ -78,6 +103,13 @@ func ingredient_pressed(ingredient):
 func disable():
 	for ingredient in all_ingredients:
 		ingredient.disable()
+
+
+func enable():
+	for ingredient in radial_ingredients:
+		ingredient.enable()
+	update_list()
+	
 
 func bring_to_front(ingredient):
 	highlighted_ingredient = ingredient

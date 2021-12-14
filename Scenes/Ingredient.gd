@@ -16,6 +16,7 @@ var ingredient_name = ''
 signal double_clicked
 signal added_to_potion
 var hovered = false
+var in_potion = false
 
 
 func setup(ing_name):
@@ -74,6 +75,7 @@ func pick_up():
 
 func add_to_potion():
 	drawing.z_index = 2
+	in_potion = true
 	tween.interpolate_property(drawing, "global_position", drawing.global_position, Vector2(clamp(drawing.global_position.x, 900, 1000), 600), 0.5, Tween.TRANS_SINE, Tween.EASE_IN)
 	tween.start()
 	yield(get_tree().create_timer(0.4), "timeout")
@@ -117,7 +119,7 @@ func _gui_input(event):
 					pick_up()
 			else:
 				held = false
-				if get_global_mouse_position().x > 900 and 1000 > get_global_mouse_position().x and pickable:
+				if get_global_mouse_position().x > 900 and 1100 > get_global_mouse_position().x and pickable:
 					pickable = false
 					add_to_potion()
 				else:

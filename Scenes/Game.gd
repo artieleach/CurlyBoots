@@ -16,11 +16,14 @@ onready var clear_button = get_node("Counter/Countertop/Clear_Button")
 onready var full_cauldron = get_node("Counter/full_cauldron")
 onready var countertop = get_node("Counter/Countertop")
 onready var inventory = get_node("Counter/Countertop/VBoxContainer/Inventory")
+onready var display_recipe = get_node("Counter/Countertop/RichTextLabel")
 
 var radial_button = preload("res://Scenes/Radial_Button.tscn")
 var radial = preload("res://Scenes/Radial.tscn")
 var pickable_ingredient = preload("res://Scenes/Ingredient.tscn")
+var card = preload("res://Scenes/Card.tscn")
 
+var deck = []
 var inventory_ingredients = []
 var counters
 signal mouse_exited_game_area
@@ -34,14 +37,30 @@ func _ready():
 	SceneTransition.transition({"Direction": "in", "Destination": "Game"})
 	randomize()
 	counters = [radial_shelf, bookshelf]
-	set_radials()
 	cauldron.connect("check_recipe", self, "check_recipe")
-	for i in range(11):
-		add_ingredient(GlobalVars.ingredient_data.keys()[randi() % 20])
+	for i in range(6):
+		deck.append(get_node("Counter/Countertop/VBoxContainer/HBoxContainer/Card%d" % i))
+	draw_cards()
+	print(GlobalVars.rolls)
+	display_recipes()
+	for i in range(20):
+		add_ingredient(GlobalVars.ingredient_data.keys()[i])
 
+
+func draw_cards():
+	for i in range(6):
+		if i in GlobalVars.rolls:
+			deck[i].enable()
+			deck[i].show()
+			
+		else:
+			deck[i].disable()
+			deck[i].hide()
 
 func check_recipe():
-	var cur_recipe = GlobalVars.potion_ingredients.duplicate()
+	var cur_recipe = []
+	for i in GlobalVars.potion_ingredients:
+		cur_recipe.append(i.ingredient_name)
 	cur_recipe.sort()
 	for item in GlobalVars.recipes:
 		item[0].sort()
@@ -60,15 +79,12 @@ func check_recipe():
 				cur_recipe = item[0]
 		if cur_recipe == item[0]:
 			add_ingredient(item[1])
-			GlobalVars.potion_ingredients.clear()
-
-
-func set_radials():
-	for i in range(6):
-		var cur_card = get_node("Counter/Countertop/VBoxContainer/HBoxContainer/Card%d" % i)
-		cur_card.hide()
-		if i in GlobalVars.rolls:
-			cur_card.show()
+			if len(GlobalVars.potion_ingredients) > 1:
+				for ingredient in GlobalVars.potion_ingredients:
+						inventory_ingredients.remove(inventory_ingredients.find(ingredient))
+						ingredient.queue_free()
+				GlobalVars.potion_ingredients.clear()
+			update_active_ingredient_display()
 
 
 func _on_Game_tree_exiting():
@@ -84,11 +100,11 @@ func add_ingredient(ing_name):
 	connect("mouse_exited_game_area", cur_ing, "drop_em")
 	connect("reset_potion", cur_ing, "reset")
 	cur_ing.connect("double_clicked", self, "_on_ingredient_pressed", [cur_ing.ingredient_name])
-	cur_ing.connect("added_to_potion", self, "_on_add_to_potion", [cur_ing.ingredient_name])
+	cur_ing.connect("added_to_potion", self, "_on_add_to_potion", [cur_ing])
 
 
 func _on_add_to_potion(ingredient):
-	cauldron.poof.self_modulate = GlobalVars.ingredient_data[ingredient]["color"]
+	cauldron.poof.self_modulate = GlobalVars.ingredient_data[ingredient.ingredient_name]["color"]
 	cauldron.poof.restart()
 	cauldron.splash.restart()
 	GlobalVars.potion_ingredients.append(ingredient)
@@ -212,7 +228,27 @@ func update_active_ingredient_display():
 		var cur = get_node("Counter/Panel/GridContainer/DisplayButton%d" % item)
 		if item < len(GlobalVars.potion_ingredients):
 			cur.show()
-			cur.setup(GlobalVars.potion_ingredients[item])
+			cur.setup(GlobalVars.potion_ingredients[item].ingredient_name)
 		else:
 			cur.hide()
 		
+func display_recipes():
+	var output = ''
+	for item in GlobalVars.recipes:
+		for ing in item[0]:
+			output += '[img]res://Art/Ingredients/%s.png[/img]' % ing
+		output += '[img]res://Art/GUI/arrow_right_centered.png[/img][img]res://Art/Ingredients/%s.png[/img]\n' % item[1]
+	output += '\n\n\n\n'
+	display_recipe.bbcode_text = output
+
+
+func _on_Draw_Button_pressed():
+	GlobalVars.draw_cards()
+	if GlobalVars.hour < 11:
+		GlobalVars.hour += 1
+	else:
+		GlobalVars.day += 1
+		GlobalVars.hour = 0
+		for card in deck:
+			card.start_day()
+	draw_cards()

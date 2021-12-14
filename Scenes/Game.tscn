@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=44 format=2]
 
 [ext_resource path="res://Art/Assets/small_calinet.png" type="Texture" id=1]
 [ext_resource path="res://Art/Assets/shelf.png" type="Texture" id=2]
@@ -35,6 +35,25 @@
 [ext_resource path="res://Art/GUI/x_button.png" type="Texture" id=33]
 [ext_resource path="res://Art/GUI/x_button_pressed.png" type="Texture" id=34]
 [ext_resource path="res://Art/GUI/arrow_left_pressed.png" type="Texture" id=35]
+[ext_resource path="res://Art/Fonts/m5x7_bold.tres" type="DynamicFont" id=37]
+[ext_resource path="res://new_theme.tres" type="Theme" id=38]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="StyleBoxEmpty" id=5]
+
+[sub_resource type="Theme" id=6]
+VScrollBar/styles/grabber = SubResource( 1 )
+VScrollBar/styles/grabber_highlight = SubResource( 2 )
+VScrollBar/styles/grabber_pressed = SubResource( 3 )
+VScrollBar/styles/scroll = SubResource( 4 )
+VScrollBar/styles/scroll_focus = SubResource( 5 )
 
 [node name="Game" type="Node2D"]
 scale = Vector2( 5, 5 )
@@ -199,6 +218,25 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="ViewportContainer" type="ViewportContainer" parent="Counter"]
+margin_left = 170.0
+margin_top = 32.0
+margin_right = 222.0
+margin_bottom = 115.0
+mouse_filter = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Viewport" type="Viewport" parent="Counter/ViewportContainer"]
+size = Vector2( 52, 83 )
+handle_input_locally = false
+render_target_update_mode = 3
+
+[node name="Cauldron" parent="Counter/ViewportContainer/Viewport" instance=ExtResource( 17 )]
+margin_right = 37.596
+margin_bottom = 28.014
+
 [node name="Countertop" type="Panel" parent="Counter"]
 margin_right = 169.0
 margin_bottom = 83.0
@@ -207,12 +245,15 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Counter/Countertop"]
-margin_left = 20.0
-margin_right = 148.0
+margin_right = 128.0
 margin_bottom = 84.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Counter/Countertop/VBoxContainer"]
-margin_right = 212.0
+margin_right = 128.0
 margin_bottom = 48.0
 alignment = 1
 __meta__ = {
@@ -220,74 +261,95 @@ __meta__ = {
 }
 
 [node name="Card0" parent="Counter/Countertop/VBoxContainer/HBoxContainer" instance=ExtResource( 4 )]
+margin_left = 12.0
+margin_right = 44.0
 rect_scale = Vector2( 1, 1 )
 
 [node name="Card1" parent="Counter/Countertop/VBoxContainer/HBoxContainer" instance=ExtResource( 4 )]
-margin_left = 36.0
-margin_right = 68.0
+margin_left = 48.0
+margin_right = 80.0
 rect_scale = Vector2( 1, 1 )
 card_id = 1
 
 [node name="Card2" parent="Counter/Countertop/VBoxContainer/HBoxContainer" instance=ExtResource( 4 )]
-margin_left = 72.0
-margin_right = 104.0
+margin_left = 84.0
+margin_right = 116.0
 rect_scale = Vector2( 1, 1 )
 card_id = 2
 
 [node name="Card3" parent="Counter/Countertop/VBoxContainer/HBoxContainer" instance=ExtResource( 4 )]
-margin_left = 108.0
-margin_right = 140.0
+visible = false
+margin_left = 48.0
+margin_right = 80.0
 rect_scale = Vector2( 1, 1 )
 card_id = 3
 
 [node name="Card4" parent="Counter/Countertop/VBoxContainer/HBoxContainer" instance=ExtResource( 4 )]
-margin_left = 144.0
-margin_right = 176.0
+visible = false
+margin_left = 66.0
+margin_right = 98.0
 rect_scale = Vector2( 1, 1 )
 card_id = 4
 
 [node name="Card5" parent="Counter/Countertop/VBoxContainer/HBoxContainer" instance=ExtResource( 4 )]
+visible = false
 margin_left = 180.0
 margin_right = 212.0
 rect_scale = Vector2( 1, 1 )
 card_id = 5
 
 [node name="Inventory" type="GridContainer" parent="Counter/Countertop/VBoxContainer"]
+margin_left = 14.0
 margin_top = 52.0
-margin_right = 212.0
+margin_right = 114.0
 margin_bottom = 84.0
-grow_horizontal = 2
-grow_vertical = 2
-rect_min_size = Vector2( 128, 32 )
-custom_constants/vseparation = 1
+rect_min_size = Vector2( 100, 32 )
+size_flags_horizontal = 4
+custom_constants/vseparation = 2
 custom_constants/hseparation = 2
 columns = 11
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Clear_Button" type="TextureButton" parent="Counter/Countertop"]
-margin_left = 159.0
-margin_top = 72.0
-margin_right = 168.0
-margin_bottom = 82.0
-toggle_mode = true
-texture_normal = ExtResource( 33 )
-texture_pressed = ExtResource( 34 )
-texture_hover = ExtResource( 23 )
+[node name="RichTextLabel" type="RichTextLabel" parent="Counter/Countertop"]
+anchor_left = 0.704
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 0.0239868
+margin_right = 74.0
+margin_bottom = 124.0
+rect_scale = Vector2( 0.4, 0.4 )
+theme = SubResource( 6 )
+custom_fonts/normal_font = ExtResource( 37 )
+bbcode_enabled = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Clear_Button2" type="TextureButton" parent="Counter/Countertop"]
-margin_left = 300.0
-margin_top = 31.0
-margin_right = 309.0
-margin_bottom = 41.0
+[node name="Clear_Button" type="TextureButton" parent="Counter/Countertop"]
+margin_left = 212.0
+margin_top = 17.0
+margin_right = 223.0
+margin_bottom = 29.0
 toggle_mode = true
 texture_normal = ExtResource( 33 )
 texture_pressed = ExtResource( 34 )
 texture_hover = ExtResource( 23 )
+expand = true
+stretch_mode = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Draw_Button" type="Button" parent="Counter/Countertop"]
+margin_left = 178.2
+margin_top = -0.399998
+margin_right = 215.2
+margin_bottom = 14.6
+theme = ExtResource( 38 )
+text = "draw"
+flat = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -305,18 +367,21 @@ __meta__ = {
 }
 
 [node name="Bookshelf" parent="Counter" instance=ExtResource( 26 )]
+visible = false
 margin_left = 170.0
 margin_top = -3.8147e-06
 margin_right = 339.0
 margin_bottom = 83.0
 
 [node name="Recipe_Book" parent="Counter/Bookshelf" instance=ExtResource( 31 )]
+visible = false
 margin_left = 20.0
 margin_top = 1.99998
 margin_right = 37.0
 margin_bottom = 42.0
 
 [node name="Book2" parent="Counter/Bookshelf" instance=ExtResource( 31 )]
+visible = false
 margin_left = 53.0
 margin_top = 2.99998
 margin_right = 66.0
@@ -324,6 +389,7 @@ margin_bottom = 42.0
 texture_normal = ExtResource( 29 )
 
 [node name="Book3" parent="Counter/Bookshelf" instance=ExtResource( 31 )]
+visible = false
 margin_left = 79.0
 margin_top = 6.99998
 margin_right = 99.0
@@ -331,30 +397,12 @@ margin_bottom = 42.0
 texture_normal = ExtResource( 30 )
 
 [node name="Book4" parent="Counter/Bookshelf" instance=ExtResource( 31 )]
+visible = false
 margin_left = 115.0
 margin_top = 3.99998
 margin_right = 128.0
 margin_bottom = 42.0
 texture_normal = ExtResource( 28 )
-
-[node name="ViewportContainer" type="ViewportContainer" parent="Counter"]
-margin_left = 170.0
-margin_top = 30.8
-margin_right = 222.0
-margin_bottom = 113.8
-mouse_filter = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Viewport" type="Viewport" parent="Counter/ViewportContainer"]
-size = Vector2( 52, 83 )
-handle_input_locally = false
-render_target_update_mode = 3
-
-[node name="Cauldron" parent="Counter/ViewportContainer/Viewport" instance=ExtResource( 17 )]
-margin_right = 37.596
-margin_bottom = 28.014
 
 [node name="Right_Button" type="TextureButton" parent="Counter"]
 anchor_top = 0.00476192
@@ -394,10 +442,10 @@ region_enabled = true
 region_rect = Rect2( 0, 0, 62, 26 )
 
 [node name="Panel" type="Panel" parent="Counter"]
-margin_left = 175.6
-margin_top = 17.4
-margin_right = 218.6
-margin_bottom = 29.4
+margin_left = 169.0
+margin_top = 17.0
+margin_right = 212.0
+margin_bottom = 28.0
 rect_min_size = Vector2( 8, 8 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -598,7 +646,7 @@ rect_scale = Vector2( 0.2, 0.2 )
 
 [connection signal="mouse_exited_game_area" from="." to="." method="_on_Game_mouse_exited_game_area"]
 [connection signal="pressed" from="Counter/Countertop/Clear_Button" to="." method="_on_Clear_Button_pressed"]
-[connection signal="pressed" from="Counter/Countertop/Clear_Button2" to="." method="_on_Clear_Button_pressed"]
+[connection signal="pressed" from="Counter/Countertop/Draw_Button" to="." method="_on_Draw_Button_pressed"]
 [connection signal="pressed" from="Counter/Right_Button" to="." method="_on_Right_Button_pressed"]
 [connection signal="pressed" from="Counter/Left_Button" to="." method="_on_Left_Button_pressed"]
 [connection signal="pressed" from="Menu_Button" to="." method="_on_Menu_Button_pressed"]

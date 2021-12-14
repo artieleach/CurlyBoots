@@ -1,29 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scenes/Ingredient.gd" type="Script" id=3]
 [ext_resource path="res://Art/Ingredients/Silver Silin.png" type="Texture" id=5]
 [ext_resource path="res://Art/Fonts/m5x7_bold.tres" type="DynamicFont" id=6]
-
-[sub_resource type="Shader" id=1]
-code = "shader_type canvas_item;
-uniform vec4 outline_col : hint_color;
-void fragment() {
-vec4 col = texture(TEXTURE,UV);
-vec2 p = TEXTURE_PIXEL_SIZE;
-float a = texture(TEXTURE,UV+vec2(p.x,0)).a;
-    a += texture(TEXTURE,UV+vec2(-p.x,0)).a;
-    a += texture(TEXTURE,UV+vec2(0,p.y)).a;
-    a += texture(TEXTURE,UV+vec2(0,-p.y)).a;
-    a = step(a,.5);
-    col.rgb = mix(outline_col.xyz, col.rgb, col.a);
-    col.a = step(a, col.a);
-    COLOR = col;
-}
-"
-
-[sub_resource type="ShaderMaterial" id=2]
-shader = SubResource( 1 )
-shader_param/outline_col = Color( 0.25098, 0.2, 0.32549, 1 )
 
 [node name="Ingredient" type="TextureButton"]
 margin_right = 8.0
@@ -44,8 +23,6 @@ texture = ExtResource( 5 )
 [node name="Node2D" type="Node2D" parent="."]
 
 [node name="Ingredient_Sprite" type="Sprite" parent="Node2D"]
-material = SubResource( 2 )
-use_parent_material = true
 position = Vector2( 2, 2 )
 scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 5 )

@@ -1,4 +1,15 @@
-[gd_resource type="Theme" load_steps=6 format=2]
+[gd_resource type="Theme" load_steps=11 format=2]
+
+[ext_resource path="res://Art/Fonts/m5x7.tres" type="DynamicFont" id=1]
+
+[sub_resource type="StyleBoxEmpty" id=6]
+
+[sub_resource type="StyleBoxEmpty" id=7]
+
+[sub_resource type="StyleBoxEmpty" id=8]
+
+[sub_resource type="StyleBoxFlat" id=9]
+bg_color = Color( 0.278431, 0.121569, 0.215686, 1 )
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -11,6 +22,11 @@
 [sub_resource type="StyleBoxEmpty" id=5]
 
 [resource]
+Button/fonts/font = ExtResource( 1 )
+Button/styles/focus = SubResource( 6 )
+Button/styles/hover = SubResource( 7 )
+Button/styles/normal = SubResource( 8 )
+Button/styles/pressed = SubResource( 9 )
 VScrollBar/icons/decrement = null
 VScrollBar/icons/decrement_highlight = null
 VScrollBar/icons/increment = null

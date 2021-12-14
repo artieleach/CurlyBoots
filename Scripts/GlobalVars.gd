@@ -26,18 +26,18 @@ var recipes = [
  [["Airtek Claw", "Begonea Scale", "Foxglove"], "Potion 4"], # potion "Foxglove"
  [["Airtek Claw", "Muckshroom", "Ollifeist Tentacle"], "Potion 5"], # potion "Herbdew"
  [["Foxglove", "Philosophers Stone", "Potion 1"], "Potion 6"], #potion "Glasdig Horn"
- [["Begonea Scale"], "TEST1"],
- [["Silver Silin", "Philosophers Stone"], "TEST2"],
- [["Merrow Heart", "Muckshroom", "Ollifeist Tentacle"], "TEST3"],  # need to figure out doubles!
- [["Potion 4"], "TEST4"],
- [["Muckshroom", "Ollifeist Tentacle", "Phomarian Hand"], "TEST5"],
- [["Tendroot", "Potion 6"], "TEST6"],
- [["Herbdew", "Glasdig Horn", "Potion 4"], "TEST7"],
- [["Begonea Scale", "Foxglove", "Herbdew", "Mandrake", "Potion 1"], "TEST8"],
- [["Potion 2", "Potion 3", "Potion 6"], "TEST9"],
- [["Phomarian Hand", "Silver Silin", "Potion 4", "Potion 5"], "TEST10"],
- [["Muckshroom", "Ollifeist Tentacle", "Tendroot", "Potion 3", "Potion 4"], "TEST11"],
- [["Potion 2", "Potion 4", "Potion 5"], "TEST12"]
+ [["Begonea Scale"], "Fianl_Potion_1"],
+ [["Silver Silin", "Philosophers Stone"], "Fianl_Potion_2"],
+ [["Merrow Heart", "Muckshroom", "Ollifeist Tentacle"], "Fianl_Potion_3"],  # need to figure out doubles!
+ [["Potion 4"], "Fianl_Potion_4"],
+ [["Muckshroom", "Ollifeist Tentacle", "Phomarian Hand"], "Fianl_Potion_5"],
+ [["Tendroot", "Potion 6"], "Fianl_Potion_6"],
+ [["Herbdew", "Glasdig Horn", "Potion 4"], "Fianl_Potion_7"],
+ [["Begonea Scale", "Foxglove", "Herbdew", "Mandrake", "Potion 1"], "Fianl_Potion_8"],
+ [["Potion 2", "Potion 3", "Potion 6"], "Fianl_Potion_9"],
+ [["Phomarian Hand", "Silver Silin", "Potion 4", "Potion 5"], "Fianl_Potion_10"],
+ [["Muckshroom", "Ollifeist Tentacle", "Tendroot", "Potion 3", "Potion 4"], "Fianl_Potion_11"],
+ [["Potion 2", "Potion 4", "Potion 5"], "Fianl_Potion_12"]
 ]
 var radial_states = [
  ["Begonea Scale", "Begonea Scale", "Begonea Scale", "Begonea Scale", "Foxglove", "Dobberchu Tongue", "Airtek Claw", "Mandrake"], 
@@ -71,9 +71,13 @@ func _init():
 	ingredient_data = get_json("res://Writing/ingredient_data")
 	load_game()
 	randomize()
+	draw_cards()
+
+
+func draw_cards():
 	possilbe_rolls.shuffle()
 	rolls = [possilbe_rolls[0], possilbe_rolls[1], possilbe_rolls[2]]
-
+	
 
 func get_json(file_string):
 	var cur_file = File.new()

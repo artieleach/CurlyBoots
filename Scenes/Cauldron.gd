@@ -62,10 +62,8 @@ func set_color():
 	GlobalVars.cauldron_color.b = GlobalVars.potion_balance[2] * 0.2 + 0.3
 	GlobalVars.cauldron_color.a = 0.9
 	#bottle.get_node("liquid").self_modulate = GlobalVars.cauldron_color
-	tween.interpolate_property(liquid, "color", liquid.color, GlobalVars.cauldron_color, 0.3)
-	tween.interpolate_property(liquid2, "color", liquid2.color, GlobalVars.cauldron_color, 0.3)
-	tween.interpolate_property(bubble, "color", bubble.color, GlobalVars.cauldron_color, 0.3)
-	tween.interpolate_property(splash, "color", splash.color, GlobalVars.cauldron_color, 0.3)
+	for node in [liquid, liquid2, bubble, splash]:
+		tween.interpolate_property(node, "color", liquid.color, GlobalVars.cauldron_color, 0.3)
 	tween.start()
 
 
@@ -89,6 +87,6 @@ func update_ingredients():
 		var cur_ing = get_node("Ingredient%d" % item)
 		if item < len(GlobalVars.potion_ingredients):
 			cur_ing.emitting = true
-			cur_ing.texture = load("res://Art/Ingredients/%s.png" % GlobalVars.potion_ingredients[item])
+			cur_ing.texture = load("res://Art/Ingredients/%s.png" % GlobalVars.potion_ingredients[item].ingredient_name)
 		else:
 			cur_ing.emitting = false
