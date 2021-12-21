@@ -12,7 +12,7 @@ var will_open_help: bool = false
 var ingredient_effects
 var pickable: bool = true
 var hovering_over_cauldron: bool = false
-var ingredient_name = ''
+export var ingredient_name = ''
 signal double_clicked
 signal added_to_potion
 var hovered = false

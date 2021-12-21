@@ -36,15 +36,14 @@ var current_counter = 0
 func _ready():
 	SceneTransition.transition({"Direction": "in", "Destination": "Game"})
 	randomize()
+	
+	print(GlobalVars.ingredient_data.keys())
 	counters = [radial_shelf, bookshelf]
 	cauldron.connect("check_recipe", self, "check_recipe")
 	for i in range(6):
 		deck.append(get_node("Counter/Countertop/VBoxContainer/HBoxContainer/Card%d" % i))
 	draw_cards()
-	print(GlobalVars.rolls)
 	display_recipes()
-	for i in range(20):
-		add_ingredient(GlobalVars.ingredient_data.keys()[i])
 
 
 func draw_cards():
@@ -237,7 +236,7 @@ func display_recipes():
 	for item in GlobalVars.recipes:
 		for ing in item[0]:
 			output += '[img]res://Art/Ingredients/%s.png[/img]' % ing
-		output += '[img]res://Art/GUI/arrow_right_centered.png[/img][img]res://Art/Ingredients/%s.png[/img]\n' % item[1]
+		output += '[img]res://Art/GUI/arrow_right_centered.png[/img][right][img]res://Art/Ingredients/%s.png[/img][/right]\n' % item[1]
 	output += '\n\n\n\n'
 	display_recipe.bbcode_text = output
 

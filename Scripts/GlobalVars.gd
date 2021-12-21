@@ -13,6 +13,7 @@ var cards = ["this, that"]
 var debug = false
 var cauldron_color = Color('#000000')
 var ingredient_data
+var recipe_data
 var cauldron_temp = 0
 
 var possilbe_rolls = [0, 1, 2, 3, 4, 5]
@@ -20,12 +21,13 @@ const POTION_VARS = ['A', 'B', 'C', 'D']
 var rolls = []
 
 var recipes = [
- [["Airtek Claw", "Dobberchu Tongue"], "Potion 1"], # potion 1
- [["Airtek Claw", "Dobberchu Tongue", "Dobberchu Tongue"], "Potion 2"], # potion 1
- [["Merrow Heart", "Merrow Heart"], "Potion 3"], # potion "Dobberchu Tongue"
- [["Airtek Claw", "Begonea Scale", "Foxglove"], "Potion 4"], # potion "Foxglove"
- [["Airtek Claw", "Muckshroom", "Ollifeist Tentacle"], "Potion 5"], # potion "Herbdew"
- [["Foxglove", "Philosophers Stone", "Potion 1"], "Potion 6"], #potion "Glasdig Horn"
+ [["Airtek Claw", "Dobberchu Tongue"], "Potion 1"],
+ [["Airtek Claw", "Dobberchu Tongue", "Dobberchu Tongue"], "Potion 2"],
+ [["Merrow Heart", "Muckshroom"], "Potion 3"],
+ [["Merrow Heart", "Ollifeist Tentacle"], "Potion 3"],
+ [["Airtek Claw", "Begonea Scale", "Foxglove"], "Potion 4"], 
+ [["Airtek Claw", "Muckshroom", "Ollifeist Tentacle"], "Potion 5"], 
+ [["Foxglove", "Philosophers Stone", "Potion 1"], "Potion 6"],
  [["Begonea Scale"], "Fianl_Potion_1"],
  [["Silver Silin", "Philosophers Stone"], "Fianl_Potion_2"],
  [["Merrow Heart", "Muckshroom", "Ollifeist Tentacle"], "Fianl_Potion_3"],  # need to figure out doubles!
@@ -69,6 +71,7 @@ func _init():
 	if not save_game.file_exists("user://savegame.save"):
 		save_to_disk()
 	ingredient_data = get_json("res://Writing/ingredient_data")
+	recipe_data = get_json("res://Writing/recipe_data")
 	load_game()
 	randomize()
 	draw_cards()

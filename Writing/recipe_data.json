@@ -1,0 +1,14 @@
+{
+"Phial of Cloud Walking": {"Price": 0, "Description": "", "Recipe": [0, 1, 2]}, 
+"Potion of Excitement": {"Price": 1, "Description": "", "Recipe": [1, 2, 3, 4]}, 
+"Lion's Roar Draught": {"Price": 2, "Description": "", "Recipe": [3, 4, 5]}, 
+"Cinderdraught": {"Price": 2, "Description": "", "Recipe": [1, 3, 5, 7]}, 
+"Red Flask": {"Price": 2, "Description": "", "Recipe": [2, 4, 6]}, 
+"Tonic of Clay": {"Price": 3, "Description": "", "Recipe": [3, 4, 7]}, 
+"Moonlight Flask": {"Price": 3, "Description": "", "Recipe": [8, 9, 10]}, 
+"Sungrowth": {"Price": 3, "Description": "", "Recipe": [1, 8, 11]}, 
+"Soothesour": {"Price": 4, "Description": "", "Recipe": [4, 7, 8]}, 
+"Monk Shrink": {"Price": 5, "Description": "", "Recipe": [9, 10, 14]}, 
+"Weedroot Potion": {"Price": 6, "Description": "", "Recipe": [5, 6, 9]}, 
+"Phial Nimblespark": {"Price": 7, "Description": "", "Recipe": [3, 4, 9]}
+}
