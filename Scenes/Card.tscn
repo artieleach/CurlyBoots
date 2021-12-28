@@ -9,9 +9,8 @@ bg_color = Color( 0.870588, 0.870588, 0.870588, 1 )
 
 [node name="Card" type="Panel"]
 margin_right = 32.0
-margin_bottom = 48.0
-rect_min_size = Vector2( 32, 48 )
-rect_scale = Vector2( 8, 8 )
+margin_bottom = 54.0
+rect_min_size = Vector2( 32, 64 )
 custom_styles/panel = SubResource( 1 )
 script = ExtResource( 1 )
 __meta__ = {
@@ -28,23 +27,23 @@ __meta__ = {
 
 [node name="Radial" type="Panel" parent="VBoxContainer"]
 margin_right = 32.0
-margin_bottom = 24.0
-rect_min_size = Vector2( 0, 24 )
+margin_bottom = 28.0
+rect_min_size = Vector2( 0, 28 )
 custom_styles/panel = SubResource( 2 )
 
 [node name="CenterContainer" type="CenterContainer" parent="VBoxContainer"]
-margin_top = 24.0
+margin_top = 28.0
 margin_right = 32.0
-margin_bottom = 48.0
-rect_min_size = Vector2( 32, 24 )
+margin_bottom = 60.0
+rect_min_size = Vector2( 32, 32 )
 
 [node name="ItemList" type="GridContainer" parent="VBoxContainer/CenterContainer"]
 margin_left = 16.0
-margin_top = 12.0
+margin_top = 16.0
 margin_right = 16.0
-margin_bottom = 12.0
-custom_constants/vseparation = -2
-custom_constants/hseparation = -2
+margin_bottom = 16.0
+custom_constants/vseparation = 0
+custom_constants/hseparation = 0
 columns = 4
 
 [node name="Tween" type="Tween" parent="."]

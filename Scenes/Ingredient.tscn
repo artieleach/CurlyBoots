@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Scenes/Ingredient.gd" type="Script" id=3]
-[ext_resource path="res://Art/Ingredients/Silver Silin.png" type="Texture" id=5]
 [ext_resource path="res://Art/Fonts/m5x7_bold.tres" type="DynamicFont" id=6]
 
 [node name="Ingredient" type="TextureButton"]
@@ -19,14 +18,12 @@ __meta__ = {
 self_modulate = Color( 0.12549, 0.12549, 0.12549, 1 )
 position = Vector2( 2, 2 )
 scale = Vector2( 0.4, 0.4 )
-texture = ExtResource( 5 )
 
 [node name="Node2D" type="Node2D" parent="."]
 
 [node name="Ingredient_Sprite" type="Sprite" parent="Node2D"]
 position = Vector2( 2, 2 )
 scale = Vector2( 0.4, 0.4 )
-texture = ExtResource( 5 )
 
 [node name="Label" type="Label" parent="Node2D/Ingredient_Sprite"]
 margin_left = -50.0

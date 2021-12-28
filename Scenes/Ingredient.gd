@@ -76,7 +76,7 @@ func pick_up():
 func add_to_potion():
 	drawing.z_index = 2
 	in_potion = true
-	tween.interpolate_property(drawing, "global_position", drawing.global_position, Vector2(clamp(drawing.global_position.x, 900, 1000), 600), 0.5, Tween.TRANS_SINE, Tween.EASE_IN)
+	tween.interpolate_property(drawing, "global_position", drawing.global_position, Vector2(clamp(drawing.global_position.x, 1500, 1600), 1100), 0.5, Tween.TRANS_SINE, Tween.EASE_IN)
 	tween.start()
 	yield(get_tree().create_timer(0.4), "timeout")
 	AudioHolder.play_audio('magic_00%d' % (randi() % 9 + 1), -10)
@@ -119,7 +119,8 @@ func _gui_input(event):
 					pick_up()
 			else:
 				held = false
-				if get_global_mouse_position().x > 900 and 1100 > get_global_mouse_position().x and pickable:
+				print(get_global_mouse_position())
+				if get_global_mouse_position().x > 1400 and 1700 > get_global_mouse_position().x and pickable:
 					pickable = false
 					add_to_potion()
 				else:

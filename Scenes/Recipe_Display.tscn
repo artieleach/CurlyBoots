@@ -1,46 +1,73 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scenes/Recipe_Display.gd" type="Script" id=1]
 [ext_resource path="res://Art/Assets/lilpage.png" type="Texture" id=2]
 
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 1, 1, 1, 1 )
+
 [sub_resource type="StyleBoxEmpty" id=1]
 
 [node name="Recipe_Display" type="TextureButton"]
-margin_right = 112.0
+margin_right = 110.0
 margin_bottom = 26.0
 rect_min_size = Vector2( 0, 24 )
-rect_scale = Vector2( 5, 5 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_right = -3.0
-margin_bottom = -2.0
+[node name="Panel" type="Panel" parent="."]
+margin_top = -5.96046e-08
+margin_right = 7.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 0, 28 )
+mouse_filter = 1
+custom_styles/panel = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="MarginContainer" parent="Panel"]
+margin_right = 150.0
+margin_bottom = 28.0
+mouse_filter = 1
+custom_constants/margin_right = 1
+custom_constants/margin_top = 1
+custom_constants/margin_left = 1
+custom_constants/margin_bottom = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/CenterContainer"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 149.0
+margin_bottom = 27.0
 mouse_filter = 2
 custom_constants/separation = -2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Page0" type="TextureRect" parent="HBoxContainer"]
+[node name="Page0" type="TextureRect" parent="Panel/CenterContainer/HBoxContainer"]
+self_modulate = Color( 1, 1, 1, 0 )
 margin_right = 26.0
 margin_bottom = 26.0
-mouse_filter = 2
+rect_min_size = Vector2( 26, 26 )
 texture = ExtResource( 2 )
 
-[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer/Page0"]
+[node name="CenterContainer" type="CenterContainer" parent="Panel/CenterContainer/HBoxContainer/Page0"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+rect_min_size = Vector2( 26, 26 )
 mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Sprite" type="TextureRect" parent="HBoxContainer/Page0/CenterContainer"]
+[node name="Sprite" type="TextureRect" parent="Panel/CenterContainer/HBoxContainer/Page0/CenterContainer"]
 margin_left = 9.0
 margin_top = 9.0
 margin_right = 17.0
@@ -51,14 +78,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Page1" type="TextureRect" parent="HBoxContainer"]
+[node name="Page1" type="TextureRect" parent="Panel/CenterContainer/HBoxContainer"]
+self_modulate = Color( 1, 1, 1, 0 )
 margin_left = 24.0
 margin_right = 50.0
 margin_bottom = 26.0
-mouse_filter = 2
 texture = ExtResource( 2 )
 
-[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer/Page1"]
+[node name="CenterContainer" type="CenterContainer" parent="Panel/CenterContainer/HBoxContainer/Page1"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -66,7 +93,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Sprite" type="TextureRect" parent="HBoxContainer/Page1/CenterContainer"]
+[node name="Sprite" type="TextureRect" parent="Panel/CenterContainer/HBoxContainer/Page1/CenterContainer"]
 margin_left = 9.0
 margin_top = 9.0
 margin_right = 17.0
@@ -74,14 +101,14 @@ margin_bottom = 17.0
 rect_min_size = Vector2( 8, 8 )
 mouse_filter = 2
 
-[node name="Page2" type="TextureRect" parent="HBoxContainer"]
+[node name="Page2" type="TextureRect" parent="Panel/CenterContainer/HBoxContainer"]
+self_modulate = Color( 1, 1, 1, 0 )
 margin_left = 48.0
 margin_right = 74.0
 margin_bottom = 26.0
-mouse_filter = 2
 texture = ExtResource( 2 )
 
-[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer/Page2"]
+[node name="CenterContainer" type="CenterContainer" parent="Panel/CenterContainer/HBoxContainer/Page2"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -89,7 +116,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Sprite" type="TextureRect" parent="HBoxContainer/Page2/CenterContainer"]
+[node name="Sprite" type="TextureRect" parent="Panel/CenterContainer/HBoxContainer/Page2/CenterContainer"]
 margin_left = 9.0
 margin_top = 9.0
 margin_right = 17.0
@@ -97,15 +124,14 @@ margin_bottom = 17.0
 rect_min_size = Vector2( 8, 8 )
 mouse_filter = 2
 
-[node name="Page3" type="TextureRect" parent="HBoxContainer"]
-visible = false
+[node name="Page3" type="TextureRect" parent="Panel/CenterContainer/HBoxContainer"]
+self_modulate = Color( 1, 1, 1, 0 )
 margin_left = 72.0
 margin_right = 98.0
 margin_bottom = 26.0
-mouse_filter = 2
 texture = ExtResource( 2 )
 
-[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer/Page3"]
+[node name="CenterContainer" type="CenterContainer" parent="Panel/CenterContainer/HBoxContainer/Page3"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -113,7 +139,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Sprite" type="TextureRect" parent="HBoxContainer/Page3/CenterContainer"]
+[node name="Sprite" type="TextureRect" parent="Panel/CenterContainer/HBoxContainer/Page3/CenterContainer"]
 margin_left = 9.0
 margin_top = 9.0
 margin_right = 17.0
@@ -121,15 +147,14 @@ margin_bottom = 17.0
 rect_min_size = Vector2( 8, 8 )
 mouse_filter = 2
 
-[node name="Page4" type="TextureRect" parent="HBoxContainer"]
-visible = false
+[node name="Page4" type="TextureRect" parent="Panel/CenterContainer/HBoxContainer"]
+self_modulate = Color( 1, 1, 1, 0 )
 margin_left = 96.0
 margin_right = 122.0
 margin_bottom = 26.0
-mouse_filter = 2
 texture = ExtResource( 2 )
 
-[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer/Page4"]
+[node name="CenterContainer" type="CenterContainer" parent="Panel/CenterContainer/HBoxContainer/Page4"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -137,7 +162,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Sprite" type="TextureRect" parent="HBoxContainer/Page4/CenterContainer"]
+[node name="Sprite" type="TextureRect" parent="Panel/CenterContainer/HBoxContainer/Page4/CenterContainer"]
 margin_left = 9.0
 margin_top = 9.0
 margin_right = 17.0
@@ -145,21 +170,21 @@ margin_bottom = 17.0
 rect_min_size = Vector2( 8, 8 )
 mouse_filter = 2
 
-[node name="VSeparator" type="VSeparator" parent="HBoxContainer"]
-margin_left = 72.0
-margin_right = 78.0
+[node name="VSeparator" type="VSeparator" parent="Panel/CenterContainer/HBoxContainer"]
+margin_left = 120.0
+margin_right = 124.0
 margin_bottom = 26.0
-custom_constants/separation = 6
+mouse_filter = 1
+custom_constants/separation = 4
 custom_styles/separator = SubResource( 1 )
 
-[node name="Final" type="TextureRect" parent="HBoxContainer"]
-margin_left = 76.0
-margin_right = 102.0
+[node name="Final" type="TextureRect" parent="Panel/CenterContainer/HBoxContainer"]
+margin_left = 122.0
+margin_right = 148.0
 margin_bottom = 26.0
-mouse_filter = 2
 texture = ExtResource( 2 )
 
-[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer/Final"]
+[node name="CenterContainer" type="CenterContainer" parent="Panel/CenterContainer/HBoxContainer/Final"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -167,7 +192,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Sprite" type="TextureRect" parent="HBoxContainer/Final/CenterContainer"]
+[node name="Sprite" type="TextureRect" parent="Panel/CenterContainer/HBoxContainer/Final/CenterContainer"]
 margin_left = 9.0
 margin_top = 9.0
 margin_right = 17.0
@@ -176,3 +201,6 @@ rect_min_size = Vector2( 8, 8 )
 mouse_filter = 2
 
 [connection signal="pressed" from="." to="." method="_on_Recipe_Display_pressed"]
+[connection signal="gui_input" from="Panel" to="." method="_on_Panel_gui_input"]
+[connection signal="mouse_entered" from="Panel" to="." method="_on_Panel_mouse_entered"]
+[connection signal="mouse_exited" from="Panel" to="." method="_on_Panel_mouse_exited"]

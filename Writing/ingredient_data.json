@@ -1,130 +1,182 @@
 {
-    "Airtek Claw": {
+  "0": {
+    "name": "Airtek Claw",
     "description": "The claw of a female Airtek, diffiuclt to acquire due to their dwindling numbers.",
-    "color": "322b28"
+    "color": ""
   },
-  "Begonea Scale": {
+  "1": {
+    "name": "Begonea Scale",
     "description": "A flower often used to deter potential suitors, due to it's assaulting fragrance.",
-    "color": "e86a73"
+    "color": ""
   },
-  "Dobberchu Tongue": {
+  "2": {
+    "name": "Dobberchu Tongue",
     "description": "The tongue of a dobberchu, harvested before puberty, when their adult fangs grow in.",
-    "color": "403353"
+    "color": ""
   },
-  "Foxglove": {
+  "3": {
+    "name": "Foxglove",
     "description": "A versatile flower, with many uses.",
-    "color": "403353"
+    "color": ""
   },
-  "Herbdew": {
+  "4": {
+    "name": "Fuath Tentacle",
+    "description": "Tentacle of a fuath, must be kept chilled.",
+    "color": ""
+  },
+  "5": {
+    "name": "Herbdew",
     "description": "An herb which produces more water than it collects, though has strict botanical needs, preventing it from being more commonly useful.",
-    "color": "5daf8d"
+    "color": ""
   },
-  "Glasdig Horn": {
-    "description": "Rejuvenates ones inner such and such and so on",
-    "color": "dba463"
+  "6": {
+    "name": "Glasdig Horn",
+    "description": "Horn of a Glasdig female, cannot be harvested directly. Must instead be scavenged.",
+    "color": ""
   },
-  "Mandrake": {
+  "7": {
+    "name": "Mandrake",
     "description": "A defense mechanism Sinsircranns create, primarily to protect their root systems.",
-    "color": "8e5252"
+    "color": ""
   },
-  "Merrow Heart": {
+  "8": {
+    "name": "Merrow Heart",
     "description": "The heart of a Merrow, a rare ingredient owing to it's difficulty to obtain.",
-    "color": "793a80"
+    "color": ""
   },
-  "Muckshroom": {
+  "9": {
+    "name": "Muckshroom",
     "description": "A breed of mushroom which only grows in swamps near, though never directly touching, decaying corpses.",
-    "color": "b4202a"
+    "color": ""
   },
-  "Ollifeist Tentacle": {
+  "10": {
+    "name": "Ollifeist Tentacle",
     "description": "The tentacle of a male Ollifeist, it's far smaller than the female of the species, and it does not carry the toxens of it's mate.",
-    "color": "92dcba"
+    "color": ""
   },
-  "Phomarian Hand": {
+  "11": {
+    "name": "Phomarian Hand",
     "description": "A hand of a phomarian, can often be found in prisons, barracks, and occasionally markets.",
-    "color": "8b93af"
+    "color": ""
   },
-  "Silver Silin": {
+  "12": {
+    "name": "Pookasquill",
+    "description": "A flower which only blooms in the carcass of a Pooka.",
+    "color": ""
+  },
+  "13": {
+    "name": "Silver Silin",
     "description": "Technically two plants, the silin is a breed of flower, and there is a species of moth which coats the flower in silver.",
-    "color": "b3b9d1"
+    "color": ""
   },
-  "Tendroot": {
+  "14": {
+    "name": "Tendroot",
     "description": "The root of a Sinsircrann, must be harvested while the rest of the tree lives.",
-    "color": "8e5252"
+    "color": ""
   },
-  "Philosophers Stone": {
-    "description": "cool rock dude",
-    "color": "b3b9d1"
+  "15": {
+    "name": "Philosopher's Stone",
+    "description": "A versatile stone. Thought to be few in number in antiquity, but now relatively common.",
+    "color": ""
   },
-  "Potion 1": {
-    "description": "cool rock dude",
-    "color": "b3b9d1"
+  "16": {
+    "name": "Trechend Feather",
+    "description": "Feather of a mature Trechend, harvested during the mating season.",
+    "color": ""
   },
-  "Potion 2": {
-    "description": "cool rock dude",
-    "color": "b3b9d1"
+  "17": {
+    "name": "Tuathaw Ear",
+    "description": "Vestigial ear from a Tuathaw.",
+    "color": ""
   },
-  "Potion 3": {
-    "description": "cool rock dude",
-    "color": "b3b9d1"
+  "18": {
+    "name": "Sea Phial",
+    "description": "",
+    "color": ""
   },
-  "Potion 4": {
-    "description": "cool rock dude",
-    "color": "b3b9d1"
+  "19": {
+    "name": "Hunt Phial",
+    "description": "",
+    "color": ""
   },
-  "Potion 5": {
-    "description": "cool rock dude",
-    "color": "b3b9d1"
+  "20": {
+    "name": "Life Phial",
+    "description": "",
+    "color": ""
   },
-  "Potion 6": {
-    "description": "cool rock dude",
-    "color": "b3b9d1"
+  "21": {
+    "name": "Growth Phial",
+    "description": "",
+    "color": ""
   },
-  "Final_Potion_1": {
-    "description": "cool rock dude",
-    "color": "b3b9d1"
+  "22": {
+    "name": "Wind Phial",
+    "description": "",
+    "color": ""
   },
-  "Final_Potion_2": {
-    "description": "cool rock dude",
-    "color": "b3b9d1"
+  "23": {
+    "name": "Death Phial",
+    "description": "",
+    "color": ""
   },
-  "Final_Potion_3": {
-    "description": "cool rock dude",
-    "color": "b3b9d1"
+  "24": {
+    "name": "Elixir of Cloud Walking",
+    "description": "",
+    "color": ""
   },
-  "Final_Potion_4": {
-    "description": "cool rock dude",
-    "color": "b3b9d1"
+  "25": {
+    "name": "Potion of Excitement",
+    "description": "",
+    "color": ""
   },
-  "Final_Potion_5": {
-    "description": "cool rock dude",
-    "color": "b3b9d1"
+  "26": {
+    "name": "Lion's Roar Draught",
+    "description": "",
+    "color": ""
   },
-  "Final_Potion_6": {
-    "description": "cool rock dude",
-    "color": "b3b9d1"
+  "27": {
+    "name": "Cinderdraught",
+    "description": "",
+    "color": ""
   },
-  "Final_Potion_7": {
-    "description": "cool rock dude",
-    "color": "b3b9d1"
+  "28": {
+    "name": "Red Flask",
+    "description": "",
+    "color": ""
   },
-  "Final_Potion_8": {
-    "description": "cool rock dude",
-    "color": "b3b9d1"
+  "29": {
+    "name": "Tonic of Clay",
+    "description": "",
+    "color": ""
   },
-  "Final_Potion_9": {
-    "description": "cool rock dude",
-    "color": "b3b9d1"
+  "30": {
+    "name": "Moonlight Flask",
+    "description": "",
+    "color": ""
   },
-  "Final_Potion_10": {
-    "description": "cool rock dude",
-    "color": "b3b9d1"
+  "31": {
+    "name": "Sungrowth",
+    "description": "",
+    "color": ""
   },
-  "Final_Potion_11": {
-    "description": "cool rock dude",
-    "color": "b3b9d1"
+  "32": {
+    "name": "Soothesour",
+    "description": "",
+    "color": ""
   },
-  "Final_Potion_12": {
-    "description": "cool rock dude",
-    "color": "b3b9d1"
+  "33": {
+    "name": "Monk Shrink",
+    "description": "",
+    "color": ""
+  },
+  "34": {
+    "name": "Weedroot",
+    "description": "",
+    "color": ""
+  },
+  "35": {
+    "name": "Elixir of Nimblespark",
+    "description": "",
+    "color": ""
   }
 }

@@ -12,11 +12,10 @@ onready var radial_shelf = get_node("Counter/Countertop")
 onready var book = get_node("Book")
 onready var left_button = get_node("Counter/Left_Button")
 onready var right_button = get_node("Counter/Right_Button")
-onready var clear_button = get_node("Counter/Countertop/Clear_Button")
+onready var clear_button = get_node("Counter/Clear_Button")
 onready var full_cauldron = get_node("Counter/full_cauldron")
 onready var countertop = get_node("Counter/Countertop")
 onready var inventory = get_node("Counter/Countertop/VBoxContainer/Inventory")
-onready var display_recipe = get_node("Counter/Countertop/RichTextLabel")
 
 var radial_button = preload("res://Scenes/Radial_Button.tscn")
 var radial = preload("res://Scenes/Radial.tscn")
@@ -43,7 +42,6 @@ func _ready():
 	for i in range(6):
 		deck.append(get_node("Counter/Countertop/VBoxContainer/HBoxContainer/Card%d" % i))
 	draw_cards()
-	display_recipes()
 
 
 func draw_cards():
@@ -56,28 +54,29 @@ func draw_cards():
 			deck[i].disable()
 			deck[i].hide()
 
+
 func check_recipe():
 	var cur_recipe = []
 	for i in GlobalVars.potion_ingredients:
 		cur_recipe.append(i.ingredient_name)
 	cur_recipe.sort()
-	for item in GlobalVars.recipes:
-		item[0].sort()
-		if len(item[0]) == len(cur_recipe) and 'Philosophers Stone' in cur_recipe:
+	for item in GlobalVars.recipe_data:
+		print(item)
+		if len(GlobalVars.recipe_data[item]) == len(cur_recipe) and 15 in cur_recipe:
 			var temp_cauldron = cur_recipe.duplicate()
-			var temp_recipe = item[0].duplicate()
+			var temp_recipe = GlobalVars.recipe_data[item].recipe.duplicate()
 			var is_invalid = false
-			for ingredient in item[0]:
+			for ingredient in GlobalVars.recipe_data[item].recipe:
 				if ingredient in temp_cauldron:
 					temp_cauldron.remove(temp_cauldron.find(ingredient))
 					temp_recipe.remove(temp_recipe.find(ingredient))
 			for ingredient in temp_recipe:
 				if 'Potion' in ingredient:
 					is_invalid = true
-			if len(temp_cauldron) == 1 and 'Philosophers Stone' in temp_cauldron and not is_invalid:
-				cur_recipe = item[0]
-		if cur_recipe == item[0]:
-			add_ingredient(item[1])
+			if len(temp_cauldron) == 1 and 15 in temp_cauldron and not is_invalid:
+				cur_recipe = GlobalVars.recipe_data[item].recipe
+		if cur_recipe == GlobalVars.recipe_data[item].recipe:
+			add_ingredient(GlobalVars.recipe_data[item].return)
 			if len(GlobalVars.potion_ingredients) > 1:
 				for ingredient in GlobalVars.potion_ingredients:
 						inventory_ingredients.remove(inventory_ingredients.find(ingredient))
@@ -231,15 +230,6 @@ func update_active_ingredient_display():
 		else:
 			cur.hide()
 		
-func display_recipes():
-	var output = ''
-	for item in GlobalVars.recipes:
-		for ing in item[0]:
-			output += '[img]res://Art/Ingredients/%s.png[/img]' % ing
-		output += '[img]res://Art/GUI/arrow_right_centered.png[/img][right][img]res://Art/Ingredients/%s.png[/img][/right]\n' % item[1]
-	output += '\n\n\n\n'
-	display_recipe.bbcode_text = output
-
 
 func _on_Draw_Button_pressed():
 	GlobalVars.draw_cards()

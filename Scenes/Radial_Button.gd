@@ -10,7 +10,7 @@ export var displays_label = true
 
 
 func _ready():
-	get_node("Button_Sprite").scale = Vector2(0.2, 0.2)
+	get_node("Button_Sprite").scale = Vector2(0.4, 0.4)
 	rect_min_size = Vector2(8, 8)
 	label.hide()
 
@@ -36,7 +36,7 @@ func _on_Radial_Button_mouse_entered():
 func _on_Radial_Button_mouse_exited():
 	hovered = false
 	if is_active:
-		tween.interpolate_property(button_sprite, "scale", button_sprite.scale, Vector2(0.2, 0.2), 0.2)
+		tween.interpolate_property(button_sprite, "scale", button_sprite.scale, Vector2(0.4, 0.4), 0.2)
 		tween.start()
 		label.hide()
 		yield(get_tree().create_timer(0.2), "timeout")

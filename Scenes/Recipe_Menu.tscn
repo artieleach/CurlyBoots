@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/Recipes.gd" type="Script" id=1]
+[ext_resource path="res://new_theme.tres" type="Theme" id=2]
+
+[node name="Recipe_Menu" type="ScrollContainer"]
+margin_right = 12.0
+margin_bottom = 12.0
+rect_scale = Vector2( 0.4, 0.4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Recipes" type="VBoxContainer" parent="."]
+theme = ExtResource( 2 )
+custom_constants/separation = 4
+script = ExtResource( 1 )

@@ -18,6 +18,7 @@ var radius = 9
 var radial_button = preload("res://Scenes/Radial_Button.tscn")
 
 func _ready():
+	print(card_id)
 	connect("add_ingredient", owner, "add_ingredient")
 	set_list()
 	set_radial()
@@ -37,6 +38,7 @@ func start_day():
 func set_list():
 	for i in range(12):
 		list_by_hour.append([])
+		print(GlobalVars.states[i][card_id], 'THIS ONE HERE')
 		for j in GlobalVars.states[i][card_id]:
 			var cur = create_ingredient(j, itemlist)
 			list_by_hour[i].append(cur)
@@ -61,7 +63,7 @@ func set_radial_positions(instant=false):
 			var cur = radial_ingredients[i]
 			var new_pos = Vector2(
 				12 + radius * cos(angle * PI / 180), 
-				8 +  radius * sin(angle * PI / 180))
+				10 +  radius * sin(angle * PI / 180))
 			if not instant:
 				tween.interpolate_property(cur, "rect_position", cur.rect_position, new_pos, 0.3)
 				tween.start()

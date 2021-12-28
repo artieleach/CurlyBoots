@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://Art/Assets/small_calinet.png" type="Texture" id=1]
 [ext_resource path="res://Art/Assets/shelf.png" type="Texture" id=2]
@@ -35,28 +35,11 @@
 [ext_resource path="res://Art/GUI/x_button.png" type="Texture" id=33]
 [ext_resource path="res://Art/GUI/x_button_pressed.png" type="Texture" id=34]
 [ext_resource path="res://Art/GUI/arrow_left_pressed.png" type="Texture" id=35]
-[ext_resource path="res://Art/Fonts/m5x7_bold.tres" type="DynamicFont" id=37]
+[ext_resource path="res://Scenes/Recipe_Menu.tscn" type="PackedScene" id=36]
 [ext_resource path="res://new_theme.tres" type="Theme" id=38]
 
-[sub_resource type="StyleBoxEmpty" id=1]
-
-[sub_resource type="StyleBoxEmpty" id=2]
-
-[sub_resource type="StyleBoxEmpty" id=3]
-
-[sub_resource type="StyleBoxEmpty" id=4]
-
-[sub_resource type="StyleBoxEmpty" id=5]
-
-[sub_resource type="Theme" id=6]
-VScrollBar/styles/grabber = SubResource( 1 )
-VScrollBar/styles/grabber_highlight = SubResource( 2 )
-VScrollBar/styles/grabber_pressed = SubResource( 3 )
-VScrollBar/styles/scroll = SubResource( 4 )
-VScrollBar/styles/scroll_focus = SubResource( 5 )
-
 [node name="Game" type="Node2D"]
-scale = Vector2( 5, 5 )
+scale = Vector2( 8, 8 )
 script = ExtResource( 16 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -219,10 +202,10 @@ __meta__ = {
 }
 
 [node name="ViewportContainer" type="ViewportContainer" parent="Counter"]
-margin_left = 170.0
-margin_top = 32.0
-margin_right = 222.0
-margin_bottom = 115.0
+margin_left = 169.625
+margin_top = 16.125
+margin_right = 221.625
+margin_bottom = 99.125
 mouse_filter = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -245,7 +228,8 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Counter/Countertop"]
-margin_right = 128.0
+margin_left = 63.0
+margin_right = 169.0
 margin_bottom = 84.0
 alignment = 1
 __meta__ = {
@@ -253,91 +237,58 @@ __meta__ = {
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Counter/Countertop/VBoxContainer"]
-margin_right = 128.0
-margin_bottom = 48.0
+margin_right = 106.0
+margin_bottom = 64.0
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Card0" parent="Counter/Countertop/VBoxContainer/HBoxContainer" instance=ExtResource( 4 )]
-margin_left = 12.0
-margin_right = 44.0
-rect_scale = Vector2( 1, 1 )
+margin_left = 1.0
+margin_right = 33.0
+margin_bottom = 64.0
 
 [node name="Card1" parent="Counter/Countertop/VBoxContainer/HBoxContainer" instance=ExtResource( 4 )]
-margin_left = 48.0
-margin_right = 80.0
-rect_scale = Vector2( 1, 1 )
+margin_left = 37.0
+margin_right = 69.0
+margin_bottom = 64.0
 card_id = 1
 
 [node name="Card2" parent="Counter/Countertop/VBoxContainer/HBoxContainer" instance=ExtResource( 4 )]
-margin_left = 84.0
-margin_right = 116.0
-rect_scale = Vector2( 1, 1 )
+margin_left = 73.0
+margin_right = 105.0
+margin_bottom = 64.0
 card_id = 2
 
 [node name="Card3" parent="Counter/Countertop/VBoxContainer/HBoxContainer" instance=ExtResource( 4 )]
 visible = false
 margin_left = 48.0
 margin_right = 80.0
-rect_scale = Vector2( 1, 1 )
 card_id = 3
 
 [node name="Card4" parent="Counter/Countertop/VBoxContainer/HBoxContainer" instance=ExtResource( 4 )]
 visible = false
 margin_left = 66.0
 margin_right = 98.0
-rect_scale = Vector2( 1, 1 )
 card_id = 4
 
 [node name="Card5" parent="Counter/Countertop/VBoxContainer/HBoxContainer" instance=ExtResource( 4 )]
 visible = false
 margin_left = 180.0
 margin_right = 212.0
-rect_scale = Vector2( 1, 1 )
 card_id = 5
 
 [node name="Inventory" type="GridContainer" parent="Counter/Countertop/VBoxContainer"]
-margin_left = 14.0
-margin_top = 52.0
-margin_right = 114.0
-margin_bottom = 84.0
+margin_left = 3.0
+margin_top = 68.0
+margin_right = 103.0
+margin_bottom = 100.0
 rect_min_size = Vector2( 100, 32 )
 size_flags_horizontal = 4
 custom_constants/vseparation = 2
 custom_constants/hseparation = 2
 columns = 11
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Counter/Countertop"]
-anchor_left = 0.704
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 0.0239868
-margin_right = 74.0
-margin_bottom = 124.0
-rect_scale = Vector2( 0.4, 0.4 )
-theme = SubResource( 6 )
-custom_fonts/normal_font = ExtResource( 37 )
-bbcode_enabled = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Clear_Button" type="TextureButton" parent="Counter/Countertop"]
-margin_left = 212.0
-margin_top = 17.0
-margin_right = 223.0
-margin_bottom = 29.0
-toggle_mode = true
-texture_normal = ExtResource( 33 )
-texture_pressed = ExtResource( 34 )
-texture_hover = ExtResource( 23 )
-expand = true
-stretch_mode = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -353,6 +304,15 @@ flat = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Recipe_Menu" parent="Counter/Countertop" instance=ExtResource( 36 )]
+margin_left = -5.0
+margin_top = 14.0
+margin_right = 160.0
+margin_bottom = 183.0
+rect_min_size = Vector2( 0, 40 )
+rect_pivot_offset = Vector2( 5, 0 )
+theme = ExtResource( 38 )
 
 [node name="Ingredient_Shelf" type="TextureRect" parent="Counter"]
 visible = false
@@ -407,10 +367,10 @@ texture_normal = ExtResource( 28 )
 [node name="Right_Button" type="TextureButton" parent="Counter"]
 anchor_top = 0.00476192
 anchor_bottom = 0.00476192
-margin_left = 169.0
-margin_top = -0.595237
-margin_right = 181.0
-margin_bottom = 10.4048
+margin_left = 171.6
+margin_top = -1.39524
+margin_right = 183.6
+margin_bottom = 9.6048
 rect_scale = Vector2( -1, 1 )
 toggle_mode = true
 texture_normal = ExtResource( 22 )
@@ -442,10 +402,10 @@ region_enabled = true
 region_rect = Rect2( 0, 0, 62, 26 )
 
 [node name="Panel" type="Panel" parent="Counter"]
-margin_left = 169.0
-margin_top = 17.0
+margin_left = 170.0
+margin_top = 72.0
 margin_right = 212.0
-margin_bottom = 28.0
+margin_bottom = 83.0
 rect_min_size = Vector2( 8, 8 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -458,8 +418,8 @@ margin_left = -1.0
 margin_top = -1.0
 margin_right = -1.0
 margin_bottom = -29.0
-custom_constants/vseparation = -3
-custom_constants/hseparation = -3
+custom_constants/vseparation = 0
+custom_constants/hseparation = 0
 columns = 6
 __meta__ = {
 "_edit_use_anchors_": false
@@ -583,6 +543,21 @@ margin_right = 13.0
 margin_bottom = 43.0
 displays_label = false
 
+[node name="Clear_Button" type="TextureButton" parent="Counter"]
+margin_left = 210.875
+margin_top = 71.875
+margin_right = 221.875
+margin_bottom = 83.875
+toggle_mode = true
+texture_normal = ExtResource( 33 )
+texture_pressed = ExtResource( 34 )
+texture_hover = ExtResource( 23 )
+expand = true
+stretch_mode = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Day_Summary" type="ColorRect" parent="."]
 visible = false
 anchor_right = 1.0
@@ -645,8 +620,8 @@ margin_bottom = 630.0
 rect_scale = Vector2( 0.2, 0.2 )
 
 [connection signal="mouse_exited_game_area" from="." to="." method="_on_Game_mouse_exited_game_area"]
-[connection signal="pressed" from="Counter/Countertop/Clear_Button" to="." method="_on_Clear_Button_pressed"]
 [connection signal="pressed" from="Counter/Countertop/Draw_Button" to="." method="_on_Draw_Button_pressed"]
 [connection signal="pressed" from="Counter/Right_Button" to="." method="_on_Right_Button_pressed"]
 [connection signal="pressed" from="Counter/Left_Button" to="." method="_on_Left_Button_pressed"]
+[connection signal="pressed" from="Counter/Clear_Button" to="." method="_on_Clear_Button_pressed"]
 [connection signal="pressed" from="Menu_Button" to="." method="_on_Menu_Button_pressed"]

@@ -1,7 +1,6 @@
 extends VBoxContainer
 
 
-
 var recipe_icon = preload("res://Scenes/Recipe_Display.tscn")
 
 func _ready():
@@ -15,4 +14,7 @@ func _ready():
 func add_recipe(rec_ings):
 	var new_recipe = recipe_icon.instance()
 	new_recipe.set_textures([rec_ings, "Fianl_Potion_1"])
+	new_recipe.recipe_name = str(randi() % 1000)
 	add_child(new_recipe)
+
+
