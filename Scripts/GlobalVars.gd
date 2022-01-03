@@ -15,6 +15,7 @@ var cauldron_color = Color('#000000')
 var ingredient_data
 var recipe_data
 var cauldron_temp = 0
+var scale = 8
 
 var possilbe_rolls = [0, 1, 2, 3, 4, 5]
 const POTION_VARS = ['A', 'B', 'C', 'D']

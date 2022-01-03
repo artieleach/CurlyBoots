@@ -1,7 +1,7 @@
 extends TextureButton
 
 onready var ingredient_sprite = get_node("Node2D/Ingredient_Sprite")
-onready var holder = get_node("holder")
+onready var shadow = get_node("holder")
 onready var tween = get_node("Tween")
 onready var drawing = get_node("Node2D")
 onready var label = get_node("Node2D/Ingredient_Sprite/Label")
@@ -9,7 +9,6 @@ onready var label = get_node("Node2D/Ingredient_Sprite/Label")
 var held: bool = false
 var offset: Vector2 = Vector2(0, 0)
 var will_open_help: bool = false
-var ingredient_effects
 var pickable: bool = true
 var hovering_over_cauldron: bool = false
 export var ingredient_name = ''
@@ -22,10 +21,9 @@ var in_potion = false
 func setup(ing_name):
 	ingredient_name = ing_name
 	label.text = ingredient_name
-	texture_normal = null
 	add_to_group("ingredients")
 	ingredient_sprite.texture = load("res://Art/Ingredients/%s.png" % ingredient_name)
-	holder.texture = load("res://Art/Ingredients/%s.png" % ingredient_name)
+	shadow.texture = load("res://Art/Ingredients/%s.png" % ingredient_name)
 	rect_min_size = Vector2(8, 8)
 	ingredient_sprite.show()
 	label.hide()
@@ -35,7 +33,7 @@ func _process(_delta):
 	if held:
 		tween.interpolate_property(drawing, "global_position", drawing.global_position, get_global_mouse_position() - offset, 0.09)
 		tween.start()
-		drawing.global_position = Vector2(drawing.global_position / 5).floor() * 5
+		drawing.global_position = Vector2(drawing.global_position / GlobalVars.scale).floor() * GlobalVars.scale
 
 
 func _on_ingredient_mouse_exited():
@@ -98,11 +96,6 @@ func mouse_hover():
 			tween.start()
 		ingredient_sprite.use_parent_material = false
 
-
-func generate_page():
-	var output = ''
-	output += '[]'
-	pass
 
 func _gui_input(event):
 	if event is InputEventMouseButton:

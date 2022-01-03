@@ -33,6 +33,7 @@ signal reset_potion
 var current_counter = 0
 
 func _ready():
+	scale = Vector2(GlobalVars.scale, GlobalVars.scale)
 	SceneTransition.transition({"Direction": "in", "Destination": "Game"})
 	randomize()
 	
@@ -60,6 +61,7 @@ func check_recipe():
 	for i in GlobalVars.potion_ingredients:
 		cur_recipe.append(i.ingredient_name)
 	cur_recipe.sort()
+	print(cur_recipe, "THIS ONE HERE")
 	for item in GlobalVars.recipe_data:
 		print(item)
 		if len(GlobalVars.recipe_data[item]) == len(cur_recipe) and 15 in cur_recipe:
